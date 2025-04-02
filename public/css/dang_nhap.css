@@ -1,0 +1,59 @@
+/* General Body Settings */
+body {
+  background-image: url('../imgs/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Card styling */
+.card {
+  max-width: 400px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styling */
+h2 {
+  color: #5D5D5D;
+  font-weight: bold;
+}
+
+/* Button Styling */
+button {
+  background-color: #007BFF;
+  border: none;
+  padding: 12px;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Form Input Field Styling */
+input {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Checkbox Styling */
+.form-check-input {
+  width: 20px;
+  height: 20px;
+}
+
+/* Links Styling */
+a {
+  color: #007BFF;
+}
+
+a:hover {
+  text-decoration: underline;
+}
