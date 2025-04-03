@@ -32,6 +32,16 @@
         </ul>
       </div>
     </div>
+    <div>
+      <a class="btn btn-outline-dark ms-3" href="{{ route('doi_mk',['id'=>session('tai_khoan')]) }}">
+        <i class="bi bi-gear-fill">Đổi mật khẩu</i>
+      </a>
+    </div>
+    <div>
+      <a class="btn btn-outline-dark ms-3" href="{{ url('xl_dang_xuat') }}">
+        <i class="bi bi-door-closed-fill">Đăng xuất</i>
+      </a>
+    </div>
   </nav>
 
   <!-- Main Content -->
@@ -39,57 +49,46 @@
     <!-- Title -->
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h3 class="mb-0">Quản lý tài khoản</h3>
-      <a class="btn btn-warning" href="{{ route('them_tk') }}">
-        <i class="bi bi-plus-circle me-1"></i>Thêm tài khoản
-      </a>
     </div>
 
     <!-- Search Section -->
     <div class="card search-card mb-4">
       <div class="card-body">
-        <form action="{{ route('ql_tk') }}" method="get">
+        <form action="{{ route('ql_kh') }}" method="get">
           @csrf
           <div class="row g-3">
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="search_account" class="form-label">Tài khoản</label>
-                <input type="text" class="form-control" name="search_account" value="{{ !empty($search_account)?$search_account:"" }}" placeholder="Nhập tài khoản">
-              </div>
-            </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="form-group">
                 <label for="search_name" class="form-label">Họ tên</label>
                 <input type="text" class="form-control" name="search_name" value="{{ !empty($search_name)?$search_name:"" }}" placeholder="Nhập họ tên">
               </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-4">
               <div class="form-group">
-                <label for="search_customer" class="form-label">Vai trò</label>
+                <label for="search_email" class="form-label">Email</label>
+                <input type="text" class="form-control" name="search_email" value="{{ !empty($search_email)?$search_email:"" }}" placeholder="Nhập email">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="search_phone" class="form-label">Số điện thoại</label>
+                <input type="text" class="form-control" name="search_phone" value="{{ !empty($search_phone)?$search_phone:"" }}" placeholder="Nhập số điện thoại">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="search_id" class="form-label">Căn cước công dân</label>
+                <input type="text" class="form-control" name="search_id" value="{{ !empty($search_id)?$search_id:"" }}" placeholder="Nhập số điện thoại">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="search_customer" class="form-label">Loại khách hàng</label>
                 <select class="form-select" name="search_customer">
                   <option value="">Tất cả</option>
-                  <option value="1" {{ !empty($search_customer)&&$search_customer==1?"selected":"" }}>Nhân viên</option>
-                  <option value="2" {{ !empty($search_customer)&&$search_customer==2?"selected":"" }}>Khách hàng</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <div class="form-group">
-                <label for="search_role" class="form-label">Quyền</label>
-                <select class="form-select" name="search_role">
-                  <option value="">Tất cả</option>
-                  @foreach ($quyens as $quyen)
-                    <option value="{{ $quyen->id }}" {{ !empty($search_role)&&$search_role==$quyen->id?"selected":"" }}>{{ $quyen->ten_quyen }}</option>
+                  @foreach ($loai_khachs as $loai_khach)
+                    <option value="{{ $loai_khach->id }}" {{ !empty($search_customer)&&$search_customer==$loai_khach->id?"selected":"" }}>{{ $loai_khach->ten_loai_khach }}</option>
                   @endforeach
-                </select>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <div class="form-group">
-                <label for="search_status" class="form-label">Trạng thái</label>
-                <select class="form-select" name="search_status">
-                  <option value="">Tất cả</option>
-                  <option value="active" {{ !empty($search_status)&&$search_status=='active'?"selected":"" }}>Hoạt động</option>
-                  <option value="inactive" {{ !empty($search_status)&&$search_status=='inactive'?"selected":"" }}>Không hoạt động</option>
                 </select>
               </div>
             </div>
@@ -114,43 +113,32 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Tài khoản</th>
                 <th scope="col">Họ tên</th>
-                <th scope="col">Vai trò</th>
-                <th scope="col">Quyền</th>
-                <th scope="col">Trạng thái</th>
-                <th scope="col">Thao tác</th>
+                <th scope="col">Ngày sinh</th>
+                <th scope="col">Số điện thoại</th>
+                <th scope="col">Email</th>
+                <th scope="col">Căn cước công dân</th>
+                <th scope="col">Loại khách hàng</th>
+                <th scope="col">Ngày tạo</th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($tai_khoans as $tai_khoan)
+              @foreach ($khach_hangs as $khach_hang)
                 <?php $count++ ?>
                 <tr>
                   <td>{{$count}}</td>
-                  <td>{{$tai_khoan->tai_khoan}}</td>
-                  @if (!empty($tai_khoan->id_khach_hang))
-                    <td>{{$tai_khoan->KhachHang->ho_ten}}</td>
-                    <td><span class="status-active">Khách hàng</span></td>
-                  @else
-                    <td>{{$tai_khoan->ten_nhan_vien}}</td>
-                    <td><span class="status-inactive">Nhân viên</span></td>
-                  @endif
-                  <td>{{$tai_khoan->Quyen->ten_quyen}}</td>
-                  <td><span class="status-{{$tai_khoan->trang_thai==1?"active":"inactive"}}">{{$tai_khoan->trang_thai==1?"Hoạt động":"Bị khóa"}}</span></td>
-                  <td>
-                    <a class="btn btn-sm btn-primary btn-action me-1" href="{{ route('sua_tk',['id'=>$tai_khoan->tai_khoan]) }}">
+                  <td>{{$khach_hang->ho_ten}}</td>
+                  <td>{{$khach_hang->ngay_sinh}}</td>
+                  <td>{{$khach_hang->sdt}}</td>
+                  <td>{{$khach_hang->email }}</td>
+                  <td>{{$khach_hang->cccd}}</td>
+                  <td>{{$khach_hang->LoaiKhach->ten_loai_khach }}</td>
+                  <td>{{$khach_hang->ngay_tao}}</td>
+                  {{-- <td>
+                    <a class="btn btn-sm btn-primary btn-action me-1" href="{{ route('sua_tk',['id'=>$khach_hang->khach_hang]) }}">
                       <i class="bi bi-pencil-square"></i>
                     </a>
-                  </td>
-                </tr>
-                  <button class="btn btn-sm btn-primary btn-action me-1">
-                    <i class="bi bi-pencil-square"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger btn-action">
-                    <i class="bi bi-trash"></i>
-                  </button>
-                </td>
-              </tr>
+                  </td> --}}
               @endforeach
             </tbody>
           </table>

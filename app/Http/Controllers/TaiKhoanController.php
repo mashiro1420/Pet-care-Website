@@ -11,7 +11,6 @@ class TaiKhoanController extends Controller
     public function viewQuanLy(Request $request)
     {
         $data=[];
-        $data['quyen'] = 
         $query = TaiKhoanModel::query()->select('*')->leftJoin('ql_khachhang','ql_taikhoan.id_khach_hang','=','ql_khachhang.id');
         if($request->has('search_account')&& !empty($request->search_account)){
             $query = $query->where('tai_khoan', 'like', '%'.$request->search_account.'%');
