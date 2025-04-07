@@ -39,7 +39,6 @@ class DangNhapController extends Controller
 						$request->session()->put('quyen', $nguoi_dung->Quyen->ten_quyen);
 				}
 		}
-		dd(session('quyen'));
 		if (session('bao_loi') == '') {
 			if(session('quyen') == 'Admin') return redirect()->route('ql_tk');
 			// elseif(session('quyen') == 'Quản lý')return redirect()->route('ql_nv');

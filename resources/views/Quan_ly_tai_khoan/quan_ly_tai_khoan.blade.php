@@ -142,15 +142,6 @@
                       <i class="bi bi-pencil-square"></i>
                     </a>
                   </td>
-                </tr>
-                  <button class="btn btn-sm btn-primary btn-action me-1">
-                    <i class="bi bi-pencil-square"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger btn-action">
-                    <i class="bi bi-trash"></i>
-                  </button>
-                </td>
-              </tr>
               @endforeach
             </tbody>
           </table>
