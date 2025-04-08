@@ -32,7 +32,7 @@ class KhachHangController extends Controller
             $query = $query->where('id_loai_khach_hang',$request->search_customer);
             $data['search_customer'] = $request->search_customer;
         }
-        $data['khach_hangs'] = $query->get();
+        $data['khach_hangs'] = $query->paginate(5);
         $data['loai_khachs'] = DMLoaiKhachHangModel::all();
         $data['count']=0;
         return view('Quan_ly_khach_hang.quan_ly_khach_hang',$data);

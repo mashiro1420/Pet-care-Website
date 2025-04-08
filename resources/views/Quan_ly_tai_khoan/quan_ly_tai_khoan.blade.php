@@ -11,40 +11,14 @@
 </head>
 
 <body>
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
-    <div class="container">
-      <a class="navbar-brand" href="#">Hệ thống quản lý</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="navbar-nav">
-            <a class="nav-link active px-3" href="{{ route('ql_tk') }}">Quản lý tài khoản</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-3" href="#">Quản lý bài đăng</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-3" href="{{ route('ql_kh') }}">Quản lý khách hàng</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Main Content -->
+  @include('navbar')
   <div class="container py-4">
-    <!-- Title -->
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h3 class="mb-0">Quản lý tài khoản</h3>
       <a class="btn btn-warning" href="{{ route('them_tk') }}">
         <i class="bi bi-plus-circle me-1"></i>Thêm tài khoản
       </a>
     </div>
-
-    <!-- Search Section -->
     <div class="card search-card mb-4">
       <div class="card-body">
         <form action="{{ route('ql_tk') }}" method="get">
@@ -105,8 +79,6 @@
         </form>
       </div>
     </div>
-
-    <!-- Table Section -->
     <div class="card">
       <div class="card-body">
         <div class="table-responsive">
@@ -146,25 +118,46 @@
             </tbody>
           </table>
         </div>
-
         <div class="d-flex justify-content-between align-items-center mt-3">
           <nav aria-label="Page navigation">
             <ul class="pagination mb-0">
-              <li class="page-item disabled">
-                <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">4</a></li>
-              <li class="page-item"><a class="page-link" href="#">5</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
+              @if ($tai_khoans->onFirstPage())
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+              @else
+                <li class="page-item">
+                  <a class="page-link" href="{{ $tai_khoans->previousPageUrl() }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+              @endif
+              @foreach ($tai_khoans->getUrlRange(1, $tai_khoans->lastPage()) as $page => $url)
+                @if ($page == $tai_khoans->currentPage())
+                  <li class="page-item active">
+                    <a class="page-link" href="#">{{ $page }}</a>
+                  </li>
+                @else
+                  <li class="page-item">
+                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                  </li>
+                @endif
+              @endforeach
+              @if ($tai_khoans->hasMorePages())
+                <li class="page-item">
+                  <a class="page-link" href="{{ $tai_khoans->nextPageUrl() }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              @else
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              @endif
             </ul>
           </nav>
         </div>

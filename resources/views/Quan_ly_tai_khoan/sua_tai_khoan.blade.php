@@ -12,29 +12,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
-    <div class="container">
-      <a class="navbar-brand" href="#">Hệ thống quản lý</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="navbar-nav">
-            <a class="nav-link active px-3" href="{{ route('ql_tk') }}">Quản lý tài khoản</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-3" href="#">Quản lý bài đăng</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-3" href="#">Quản lý khách hàng</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Main Content -->
+  @include('navbar')
   <div class="container py-4">
     <!-- Title -->
     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -104,7 +82,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
   <script>
-    // Script for toggle mat_khau visibility
     document.getElementById('togglemat_khau').addEventListener('click', function () {
       const mat_khauInput = document.getElementById('mat_khau');
       const icon = this.querySelector('i');
