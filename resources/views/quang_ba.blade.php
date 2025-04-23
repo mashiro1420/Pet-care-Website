@@ -7,6 +7,8 @@
   <title>PetCare - Dịch vụ chăm sóc thú cưng chuyên nghiệp</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="icon" href="{{ asset('imgs/paw-solid.svg') }}" type="image/x-icon">
   <link rel="stylesheet" href="{{ asset('css/quang_ba.css') }}">
 </head>
 
@@ -77,16 +79,16 @@
       <div class="col">
         <div class="d-flex justify-content-around">
           <div class="pet-icon pet-icon-1">
-            <i class="bi bi-github text-primary" style="font-size: 3rem;"></i>
+            <i class="fa-solid fa-dog" style="font-size: 3rem;"></i>
           </div>
-          <div class="pet-icon pet-icon-2">
-            <i class="bi bi-pinterest text-primary" style="font-size: 3rem;"></i>
+          <div class="pet-icon pet-icon-1">
+            <i class="fa-solid fa-cat" style="font-size: 3rem;"></i>
           </div>
-          <div class="pet-icon pet-icon-3">
-            <i class="bi bi-twitter text-primary" style="font-size: 3rem;"></i>
+          <div class="pet-icon pet-icon-1">
+            <i class="fa-solid fa-dove" style="font-size: 3rem;"></i>
           </div>
-          <div class="pet-icon pet-icon-4">
-            <i class="bi bi-instagram text-primary" style="font-size: 3rem;"></i>
+          <div class="pet-icon pet-icon-1">
+            <i class="fa-solid fa-fish-fins" style="font-size: 3rem;"></i>
           </div>
         </div>
       </div>
