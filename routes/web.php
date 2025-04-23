@@ -34,4 +34,5 @@ Route::post('xl_them_tk',[TaiKhoanController::class, 'xlThem']);
 Route::get('sua_tk',[TaiKhoanController::class, 'viewSua'])->name('sua_tk');
 Route::post('xl_sua_tk',[TaiKhoanController::class, 'xlSua']);
 
+
 Route::get('ql_kh',[KhachHangController::class, 'viewQuanLy'])->name('ql_kh');
