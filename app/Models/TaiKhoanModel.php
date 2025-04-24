@@ -22,4 +22,12 @@ class TaiKhoanModel extends Model
     {
         return $this->belongsTo(KhachHangModel::class,'id_khach_hang');
     }
+    public function ChamSoc()
+    {
+        return $this->belongsTo(ChamSocModel::class, 'id_nhan_vien');
+    }
+    public function TrongCoi()
+    {
+        return $this->belongsTo(TrongCoiModel::class, 'id_nhan_vien');
+    }
 }
