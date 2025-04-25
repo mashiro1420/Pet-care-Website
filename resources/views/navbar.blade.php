@@ -16,6 +16,9 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="{{route('ql_dmdichvu')}}">Danh mục dịch vụ</a></li>
               <li><a class="dropdown-item" href="{{route('ql_dmgia')}}">Danh mục giá</a></li>
+              <li><a class="dropdown-item" href="{{route('ql_dmgiongthucung')}}">Danh mục giống thú cưng</a></li>
+              <li><a class="dropdown-item" href="{{route('ql_dmkhuyenmai')}}">Danh mục khuyến mãi</a></li>
+              <li><a class="dropdown-item" href="{{route('ql_dmloaikhachhang')}}">Danh mục loại khách hàng</a></li>
             </ul>
           </li>
           <li class="nav-item">

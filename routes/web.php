@@ -48,5 +48,28 @@ Route::post('xl_them_dmgia', [DanhMucController::class, 'xlThemDMGia']);
 Route::get('sua_dmgia', [DanhMucController::class, 'viewSuaDMGia'])->name('sua_dmgia');
 Route::post('xl_sua_dmgia', [DanhMucController::class, 'xlSuaDMGia']);
 Route::get('xoa_dmgia', [DanhMucController::class, 'xlXoaDMGia'])->name('xoa_dmgia');
+//DMGiongThuCung Routes
+Route::get('ql_dmgiongthucung', [DanhMucController::class, 'viewDMGiongThuCung'])->name('ql_dmgiongthucung');
+Route::get('them_dmgiongthucung', [DanhMucController::class, 'viewThemDMGiongThuCung'])->name('them_dmgiongthucung');
+Route::post('xl_them_dmgiongthucung', [DanhMucController::class, 'xlThemDMGiongThuCung']);
+Route::get('sua_dmgiongthucung', [DanhMucController::class, 'viewSuaDMGiongThuCung'])->name('sua_dmgiongthucung');
+Route::post('xl_sua_dmgiongthucung', [DanhMucController::class, 'xlSuaDMGiongThuCung']);
+Route::get('xoa_dmgiongthucung', [DanhMucController::class, 'xlXoaDMGiongThuCung'])->name('xoa_dmgiongthucung');
+//DMKhuyenMai Routes
+/* These routes are defining the CRUD operations for managing promotions in the application. Here is a
+breakdown of what each route is doing: */
+Route::get('ql_dmkhuyenmai', [DanhMucController::class, 'viewDMKhuyenMai'])->name('ql_dmkhuyenmai');
+Route::get('them_dmkhuyenmai', [DanhMucController::class, 'viewThemDMKhuyenMai'])->name('them_dmkhuyenmai');
+Route::post('xl_them_dmkhuyenmai', [DanhMucController::class, 'xlThemDMKhuyenMai']);
+Route::get('sua_dmkhuyenmai', [DanhMucController::class, 'viewSuaDMKhuyenMai'])->name('sua_dmkhuyenmai');
+Route::post('xl_sua_dmkhuyenmai', [DanhMucController::class, 'xlSuaDMKhuyenMai']);
+Route::get('xoa_dmkhuyenmai', [DanhMucController::class, 'xlXoaDMKhuyenMai'])->name('xoa_dmkhuyenmai');
+//DMLoaiKhachHang Routes
+Route::get('ql_dmloaikhachhang', [DanhMucController::class, 'viewDMLoaiKhachHang'])->name('ql_dmloaikhachhang');
+Route::get('them_dmloaikhachhang', [DanhMucController::class, 'viewThemDMLoaiKhachHang'])->name('them_dmloaikhachhang');
+Route::post('xl_them_dmloaikhachhang', [DanhMucController::class, 'xlThemDMLoaiKhachHang']);
+Route::get('sua_dmloaikhachhang', [DanhMucController::class, 'viewSuaDMLoaiKhachHang'])->name('sua_dmloaikhachhang');
+Route::post('xl_sua_dmloaikhachhang', [DanhMucController::class, 'xlSuaDMLoaiKhachHang']);
+Route::get('xoa_dmloaikhachhang', [DanhMucController::class, 'xlXoaDMLoaiKhachHang'])->name('xoa_dmloaikhachhang');
 // KhachHang Routes
 Route::get('ql_kh',[KhachHangController::class, 'viewQuanLy'])->name('ql_kh');
