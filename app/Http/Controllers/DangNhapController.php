@@ -58,9 +58,6 @@ class DangNhapController extends Controller
 		$khach_hang->ho_ten = $request->ho_ten;
 		$khach_hang->ngay_sinh = $request->ngay_sinh;
 		$khach_hang->sdt = $request->sdt;
-		$khach_hang->cccd = $request->cccd;
-		$khach_hang->ngay_lam_cc = $request->ngay_lam_cc;
-		$khach_hang->noi_lam_cc = $request->noi_lam_cc;
 		$khach_hang->id_loai_khach_hang = 1;
 		$khach_hang->save();
 		$id_khach_hang = KhachHangModel::where('email',$request->email)->first()->id;
