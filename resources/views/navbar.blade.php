@@ -9,9 +9,15 @@
           <li class="navbar-nav">
             <a class="nav-link px-3" href="{{ route('ql_tk') }}">Quản lý tài khoản</a>
           </li>
-          {{-- <li class="nav-item">
-            <a class="nav-link px-3" href="{{ route('ql_sp') }}">Quản lý danh mục</a>
-          </li> --}}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Quản lý danh mục
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{{route('ql_dmdichvu')}}">Danh mục dịch vụ</a></li>
+              <li><a class="dropdown-item" href="{{route('ql_dmgia')}}">Danh mục giá</a></li>
+            </ul>
+          </li>
           <li class="nav-item">
             <a class="nav-link px-3" href="#">Quản lý bài đăng</a>
           </li>
