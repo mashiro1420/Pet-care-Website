@@ -1,0 +1,135 @@
+body {
+  background-color: #f8f9fa;
+  font-family: 'Arial', sans-serif;
+}
+
+.navbar {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-weight: bold;
+  color: #5D5D5D;
+}
+
+.nav-link {
+  color: #5D5D5D;
+  font-weight: 500;
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 15px 20px;
+}
+
+.card-title {
+  color: #5D5D5D;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.search-card {
+  background-color: #f8f9fa;
+  border: 1px solid #eee;
+}
+
+.table th {
+  background-color: #f8f9fa;
+  color: #5D5D5D;
+  font-weight: 600;
+}
+
+.btn-warning {
+  background-color: #FFC107;
+  border-color: #FFC107;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+  border-color: #e0a800;
+}
+
+.btn-action {
+  padding: 4px 8px;
+  font-size: 14px;
+}
+
+.status-active {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-inactive {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.pagination .page-item .page-link {
+  color: #5D5D5D;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #007BFF;
+  border-color: #007BFF;
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 15px 20px;
+}
+
+.card-title {
+  color: #5D5D5D;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.btn-warning {
+  background-color: #FFC107;
+  border-color: #FFC107;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+  border-color: #e0a800;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #5D5D5D;
+}
+
+.required-field::after {
+  content: "*";
+  color: red;
+  margin-left: 3px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #FFC107;
+  box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+}
