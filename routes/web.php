@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('quang_ba');
+    return view('Giao_dien_khach.quang_ba');
 });
 
 Route::get('dang_nhap',[DangNhapController::class, 'viewDangNhap'])->name('dang_nhap');

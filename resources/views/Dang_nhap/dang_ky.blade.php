@@ -47,21 +47,6 @@
           <input type="text" class="form-control" id="sdt" name="sdt" placeholder="Nhập số điện thoại"
             required>
         </div>
-        <div class="mb-3">
-          <label for="cccd" class="form-label">Căn cước công dân</label>
-          <input type="text" class="form-control" id="cccd" name="cccd" placeholder="Nhập căn cước công dân"
-            required>
-        </div>
-        <div class="mb-3">
-          <label for="ngay_lam_cc" class="form-label">Ngày làm căn cước</label>
-          <input type="date" class="form-control" id="ngay_lam_cc" name="ngay_lam_cc"
-            required>
-        </div>
-        <div class="mb-3">
-          <label for="noi_lam_cc" class="form-label">Nơi làm căn cước</label>
-          <input type="text" class="form-control" id="noi_lam_cc" name="noi_lam_cc" placeholder="Nhập nơi làm căn cước"
-            required>
-        </div>
         <div class="d-flex justify-content-between align-items-center">
           <a href="{{ route('dang_nhap') }}" class="text-decoration-none">Đăng nhập</a>
         </div>
