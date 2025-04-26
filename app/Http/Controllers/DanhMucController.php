@@ -187,28 +187,26 @@ class DanhMucController extends Controller
     {
         $khuyen_mai = new DMKhuyenMaiModel();
         $khuyen_mai->ten_khuyen_mai = $request->ten_khuyen_mai;
-        $khuyen_mai->ten_khuyen_mai_thu_cung = $request->ten_khuyen_mai_thu_cung;
+        $khuyen_mai->noi_dung = $request->noi_dung;
+        $khuyen_mai->phan_tram = $request->phan_tram;
+        $khuyen_mai->so_giam = $request->so_giam;
+        $khuyen_mai->tu_ngay = $request->tu_ngay;
+        $khuyen_mai->den_ngay = $request->den_ngay;
         $khuyen_mai->save();
         return redirect()->route('ql_dmkhuyenmai');
     }
     public function xlSuaDMKhuyenMai(Request $request)
     {
         $khuyen_mai = DMKhuyenMaiModel::find( $request->id );
-        $khuyen_mai->id_loai_thu_cung = $request->ten_loai_thu_cung;
-        $khuyen_mai->ten_khuyen_mai_thu_cung = $request->ten_khuyen_mai_thu_cung;
+        $khuyen_mai->ten_khuyen_mai = $request->ten_khuyen_mai;
+        $khuyen_mai->noi_dung = $request->noi_dung;
+        $khuyen_mai->phan_tram = $request->phan_tram;
+        $khuyen_mai->so_giam = $request->so_giam;
+        $khuyen_mai->trang_thai = $request->trang_thai;
+        $khuyen_mai->tu_ngay = $request->tu_ngay;
+        $khuyen_mai->den_ngay = $request->den_ngay;
         $khuyen_mai->save(); 
         return redirect()->route('ql_dmkhuyenmai');
-    }
-    public function xlXoaMKhuyenMai(Request $request)
-    {
-        $khuyen_mai = DMKhuyenMaiModel::find( $request->id );
-        try {
-            $khuyen_mai->delete();
-            return redirect()->route('ql_dmkhuyenmai');
-        }
-        catch (Exception $e) {
-            return redirect()->route('ql_dmkhuyenmai')->with('bao_loi',$e);
-        }
     }
     //DMLoaiKhachHang Controller
     public function viewDMLoaiKhachHang(Request $request)
@@ -231,6 +229,31 @@ class DanhMucController extends Controller
         $data['loai_khach_hang'] = DMLoaiKhachHangModel::find($request->id);
         return view('Quan_ly_danh_muc.Quan_ly_dm_loai_khach_hang.sua_dmloaikhachhang', $data);
     }
-
-
+    public function xlThemDMLoaiKhachHang(Request $request)
+    {
+        $loai_khach_hang = new DMLoaiKhachHangModel();
+        $loai_khach_hang->ten_loai_khach = $request->ten_loai_khach;
+        $loai_khach_hang->hoi_vien = $request->hoi_vien;
+        $loai_khach_hang->save();
+        return redirect()->route('ql_dmloaikhachhang');
+    }
+    public function xlSuaDMLoaiKhachHang(Request $request)
+    {
+        $loai_khach_hang = DMLoaiKhachHangModel::find( $request->id );
+        $loai_khach_hang->ten_loai_khach = $request->ten_loai_khach;
+        $loai_khach_hang->hoi_vien = $request->hoi_vien;
+        $loai_khach_hang->save(); 
+        return redirect()->route('ql_dmloaikhachhang');
+    }
+    public function xlXoaDMLoaiKhachHang(Request $request)
+    {
+        $loai_khach_hang = DMLoaiKhachHangModel::find( $request->id );
+        try {
+            $loai_khach_hang->delete();
+            return redirect()->route('ql_dmloaikhachhang');
+        }
+        catch (Exception $e) {
+            return redirect()->route('ql_dmloaikhachhang')->with('bao_loi',$e);
+        }
+    }
 }
