@@ -42,7 +42,7 @@ Route::get('sua_dmdichvu', [DanhMucController::class, 'viewSuaDMDichVu'])->name(
 Route::post('xl_sua_dmdichvu', [DanhMucController::class, 'xlSuaDMDichVu']);
 Route::get('xoa_dmdichvu', [DanhMucController::class, 'xlXoaDMDichVu'])->name('xoa_dmdichvu');
 //DMGia Routes
-Route::get('ql_dmdgia', [DanhMucController::class, 'viewDMGia'])->name('ql_dmgia');
+Route::get('ql_dmgia', [DanhMucController::class, 'viewDMGia'])->name('ql_dmgia');
 Route::get('them_dmgia', [DanhMucController::class, 'viewThemDMGia'])->name('them_dmgia');
 Route::post('xl_them_dmgia', [DanhMucController::class, 'xlThemDMGia']);
 Route::get('sua_dmgia', [DanhMucController::class, 'viewSuaDMGia'])->name('sua_dmgia');
@@ -56,8 +56,6 @@ Route::get('sua_dmgiongthucung', [DanhMucController::class, 'viewSuaDMGiongThuCu
 Route::post('xl_sua_dmgiongthucung', [DanhMucController::class, 'xlSuaDMGiongThuCung']);
 Route::get('xoa_dmgiongthucung', [DanhMucController::class, 'xlXoaDMGiongThuCung'])->name('xoa_dmgiongthucung');
 //DMKhuyenMai Routes
-/* These routes are defining the CRUD operations for managing promotions in the application. Here is a
-breakdown of what each route is doing: */
 Route::get('ql_dmkhuyenmai', [DanhMucController::class, 'viewDMKhuyenMai'])->name('ql_dmkhuyenmai');
 Route::get('them_dmkhuyenmai', [DanhMucController::class, 'viewThemDMKhuyenMai'])->name('them_dmkhuyenmai');
 Route::post('xl_them_dmkhuyenmai', [DanhMucController::class, 'xlThemDMKhuyenMai']);
