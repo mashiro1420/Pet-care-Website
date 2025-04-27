@@ -19,6 +19,9 @@
               <li><a class="dropdown-item" href="{{route('ql_dmgiongthucung')}}">Danh mục giống thú cưng</a></li>
               <li><a class="dropdown-item" href="{{route('ql_dmkhuyenmai')}}">Danh mục khuyến mãi</a></li>
               <li><a class="dropdown-item" href="{{route('ql_dmloaikhachhang')}}">Danh mục loại khách hàng</a></li>
+              <li><a class="dropdown-item" href="{{route('ql_dmloaithucung')}}">Danh mục loại thú cưng</a></li>
+              <li><a class="dropdown-item" href="{{route('ql_dmquyen')}}">Danh mục quyền</a></li>
+              <li><a class="dropdown-item" href="{{route('ql_dmtrangthai')}}">Danh mục trạng thái</a></li>
             </ul>
           </li>
           <li class="nav-item">
