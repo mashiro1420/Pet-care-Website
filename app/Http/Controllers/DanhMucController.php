@@ -8,6 +8,8 @@ use App\Models\DMGiongThuCungModel;
 use App\Models\DMLoaiThuCungModel;
 use App\Models\DMKhuyenMaiModel;
 use App\Models\DMLoaiKhachHangModel;
+use App\Models\DMQuyenModel;
+use App\Models\DMTrangThaiModel;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -255,5 +257,68 @@ class DanhMucController extends Controller
         catch (Exception $e) {
             return redirect()->route('ql_dmloaikhachhang')->with('bao_loi',$e);
         }
+    }
+    //DMLoaiThuCung Controller
+    public function viewDMLoaiThuCung(Request $request)
+    {
+        $data = [];
+        $query = DMLoaiThuCungModel::query()->select('*');
+        $data['loai_thu_cungs'] = $query->paginate(5);
+        $data['bao_loi'] = session('bao_loi');
+        return view('Quan_ly_danh_muc.Quan_ly_dm_loai_thu_cung.quan_ly_dmloaithucung', $data);
+    }
+    public function viewThemDMLoaiThuCung(Request $request)
+    {
+        $data = [];
+        $data['bao_loi'] = session('bao_loi');
+        return view('Quan_ly_danh_muc.Quan_ly_dm_loai_thu_cung.them_dmloaithucung', $data);
+    }
+    public function viewSuaDMLoaiThuCung(Request $request)
+    {
+        $data = [];
+        $data['loai_thu_cung'] = DMLoaiThuCungModel::find($request->id);
+        return view('Quan_ly_danh_muc.Quan_ly_dm_loai_thu_cung.sua_dmloaithucung', $data);
+    }
+    //DMQuyen Controller
+    public function viewDMQuyen(Request $request)
+    {
+        $data = [];
+        $query = DMQuyenModel::query()->select('*');
+        $data['quyens'] = $query->paginate(5);
+        $data['bao_loi'] = session('bao_loi');
+        return view('Quan_ly_danh_muc.Quan_ly_dm_quyen.quan_ly_dmquyen', $data);
+    }
+    public function viewThemDMQuyen(Request $request)
+    {
+        $data = [];
+        $data['bao_loi'] = session('bao_loi');
+        return view('Quan_ly_danh_muc.Quan_ly_dm_quyen.them_dmquyen', $data);
+    }
+    public function viewSuaDMQuyen(Request $request)
+    {
+        $data = [];
+        $data['quyen'] = DMQuyenModel::find($request->id);
+        return view('Quan_ly_danh_muc.Quan_ly_dm_quyen.sua_dmquyen', $data);
+    }
+    //DMTrangThai Controller
+    public function viewDMTrangThai(Request $request)
+    {
+        $data = [];
+        $query = DMTrangThaiModel::query()->select('*');
+        $data['trang_thais'] = $query->paginate(5);
+        $data['bao_loi'] = session('bao_loi');
+        return view('Quan_ly_danh_muc.Quan_ly_dm_trang_thai.quan_ly_dmtrangthai', $data);
+    }
+    public function viewThemDMTrangThai(Request $request)
+    {
+        $data = [];
+        $data['bao_loi'] = session('bao_loi');
+        return view('Quan_ly_danh_muc.Quan_ly_dm_trang_thai.them_dmtrangthai', $data);
+    }
+    public function viewSuaDMTrangThai(Request $request)
+    {
+        $data = [];
+        $data['trang_thai'] = DMTrangThaiModel::find($request->id);
+        return view('Quan_ly_danh_muc.Quan_ly_dm_trang_thai.sua_dmtrangthai', $data);
     }
 }

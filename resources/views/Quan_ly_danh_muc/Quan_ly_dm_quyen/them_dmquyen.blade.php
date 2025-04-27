@@ -4,39 +4,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cập nhật loại nội dung</title>
+  <title>Thêm quyền</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" href="{{ asset('imgs/paw-solid.svg') }}" type="image/x-icon">
   <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+
 </head>
 
 <body>
   @include('navbar')
   <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <h3 class="mb-0">Cập nhật loại nội dung</h3>
-      <a href="{{ route('ql_dmloainoidung') }}" class="btn btn-outline-secondary">
+      <h3 class="mb-0">Thêm quyền</h3>
+      <a href="{{ route('ql_dmquyen') }}" class="btn btn-outline-secondary">
         <i class="bi bi-arrow-left me-1"></i>Quay lại
       </a>
     </div>
 
     <div class="card">
       <div class="card-body p-4">
-        <form action="{{ url('xl_sua_dmloainoidung') }}" method="POST">
+        <form action="{{ url('xl_them_dmquyen') }}" method="POST">
           @csrf
           <div class="row g-3">
             <div class="col-md-6">
               <div class="mb-3">
-                <label for="ten_dich_vu" class="form-label required-field">Tên loại nội dung</label>
-                <input type="text" class="form-control" name="ten_dich_vu" value="{{$dich_vu->ten_dich_vu}}" required>
+                <label for="ten_quyen" class="form-label required-field">Tên quyền</label>
+                <input type="text" class="form-control" name="ten_quyen" placeholder="Nhập tên quyền" required>
               </div>
-            </div>  
+            </div> 
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="mo_ta" class="form-label">Mô tả</label>
+                <input type="text" class="form-control" name="mo_ta" placeholder="Nhập mô tả">
+              </div>
+            </div> 
           </div>
             <div class="col-12 d-flex justify-content-end gap-2 mt-4">
+              <button type="reset" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-repeat me-1"></i>Đặt lại
+              </button>
               <button type="submit" class="btn btn-warning">
-                <i class="bi bi-plus-circle me-1"></i> Cập nhật
+                <i class="bi bi-plus-circle me-1"></i>Thêm quyền
               </button>
             </div>
           </div>
