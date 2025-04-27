@@ -28,7 +28,7 @@
             required>
         </div>
         <div class="d-flex justify-content-between align-items-center">
-          <a href="#" class="text-decoration-none">Quên mật khẩu?</a>
+          <a href="{{route('quen_mk')}}" class="text-decoration-none">Quên mật khẩu?</a>
         </div>
         <div class="d-flex justify-content-between align-items-center">
           <a href="{{ route('dang_ky') }}" class="text-decoration-none">Đăng ký</a>
