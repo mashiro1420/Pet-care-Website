@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Đăng ký</title>
+  <title>Đổi mật khẩu</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -19,8 +19,8 @@
       <form action="{{ url('xl_doi_mk') }}" method="POST">
         @csrf
         <div class="mb-3">
-          <label for="email" class="form-label">Tài khoản</label>
-          <input type="text" class="form-control" id="email" name="email" value="{{ $tai_khoan->tai_khoan }}" placeholder="Nhập email" readonly>
+          <label for="tai_khoan" class="form-label">Tài khoản</label>
+          <input type="text" class="form-control" id="tai_khoan" name="tai_khoan" value="{{ $tai_khoan->tai_khoan }}" placeholder="Nhập tài khoản" readonly>
         </div>
         <div class="mb-3">
           <label for="mat_khau_cu" class="form-label">Mật khẩu cũ</label>
