@@ -24,6 +24,7 @@ Route::get('/', function () {
 Route::get('dang_nhap',[DangNhapController::class, 'viewDangNhap'])->name('dang_nhap');
 Route::get('dang_ky',[DangNhapController::class, 'viewDangKy'])->name('dang_ky');
 Route::get('doi_mk',[DangNhapController::class, 'viewDoiMK'])->name('doi_mk');
+Route::get('quen_mk',[DangNhapController::class, 'viewQuenMK'])->name('quen_mk');
 Route::post('xl_dang_nhap',[DangNhapController::class, 'login']);
 Route::get('xl_dang_xuat',[DangNhapController::class, 'logout']);
 Route::post('xl_dang_ky',[DangNhapController::class, 'signup']);
