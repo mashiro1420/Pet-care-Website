@@ -30,7 +30,7 @@
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="ten_dich_vu" class="form-label required-field">Tên loại nội dung</label>
-                <input type="text" class="form-control" name="ten_dich_vu" value="{{$dich_vu->ten_dich_vu}}" placeholder="Nhập loại nội dung" required>
+                <input type="text" class="form-control" name="ten_dich_vu" value="{{$dich_vu->ten_dich_vu}}" required>
               </div>
             </div>  
           </div>
