@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Đăng nhập</title>
+  <title>Quên mật khẩu</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -15,25 +15,24 @@
 <body>
   <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="card shadow-lg p-4 rounded">
-      <h2 class="text-center mb-4">Đăng nhập</h2>
-      <form action="{{ url('xl_dang_nhap') }}" method="POST">
+      <h2 class="text-center mb-4">Đổi mật khẩu</h2>
+      <form action="{{ url('xl_doi_mk') }}" method="POST">
         @csrf
         <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input type="text" class="form-control" id="tai_khoan" name="tai_khoan" placeholder="Nhập email" required>
+          <label for="email" class="form-label required-field">Email</label>
+          <input type="text" class="form-control" id="email" name="email" placeholder="Nhập email" required>
         </div>
         <div class="mb-3">
-          <label for="password" class="form-label">Mật khẩu</label>
-          <input type="password" class="form-control" id="mat_khau" name="mat_khau" placeholder="Nhập mật khẩu"
+          <label for="mat_khau_moi" class="form-label required-field">Mật khẩu mới</label>
+          <input type="password" class="form-control" id="mat_khau_moi" name="mat_khau_moi" placeholder="Nhập mật khẩu mới"
             required>
         </div>
-        <div class="d-flex justify-content-between align-items-center">
-          <a href="{{route('quen_mk')}}" class="text-decoration-none">Quên mật khẩu?</a>
+        <div class="mb-3">
+          <label for="mat_khau_lai" class="form-label required-field">Nhập lại mật khẩu mới</label>
+          <input type="password" class="form-control" id="mat_khau_lai" name="mat_khau_lai" placeholder="Nhập lại mật khẩu mới"
+            required>
         </div>
-        <div class="d-flex justify-content-between align-items-center">
-          <a href="{{ route('dang_ky') }}" class="text-decoration-none">Đăng ký</a>
-        </div>
-        <button type="submit" class="btn btn-warning w-100 mt-3">Đăng nhập</button>
+        <button type="submit" class="btn btn-warning w-100 mt-3">Đổi mật khẩu</button>
       </form>
     </div>
   </div>
