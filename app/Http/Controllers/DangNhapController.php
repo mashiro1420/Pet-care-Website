@@ -123,7 +123,8 @@ class DangNhapController extends Controller
 		$result = Mail::to($request->email)->send(new QuenMatKhauMail($thong_tin));
 		if($result){
 			return redirect()->route('xac_nhan')->with('bao_loi','Gửi thành công');
-			}	
+			}
+		else session()->flash('bao_loi','Gửi không thành công');
 		}
 	}
 	public function xlXacNhan(Request $request)

@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class QuenMatKhauMail extends Mailable
+class XacNhanDatLichMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $thong_tin;
@@ -28,8 +28,7 @@ class QuenMatKhauMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            // from: new Address('QuanLyTaiKhoan@qlcn.com', 'Quản lý tài khoản Cấp nước Hải Phòng'),
-            subject: 'Cài đặt lại mật khẩu',
+            subject: 'Xác nhận đặt lịch',
         );
     }
 
@@ -39,11 +38,10 @@ class QuenMatKhauMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'template_quen_mk',
+            view: 'template_xac_nhan_dat_lich',
             with: [
                 'thong_tin' => $this->thong_tin,
             ],
-            // text: 'view.name',
         );
     }
 

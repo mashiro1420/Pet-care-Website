@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CSDichVuModel;
+use App\Models\DMDichVuModel;
 use App\Models\TCDichVuModel;
 use Illuminate\Http\Request;
 
@@ -16,22 +17,36 @@ class DichVuController extends Controller
         ->leftJoin('dm_dichvu','ql_dichvutrongcoi.id_dich_vu','=','dm_dichvu.id');
         $data['cham_socs'] = $queryChamSoc->get();
         $data['trong_cois'] = $queryTrongCoi->get();
+        $data['dich_vu_css'] = DMDichVuModel::select('id_dich_vu.*')
+            ->leftJoin('ql_dichvuchamsoc', 'dm_dichvu.id', '=', 'ql_dichvuchamsoc.id_dich_vu')
+            ->whereNull('ql_dichvuchamsoc.id_dich_vu')
+            ->get();
+        $data['dich_vu_tcs'] = DMDichVuModel::select('id_dich_vu.*')
+            ->leftJoin('ql_dichvutrongcoi', 'dm_dichvu.id', '=', 'ql_dichvutrongcoi.id_dich_vu')
+            ->whereNull('ql_dichvutrongcoi.id_dich_vu')
+            ->get();
         return view('Quan_ly_dich_vu.quan_ly_dich_vu', $data);
     }
     public function xlThemChamSoc( Request $request )
     {
-
+        $dich_vu = new CSDichVuModel();
+        $dich_vu->id_dich_vu = $request->id_dich_vu_cs;
+        $dich_vu->save();
     }
     public function xlThemTrongCoi( Request $request )
     {
-        
+        $dich_vu = new TCDichVuModel();
+        $dich_vu->id_dich_vu = $request->id_dich_vu_tc;
+        $dich_vu->save();
     }
     public function xlXoaChamSoc( Request $request )
     {
-        
+        $dich_vu = CSDichVuModel::find( $request->id);
+        $dich_vu->delete();
     }
     public function xlXoaTrongCoi( Request $request )
     {
-        
+        $dich_vu = TCDichVuModel::find( $request->id);
+        $dich_vu->delete();
     }
 }

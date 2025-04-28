@@ -18,7 +18,7 @@
       <h2 class="text-center mb-4">Đổi mật khẩu</h2>
       <form action="{{ url('xl_doi_mk') }}" method="POST">
         @csrf
-        @if (empty(session('email')))
+        @if (empty(session('quen')))
         <div class="mb-3">
           <label for="tai_khoan" class="form-label">Tài khoản</label>
           <input type="text" class="form-control" id="tai_khoan" name="tai_khoan" value="{{ $tai_khoan->tai_khoan }}" placeholder="Nhập tài khoản" readonly>
