@@ -33,6 +33,10 @@
                 <label for="ten_dich_vu" class="form-label required-field">Tên dịch vụ</label>
                 <input type="text" class="form-control" name="ten_dich_vu" placeholder="Nhập dịch vụ" required>
               </div>
+              <div class="mb-3">
+                <label for="don_gia" class="form-label required-field">Đơn giá</label>
+                <input type="text" class="form-control" name="don_gia" placeholder="Nhập đơn giá" required>
+              </div>
             </div>
             <div class="col-md-6">
               <div class="mb-3">

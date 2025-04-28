@@ -28,6 +28,7 @@
           @csrf
           <div class="row g-3">
             <div class="col-md-6">
+              <input type="text" class="form-control" name="id" value="{{$quyen->id}}" hidden>
               <div class="mb-3">
                 <label for="ten_quyen" class="form-label required-field">Tên quyền</label>
                 <input type="text" class="form-control" name="ten_quyen" value="{{$quyen->ten_quyen}}" required>

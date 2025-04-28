@@ -97,7 +97,7 @@ class BaiDangController extends Controller
     {
         $bai_dang = BaiDangModel::find($request->id);
         $bai_dang->trang_thai = $request->trang_thai;
-        $bai_dang->ngay_dang = date('Y-m-d H:i:s');;
+        $bai_dang->ngay_dang = date('Y-m-d H:i:s');
         $bai_dang->save();
     }
 }

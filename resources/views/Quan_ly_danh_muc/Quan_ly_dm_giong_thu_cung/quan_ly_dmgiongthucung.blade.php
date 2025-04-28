@@ -23,22 +23,22 @@
     </div>
         <div class="card search-card mb-4">
       <div class="card-body">
-        <form action="{{ route('ql_tk') }}" method="get">
+        <form action="{{ route('ql_dmgiongthucung') }}" method="get">
           @csrf
           <div class="row g-3">
             <div class="col-md-3">
               <div class="form-group">
-                <label for="search_tengiongthucung" class="form-label">Tên giống thú cưng</label>
-                <input type="text" class="form-control" name="search_tengiongthucung" value="{{ !empty($search_tengiongthucung)?$search_tengiongthucung:"" }}" placeholder="Nhập tên giống thú cưng">
+                <label for="search_giong" class="form-label">Tên giống thú cưng</label>
+                <input type="text" class="form-control" name="search_giong" value="{{ !empty($search_tengiongthucung)?$search_tengiongthucung:"" }}" placeholder="Nhập tên giống thú cưng">
               </div>
             </div>
             <div class="col-md-2">
               <div class="form-group">
-                <label for="search_role" class="form-label">Loại thú cưng</label>
-                <select class="form-select" name="search_role">
+                <label for="search_loai" class="form-label">Loại thú cưng</label>
+                <select class="form-select" name="search_loai">
                   <option value="">Tất cả</option>
                   @foreach ($loai_thu_cungs as $loai_thu_cung)
-                    <option value="{{ $loai_thu_cung->id }}" {{ !empty($search_role)&&$search_role==$loai_thu_cung->id?"selected":"" }}>{{ $loai_thu_cung->ten_loai_thu_cung }}</option>
+                    <option value="{{ $loai_thu_cung->id }}" {{ !empty($search_loai)&&$search_loai==$loai_thu_cung->id?"selected":"" }}>{{ $loai_thu_cung->ten_loai_thu_cung }}</option>
                   @endforeach
                 </select>
               </div>

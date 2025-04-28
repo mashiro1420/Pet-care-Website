@@ -28,18 +28,21 @@
           @csrf
           <div class="row g-3">
             <div class="col-md-6">
+            <input type="text" class="form-control" name="id" value="{{$dich_vu->id}}" hidden>
               <div class="mb-3">
                 <label for="ten_dich_vu" class="form-label required-field">Tên dịch vụ</label>
                 <input type="text" class="form-control" name="ten_dich_vu" value="{{$dich_vu->ten_dich_vu}}" placeholder="Nhập dịch vụ" required>
+              </div>
+              <div class="mb-3">
+                <label for="don_gia" class="form-label required-field">Đơn giá</label>
+                <input type="number" class="form-control" name="don_gia" value="{{$gia->don_gia}}" required>
               </div>
             </div>
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="mo_ta" class="form-label required-field">Mô tả</label>
                 <div class="input-group">
-                  <textarea name="mo_ta" class="form-control" id="mo_ta" cols="30" rows="10" required>
-                    {{$dich_vu -> mo_ta}}
-                  </textarea>
+                  <textarea name="mo_ta" class="form-control" id="mo_ta" cols="30" rows="10" required>{{$dich_vu -> mo_ta}}</textarea>
                 </div>
               </div>
             </div>  

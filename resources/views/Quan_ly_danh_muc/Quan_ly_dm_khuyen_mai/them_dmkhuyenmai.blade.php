@@ -36,20 +36,6 @@
             </div>
             <div class="col-md-6">
               <div class="mb-3">
-                <label for="phan_tram" class="form-label">Phần trăm khuyến mãi</label>
-                <input type="int" class="form-control" name="phan_tram" placeholder="Nhập số phần trăm" value="0">
-              </div>
-            </div> 
-          </div>
-          <div class="row g-3">
-            <div class="col-md-6">
-              <div class="mb-3">
-                <label for="so_giam" class="form-label">Số giảm</label>
-                <input type="int" class="form-control" name="so_giam" placeholder="Nhập số giảm" value="0">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="mb-3">
                 <label for="trang_thai" class="form-label">Trạng thái</label>
                 <select class="form-select" name="trang_thai" required>              
                   <option value="1">Đang hoạt động</option>
@@ -57,6 +43,21 @@
                 </select>
               </div>
             </div>
+          </div>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="phan_tram" class="form-label">Phần trăm khuyến mãi</label>
+                <input type="number" class="form-control" name="phan_tram" placeholder="Nhập số phần trăm" value="0">
+              </div>
+            </div> 
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="so_giam" class="form-label">Số giảm</label>
+                <input type="number" class="form-control" name="so_giam" placeholder="Nhập số giảm" value="0">
+              </div>
+            </div>
+            
           </div>
           <div class="row g-3">
             <div class="col-md-6">

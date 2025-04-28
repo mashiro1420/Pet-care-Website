@@ -28,10 +28,11 @@
         <form action="{{ url('xl_sua_dmloaikhachhang') }}" method="POST">
           @csrf
           <div class="row g-3">
+          <input type="text" class="form-control" name="id" value="{{$loai_khach_hang->id}}" hidden>
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="ten_loai_khach_hang" class="form-label required-field">Tên loại khách hàng</label>
-                <input type="text" class="form-control" name="ten_loai_khach_hang" value="{{$loai_khach_hang->ten_loai_khach}}" required>
+                <input type="text" class="form-control" name="ten_loai_khach" value="{{$loai_khach_hang->ten_loai_khach}}" required>
               </div>
             </div>
             <div class="col-md-6">

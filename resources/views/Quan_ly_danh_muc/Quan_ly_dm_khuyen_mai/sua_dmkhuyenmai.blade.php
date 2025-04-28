@@ -28,24 +28,11 @@
         <form action="{{ url('xl_sua_dmkhuyenmai') }}" method="POST">
           @csrf
           <div class="row g-3">
+          <input type="text" class="form-control" name="id" value="{{$khuyen_mai->id}}" hidden>
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="ten_khuyen_mai" class="form-label required-field">Tên khuyến mãi</label>
                 <input type="text" class="form-control" name="ten_khuyen_mai" value="{{$khuyen_mai->ten_khuyen_mai}}" required>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="mb-3">
-                <label for="phan_tram" class="form-label">Phần trăm khuyến mãi</label>
-                <input type="int" class="form-control" name="phan_tram" value="{{$khuyen_mai->phan_tram}}" >
-              </div>
-            </div> 
-          </div>
-          <div class="row g-3">
-            <div class="col-md-6">
-              <div class="mb-3">
-                <label for="so_giam" class="form-label">Số giảm</label>
-                <input type="int" class="form-control" name="so_giam" value="{{$khuyen_mai->so_giam}}">
               </div>
             </div>
             <div class="col-md-6">
@@ -57,6 +44,21 @@
                 </select>
               </div>
             </div>
+          </div>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="phan_tram" class="form-label">Phần trăm khuyến mãi</label>
+                <input type="int" class="form-control" name="phan_tram" value="{{$khuyen_mai->phan_tram}}" >
+              </div>
+            </div> 
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="so_giam" class="form-label">Số giảm</label>
+                <input type="int" class="form-control" name="so_giam" value="{{$khuyen_mai->so_giam}}">
+              </div>
+            </div>
+            
           </div>
           <div class="row g-3">
             <div class="col-md-6">
@@ -77,9 +79,7 @@
               <div class="mb-3">
                 <label for="noi_dung" class="form-label">Nội dung</label>
                 <div class="input-group">
-                  <textarea name="noi_dung" class="form-control" id="noi_dung" cols="30" rows="10">
-                  {{$khuyen_mai->noi_dung}}
-                  </textarea>
+                  <textarea name="noi_dung" class="form-control" id="noi_dung" cols="30" rows="10">{{$khuyen_mai->noi_dung}}</textarea>
                 </div>
               </div>
             </div>
