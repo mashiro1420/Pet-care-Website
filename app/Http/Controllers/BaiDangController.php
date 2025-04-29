@@ -64,27 +64,23 @@ class BaiDangController extends Controller
         $bai_dang = BaiDangModel::find($request->id);
         $bai_dang->tieu_de = $request->tieu_de;
         if ($request->hasFile('thumbnail')) {
-            $this->upload_file($request->thumbnail);
-            $bai_dang->thumbnail = $request->thumbnail;
+            $request->thumbnail->move('thumbnail', $this->upload_file($request->thumbnail));;
+            $bai_dang->thumbnail = $this->upload_file($request->thumbnail);
         }
         $bai_dang->tom_tat = $request->tom_tat;
         $bai_dang->noi_dung = $request->noi_dung;
         $bai_dang->id_loai_noi_dung  = $request->loai_noi_dung ;
         if ($request->hasFile('hinh_anh')) {
-            $this->upload_file($request->hinh_anh);
-            $bai_dang->hinh_anh = $request->hinh_anh;
+            $request->hinh_anh->move('hinh_anh', $this->upload_file($request->hinh_anh));;
+            $bai_dang->hinh_anh = $this->upload_file($request->hinh_anh);
         }
-        if ($request->hasFile('link_video')) {
-            $this->upload_file($request->link_video);
-            $bai_dang->link_video = $request->link_video;
-        }
+        $bai_dang->link_video = $request->link_video;
         $bai_dang->trang_thai = $request->trang_thai;
         $bai_dang->save();
     }
     protected function upload_file(File $file)
     {
         $filename = md5(time() . $file->getClientOriginalName()) . '.' . $file->getClientOriginalExtension();
-        $file->move('Hop_dong_data', $filename);
         return $filename;
     }
     public function xlThich(Request $request)

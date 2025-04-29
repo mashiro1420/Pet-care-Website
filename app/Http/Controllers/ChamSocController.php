@@ -40,7 +40,6 @@ class ChamSocController extends Controller
         $dat_lich->id_trang_thai = 1;
         $dat_lich->ngay = $request->ngay;
         $dat_lich->thoi_gian = $request->thoi_gian;
-        $dat_lich->ngay_dat_lich = date('Y-m-d H:i:s');
         $dat_lich->id_giong = $request->giong;
         $dat_lich->ghi_chu = $request->ghi_chu;
         $dat_lich->save();
@@ -51,6 +50,18 @@ class ChamSocController extends Controller
             $dich_vu_them->id_dich_vu = $dich_vu;
             $dich_vu_them->save();
         }
+        $thong_tin = [
+            'loai' => 1,
+			'email' => $khach->email,
+			'ho_ten' => $khach->ten_khach_hang,
+            'sdt' => $khach->sdt,
+            'ngay' => $request->ngay,
+            'thoi_gian' => $request->thoi_gian,
+            'ghi_chu' => $request->ghi_chu,
+            'dich_vu_them' => $request->dich_vu_them,
+            'dich_vu' => 'CS'
+		];
+        $this->xlGuiMailXacNhan($thong_tin);
         return redirect()->route('khach_dat_lich');
     }
     public function xlSuaLich(Request $request)
@@ -71,19 +82,45 @@ class ChamSocController extends Controller
             $dich_vu_them->id_dich_vu = $dich_vu;
             $dich_vu_them->save();
         }
+        $thong_tin = [
+            'loai' => 2,
+			'email' => $dat_lich->KhachHang->email,
+			'ho_ten' => $dat_lich->KhachHang->ten_khach_hang,
+            'sdt' => $dat_lich->KhachHang->sdt,
+            'ngay' => $request->ngay,
+            'thoi_gian' => $request->thoi_gian,
+            'ghi_chu' => $request->ghi_chu,
+            'dich_vu_them' => $request->dich_vu_them,
+            'dich_vu' => 'CS'
+		];
+        $this->xlGuiMailXacNhan($thong_tin);
         return redirect()->route('khach_dat_lich');
     }
     public function xlHoanThanh(Request $request)
     {
         $dat_lich = ChamSocModel::find($request->id);
         $dat_lich->id_trang_thai = 2;
+        $dat_lich->danh_gia = $request->danh_gia;
         $dat_lich->save(); 
+        $thong_tin = [
+            'loai' => 3,
+			'email' => $dat_lich->KhachHang->email,
+			'ho_ten' => $dat_lich->KhachHang->ten_khach_hang,
+            'sdt' => $dat_lich->KhachHang->sdt,
+            'ngay' => $request->ngay,
+            'thoi_gian' => $request->thoi_gian,
+            'ghi_chu' => $request->ghi_chu,
+            'dich_vu_them' => $request->dich_vu_them,
+            'dich_vu' => 'CS'
+		];
+        $this->xlGuiMailXacNhan($thong_tin);
+
     }
-    public function xlGuiMailXacNhan($thong_tin)
+    protected function xlGuiMailXacNhan( $thong_tin)
     {
 		$result = Mail::to($thong_tin->email)->send(new XacNhanDatLichMail($thong_tin));
         if($result){
-			return redirect()->route('xac_nhan')->with('bao_loi','Gửi thành công');
+			session()->flash('bao_loi','Gửi thành công');
 			}
 		else session()->flash('bao_loi','Gửi không thành công');
     }
