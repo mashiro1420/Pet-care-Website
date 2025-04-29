@@ -91,4 +91,11 @@ class DangNhapController extends Controller
 		session()->flush();
 		return redirect()->route('dang_nhap');
     }
+	public function viewQuenMK()
+	{		
+		$data=[];
+		$data['bao_loi'] = session('bao_loi');
+		session()->put('bao_loi', '');
+		return view('Dang_nhap.quen_mk',$data);
+	}
 }

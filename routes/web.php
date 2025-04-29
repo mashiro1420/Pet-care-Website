@@ -4,6 +4,7 @@ use App\Http\Controllers\DangNhapController;
 use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\TaiKhoanController;
 use App\Http\Controllers\DanhMucController;
+use App\Http\Controllers\BaiDangController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -91,5 +92,12 @@ Route::post('xl_them_dmtrangthai', [DanhMucController::class, 'xlThemDMTrangThai
 Route::get('sua_dmtrangthai', [DanhMucController::class, 'viewSuaDMTrangThai'])->name('sua_dmtrangthai');
 Route::post('xl_sua_dmtrangthai', [DanhMucController::class, 'xlSuaDMTrangThai']);
 Route::get('xoa_dmtrangthai', [DanhMucController::class, 'xlXoaDMTrangThai'])->name('xoa_dmtrangthai');
+// BaiDang Routes
+Route::get('ql_baidang', [BaiDangController::class, 'viewQuanLy'])->name('ql_baidang');
+Route::get('them_baidang', [BaiDangController::class, 'viewThem'])->name('them_baidang');
+Route::post('xl_them_baidang', [BaiDangController::class, 'xlThem']);
+Route::get('sua_baidang', [BaiDangController::class, 'viewSua'])->name('sua_baidang');
+Route::post('xl_sua_baidang', [BaiDangController::class, 'xlSua']);
+Route::get('xoa_baidang', [BaiDangController::class, 'xlXoa'])->name('xoa_baidang');
 // KhachHang Routes
 Route::get('ql_kh',[KhachHangController::class, 'viewQuanLy'])->name('ql_kh');
