@@ -114,6 +114,7 @@ class ChamSocController extends Controller
             'dich_vu' => 'CS'
 		];
         $this->xlGuiMailXacNhan($thong_tin);
+        return redirect()->route('ql_datlichchamsoc');
 
     }
     protected function xlGuiMailXacNhan( $thong_tin)
