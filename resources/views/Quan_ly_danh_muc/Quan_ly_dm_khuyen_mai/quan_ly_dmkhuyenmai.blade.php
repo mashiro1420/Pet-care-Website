@@ -23,23 +23,23 @@
     </div>
     <div class="card search-card mb-4">
       <div class="card-body">
-        <form action="{{ route('ql_tk') }}" method="get">
+        <form action="{{ route('ql_dmkhuyenmai') }}" method="get">
           @csrf
           <div class="row g-3">
             <div class="col-md-6">
               <div class="form-group">
-                <label for="search_tenkhuyenmai" class="form-label">Tên khuyến mãi</label>
-                <input type="text" class="form-control" name="search_tenkhuyenmai" value="{{ !empty($search_tenkhuyenmai)?$search_tenkhuyenmai:"" }}" placeholder="Nhập tên khuyến mãi">
+                <label for="search_ten" class="form-label">Tên khuyến mãi</label>
+                <input type="text" class="form-control" name="search_ten" value="{{ !empty($search_ten)?$search_ten:"" }}" placeholder="Nhập tên khuyến mãi">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="search_tenkhuyenmai" class="form-label">Phần trăm khuyến mãi</label><br>
+                <label for="search_phan_tram" class="form-label">Phần trăm khuyến mãi</label><br>
                 <div class="d-flex justify-content-center align-items-center">
                   <span class="me-3">Từ</span>
-                  <input type="number" class="form-control" name="" value="">%
+                  <input type="number" class="form-control" name="search_phan_tram_tu" value="{{ !empty($search_phan_tram_tu)?$search_phan_tram_tu:"" }}">%
                   <span class="mx-3">~</span>
-                  <input type="number" class="form-control" name="" value="">%
+                  <input type="number" class="form-control" name="search_phan_tram_den" value="{{ !empty($search_phan_tram_den)?$search_phan_tram_den:"" }}">%
                 </div>
               </div>
             </div>
@@ -96,9 +96,6 @@
                   <td class="text-center">
                     <a class="btn btn-sm btn-primary btn-action me-1" href="{{ route('sua_dmkhuyenmai',['id'=>$khuyen_mai->id]) }}">
                       <i class="bi bi-pencil-square"></i>
-                    </a>
-                    <a class="btn btn-sm btn-danger btn-action me-1" href="{{ route('xoa_dmkhuyenmai',['id'=>$khuyen_mai->id]) }}">
-                      <i class="bi bi-trash"></i>
                     </a>
                   </td>
               @endforeach

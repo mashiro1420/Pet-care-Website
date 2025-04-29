@@ -18,6 +18,7 @@
       <h2 class="text-center mb-4">Đổi mật khẩu</h2>
       <form action="{{ url('xl_doi_mk') }}" method="POST">
         @csrf
+        @if (empty(session('quen')))
         <div class="mb-3">
           <label for="tai_khoan" class="form-label">Tài khoản</label>
           <input type="text" class="form-control" id="tai_khoan" name="tai_khoan" value="{{ $tai_khoan->tai_khoan }}" placeholder="Nhập tài khoản" readonly>
@@ -27,6 +28,9 @@
           <input type="password" class="form-control" id="mat_khau_cu" name="mat_khau_cu" placeholder="Nhập mật khẩu cũ"
             required>
         </div>
+        @else
+        <input type="password" class="form-control"  name="quen" value="1" hidden>
+        @endif
         <div class="mb-3">
           <label for="mat_khau_moi" class="form-label">Mật khẩu mới</label>
           <input type="password" class="form-control" id="mat_khau_moi" name="mat_khau_moi" placeholder="Nhập mật khẩu mới"

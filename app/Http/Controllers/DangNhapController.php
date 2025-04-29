@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\KhachHangModel;
 use App\Models\TaiKhoanModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\QuenMatKhauMail;
 
 class DangNhapController extends Controller
 {
@@ -21,6 +23,14 @@ class DangNhapController extends Controller
 			$data['bao_loi'] = session('bao_loi');
 			session()->put('bao_loi', '');
 			return view('Dang_nhap.dang_ky',$data);//
+	}
+	public function viewQuenMK(Request $request)
+	{
+		return view('Dang_nhap.quen_mk');
+	}
+	public function viewXacNhan(Request $request)
+	{
+		return view('Dang_nhap.xac_nhan');
 	}
     public function login(Request $request)
 	{
@@ -79,9 +89,14 @@ class DangNhapController extends Controller
         return view('Dang_nhap.doi_mk',$data);
     }
 	public function doi_mk(Request $request){
-		$tai_khoan = TaiKhoanModel::find(session('tai_khoan'));
-		if($tai_khoan->mat_khau != md5($request->mat_khau_cu)){
-			return session()->flash('Mật khẩu cũ không đúng');
+		if(!isset($request->quen)){
+			$tai_khoan = TaiKhoanModel::find(session('tai_khoan'));
+			if($tai_khoan->mat_khau != md5($request->mat_khau_cu)){
+				return session()->flash('Mật khẩu cũ không đúng');
+			}
+		}
+		else{
+			$tai_khoan = TaiKhoanModel::find(session('email'));
 		}
 		if($request->mat_khau_moi != $request->mat_khau_lai){
 			return session()->flash('Mật khẩu nhập lại không trùng với mật khẩu');
@@ -91,11 +106,45 @@ class DangNhapController extends Controller
 		session()->flush();
 		return redirect()->route('dang_nhap');
     }
+<<<<<<< HEAD
 	public function viewQuenMK()
 	{		
 		$data=[];
 		$data['bao_loi'] = session('bao_loi');
 		session()->put('bao_loi', '');
 		return view('Dang_nhap.quen_mk',$data);
+=======
+	public function xlGuiMail(Request $request)
+	{
+		$tai_khoan = TaiKhoanModel::find($request->email);
+		if(empty($tai_khoan)){
+		return redirect()->route('quen_mk')->with('bao_loi','Tài khoản không tồn tại');
+		}
+		else{
+		$code = rand(100000,999999);
+		$thong_tin = [
+			'email' => $request->email,
+			'code' => $code,
+		];
+		session()->put('code',$code);
+		session()->put('email',$request->email);
+		$result = Mail::to($request->email)->send(new QuenMatKhauMail($thong_tin));
+		if($result){
+			return redirect()->route('xac_nhan')->with('bao_loi','Gửi thành công');
+			}
+		else session()->flash('bao_loi','Gửi không thành công');
+		}
+	}
+	public function xlXacNhan(Request $request)
+	{
+		$code = $request->code;
+		if($code == session('code')){
+			session()->forget('code');
+		return redirect()->route('doi_mk');
+		}
+		else{
+		return redirect()->route('xac_nhan')->with('bao_loi','Sai mã xác nhận');
+		}
+>>>>>>> e5d8b96755b07958ffe02ede23265d9797f62084
 	}
 }

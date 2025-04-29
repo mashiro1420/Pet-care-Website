@@ -28,9 +28,10 @@
           @csrf
           <div class="row g-3">
             <div class="col-md-6">
+              <input type="text" class="form-control" name="id" value="{{$loai_thu_cung->id}}" hidden>
               <div class="mb-3">
                 <label for="ten_thu_cung" class="form-label required-field">Tên loại thú cưng</label>
-                <input type="text" class="form-control" name="ten_thu_cung" value="{{$loai_thu_cung->ten_loai_thu_cung}}" required>
+                <input type="text" class="form-control" name="ten_loai_thu_cung" value="{{$loai_thu_cung->ten_loai_thu_cung}}" required>
               </div>
             </div>  
           </div>

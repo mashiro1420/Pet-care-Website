@@ -26,10 +26,13 @@ Route::get('dang_nhap',[DangNhapController::class, 'viewDangNhap'])->name('dang_
 Route::get('dang_ky',[DangNhapController::class, 'viewDangKy'])->name('dang_ky');
 Route::get('doi_mk',[DangNhapController::class, 'viewDoiMK'])->name('doi_mk');
 Route::get('quen_mk',[DangNhapController::class, 'viewQuenMK'])->name('quen_mk');
+Route::get('xac_nhan',[DangNhapController::class, 'viewXacNhan'])->name('xac_nhan');
 Route::post('xl_dang_nhap',[DangNhapController::class, 'login']);
 Route::get('xl_dang_xuat',[DangNhapController::class, 'logout']);
 Route::post('xl_dang_ky',[DangNhapController::class, 'signup']);
 Route::post('xl_doi_mk',[DangNhapController::class, 'doi_mk']);
+Route::post('xl_gui_mail',[DangNhapController::class, 'xlGuiMail']);
+Route::post('xl_xac_nhan',[DangNhapController::class, 'xlXacNhan']);
 //TaiKhoan Routes
 Route::get('ql_tk',[TaiKhoanController::class, 'viewQuanLy'])->name('ql_tk');
 Route::get('them_tk',[TaiKhoanController::class, 'viewThem'])->name('them_tk');
@@ -45,11 +48,6 @@ Route::post('xl_sua_dmdichvu', [DanhMucController::class, 'xlSuaDMDichVu']);
 Route::get('xoa_dmdichvu', [DanhMucController::class, 'xlXoaDMDichVu'])->name('xoa_dmdichvu');
 //DMGia Routes
 Route::get('ql_dmgia', [DanhMucController::class, 'viewDMGia'])->name('ql_dmgia');
-Route::get('them_dmgia', [DanhMucController::class, 'viewThemDMGia'])->name('them_dmgia');
-Route::post('xl_them_dmgia', [DanhMucController::class, 'xlThemDMGia']);
-Route::get('sua_dmgia', [DanhMucController::class, 'viewSuaDMGia'])->name('sua_dmgia');
-Route::post('xl_sua_dmgia', [DanhMucController::class, 'xlSuaDMGia']);
-Route::get('xoa_dmgia', [DanhMucController::class, 'xlXoaDMGia'])->name('xoa_dmgia');
 //DMGiongThuCung Routes
 Route::get('ql_dmgiongthucung', [DanhMucController::class, 'viewDMGiongThuCung'])->name('ql_dmgiongthucung');
 Route::get('them_dmgiongthucung', [DanhMucController::class, 'viewThemDMGiongThuCung'])->name('them_dmgiongthucung');
@@ -63,7 +61,6 @@ Route::get('them_dmkhuyenmai', [DanhMucController::class, 'viewThemDMKhuyenMai']
 Route::post('xl_them_dmkhuyenmai', [DanhMucController::class, 'xlThemDMKhuyenMai']);
 Route::get('sua_dmkhuyenmai', [DanhMucController::class, 'viewSuaDMKhuyenMai'])->name('sua_dmkhuyenmai');
 Route::post('xl_sua_dmkhuyenmai', [DanhMucController::class, 'xlSuaDMKhuyenMai']);
-Route::get('xoa_dmkhuyenmai', [DanhMucController::class, 'xlXoaDMKhuyenMai'])->name('xoa_dmkhuyenmai');
 //DMLoaiKhachHang Routes
 Route::get('ql_dmloaikhachhang', [DanhMucController::class, 'viewDMLoaiKhachHang'])->name('ql_dmloaikhachhang');
 Route::get('them_dmloaikhachhang', [DanhMucController::class, 'viewThemDMLoaiKhachHang'])->name('them_dmloaikhachhang');
@@ -92,12 +89,5 @@ Route::post('xl_them_dmtrangthai', [DanhMucController::class, 'xlThemDMTrangThai
 Route::get('sua_dmtrangthai', [DanhMucController::class, 'viewSuaDMTrangThai'])->name('sua_dmtrangthai');
 Route::post('xl_sua_dmtrangthai', [DanhMucController::class, 'xlSuaDMTrangThai']);
 Route::get('xoa_dmtrangthai', [DanhMucController::class, 'xlXoaDMTrangThai'])->name('xoa_dmtrangthai');
-// BaiDang Routes
-Route::get('ql_baidang', [BaiDangController::class, 'viewQuanLy'])->name('ql_baidang');
-Route::get('them_baidang', [BaiDangController::class, 'viewThem'])->name('them_baidang');
-Route::post('xl_them_baidang', [BaiDangController::class, 'xlThem']);
-Route::get('sua_baidang', [BaiDangController::class, 'viewSua'])->name('sua_baidang');
-Route::post('xl_sua_baidang', [BaiDangController::class, 'xlSua']);
-Route::get('xoa_baidang', [BaiDangController::class, 'xlXoa'])->name('xoa_baidang');
 // KhachHang Routes
 Route::get('ql_kh',[KhachHangController::class, 'viewQuanLy'])->name('ql_kh');

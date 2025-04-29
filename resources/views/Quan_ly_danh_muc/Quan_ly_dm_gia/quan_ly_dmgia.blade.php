@@ -17,9 +17,6 @@
   <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h3 class="mb-0">Danh mục giá</h3>
-      <a class="btn btn-warning" href="{{ route('them_dmgia') }}">
-        <i class="bi bi-plus-circle me-1"></i>Thêm giá
-      </a>
     </div>
     <div class="card">
       <div class="card-body">
@@ -40,11 +37,8 @@
                   <td>{{$gia->ten_dich_vu}}</td>
                   <td>{{$gia->don_gia}}</td>
                   <td class="text-center">
-                    <a class="btn btn-sm btn-primary btn-action me-1" href="{{ route('sua_dmgia',['id'=>$gia->id]) }}">
+                    <a class="btn btn-sm btn-primary btn-action me-1" href="{{ route('sua_dmdichvu',['id'=>$gia->id_dich_vu]) }}">
                       <i class="bi bi-pencil-square"></i>
-                    </a>
-                    <a class="btn btn-sm btn-danger btn-action me-1" href="{{ route('xoa_dmgia',['id'=>$gia->id]) }}">
-                      <i class="bi bi-trash"></i>
                     </a>
                   </td>
               @endforeach

@@ -24,11 +24,12 @@
 
     <div class="card">
       <div class="card-body p-4">
-        <form action="{{ url('xl_sua_dmdichvu') }}" method="POST">
+        <form action="{{ url('xl_sua_dmgiongthucung') }}" method="POST">
           @csrf
           <div class="row g-3">
             <div class="col-md-6">
               <div class="mb-3">
+              <input type="text" class="form-control" name="id" value="{{$giong_thu_cung->id}}" hidden>
                 <div class="mb-3">
                   <label for="ten_loai_thu_cung" class="form-label">Tên loại thú cưng</label>
                   <select class="form-select" name="ten_loai_thu_cung" required>

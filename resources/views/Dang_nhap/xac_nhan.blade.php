@@ -15,12 +15,12 @@
 <body>
   <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="card shadow-lg p-4 rounded">
-      <h2 class="text-center mb-4">Đổi mật khẩu</h2>
-      <form action="{{ url('xl_gui_mail') }}" method="POST">
+      <h2 class="text-center mb-4">Nhập mã xác nhận</h2>
+      <form action="{{ url('xl_xac_nhan') }}" method="POST">
         @csrf
         <div class="mb-3">
-          <label for="email" class="form-label required-field">Email</label>
-          <input type="text" class="form-control" id="email" name="email" placeholder="Nhập email" required>
+          <label for="code" class="form-label required-field">Mã xác nhận</label>
+          <input type="text" class="form-control" id="code" name="code" placeholder="Nhập mã xác nhận" required>
         </div>
         <button type="submit" class="btn btn-warning w-100 mt-3">Gửi email xác nhận</button>
       </form>
