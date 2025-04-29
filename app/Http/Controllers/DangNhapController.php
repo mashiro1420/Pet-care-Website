@@ -132,7 +132,7 @@ class DangNhapController extends Controller
 		$code = $request->code;
 		if($code == session('code')){
 			session()->forget('code');
-		return redirect()->route('doi_mk');
+		return redirect()->route('doi_mk')->with('quen','yes');
 		}
 		else{
 		return redirect()->route('xac_nhan')->with('bao_loi','Sai mã xác nhận');
