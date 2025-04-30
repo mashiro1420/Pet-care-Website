@@ -5,6 +5,7 @@ use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\TaiKhoanController;
 use App\Http\Controllers\DanhMucController;
 use App\Http\Controllers\BaiDangController;
+use App\Http\Controllers\DichVuController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -89,5 +90,31 @@ Route::post('xl_them_dmtrangthai', [DanhMucController::class, 'xlThemDMTrangThai
 Route::get('sua_dmtrangthai', [DanhMucController::class, 'viewSuaDMTrangThai'])->name('sua_dmtrangthai');
 Route::post('xl_sua_dmtrangthai', [DanhMucController::class, 'xlSuaDMTrangThai']);
 Route::get('xoa_dmtrangthai', [DanhMucController::class, 'xlXoaDMTrangThai'])->name('xoa_dmtrangthai');
+//DMLoaiNoiDung Routes
+Route::get('ql_dmloainoidung', [DanhMucController::class, 'viewDMLoaiNoiDung'])->name('ql_dmloainoidung');
+Route::get('them_dmloainoidung', [DanhMucController::class, 'viewThemDMLoaiNoiDung'])->name('them_dmloainoidung');
+Route::post('xl_them_dmloainoidung', [DanhMucController::class, 'xlThemDMLoaiNoiDung']);
+Route::get('sua_dmloainoidung', [DanhMucController::class, 'viewSuaDMLoaiNoiDung'])->name('sua_dmloainoidung');
+Route::post('xl_sua_dmloainoidung', [DanhMucController::class, 'xlSuaDMLoaiNoiDung']);
+Route::get('xoa_dmloainoidung', [DanhMucController::class, 'xlXoaDMLoaiNoiDung'])->name('xoa_dmloainoidung');
+//BaiDang Routes
+Route::get('ql_baidang',[BaiDangController::class, 'viewQuanLy'])->name('ql_baidang');
+Route::get('them_baidang',[BaiDangController::class, 'viewThem'])->name('them_baidang');
+Route::post('xl_them_baidang',[BaiDangController::class, 'xlThem']);
+Route::get('sua_baidang',[BaiDangController::class, 'viewSua'])->name('sua_baidang');
+Route::post('xl_sua_baidang',[BaiDangController::class, 'xlSua']);
+Route::get('xoa_baidang',[BaiDangController::class, 'xlXoa'])->name('xoa_baidang');
+//QLDichVus Routes
+Route::get('ql_dichvu',[DichVuController::class, 'viewQuanLy'])->name('ql_dichvu');
+Route::get('them_chamsoc',[DichVuController::class, 'viewThemChamSoc'])->name('them_chamsoc');
+Route::post('xl_them_chamsoc',[DichVuController::class, 'xlThemChamSoc']);
+Route::get('them_trongcoi',[DichVuController::class, 'viewThemTrongCoi'])->name('them_trongcoi');
+Route::post('xl_them_trongcoi',[DichVuController::class, 'xlThemTrongCoi']);
+Route::get('xoa_chamsoc',[DichVuController::class, 'xlXoaChamSoc'])->name('xoa_chamsoc');
+Route::get('xoa_trongcoi',[DichVuController::class, 'xlXoaTrongCoi'])->name('xoa_trongcoi');
+Route::get('sua_chamsoc',[DichVuController::class, 'viewSuaChamSoc'])->name('sua_chamsoc');
+Route::post('xl_sua_chamsoc',[DichVuController::class, 'xlSuaChamSoc']);
+Route::get('sua_trongcoi',[DichVuController::class, 'viewSuaTrongCoi'])->name('sua_trongcoi');
+Route::post('xl_sua_trongcoi',[DichVuController::class, 'xlSuaTrongCoi']);
 // KhachHang Routes
 Route::get('ql_kh',[KhachHangController::class, 'viewQuanLy'])->name('ql_kh');

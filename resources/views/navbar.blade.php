@@ -29,6 +29,9 @@
             <a class="nav-link px-3" href="{{route('ql_baidang')}}">Quản lý bài đăng</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link px-3" href="{{route('ql_dichvu')}}">Quản lý dịch vụ</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link px-3" href="{{ route('ql_kh') }}">Quản lý khách hàng</a>
           </li>
         </ul>

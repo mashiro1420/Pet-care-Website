@@ -106,14 +106,6 @@ class DangNhapController extends Controller
 		session()->flush();
 		return redirect()->route('dang_nhap');
     }
-<<<<<<< HEAD
-	public function viewQuenMK()
-	{		
-		$data=[];
-		$data['bao_loi'] = session('bao_loi');
-		session()->put('bao_loi', '');
-		return view('Dang_nhap.quen_mk',$data);
-=======
 	public function xlGuiMail(Request $request)
 	{
 		$tai_khoan = TaiKhoanModel::find($request->email);
@@ -145,6 +137,5 @@ class DangNhapController extends Controller
 		else{
 		return redirect()->route('xac_nhan')->with('bao_loi','Sai mã xác nhận');
 		}
->>>>>>> e5d8b96755b07958ffe02ede23265d9797f62084
 	}
 }
