@@ -13,6 +13,8 @@ class BaiDangController extends Controller
     public function viewQuanLy(Request $request)
     {
         $query = BaiDangModel::select('*');
+        $data['loai_noi_dungs'] = DMLoaiNoiDungModel::all();
+// Route::get('ql_dmkhuye_nai', [DanhMucController::class, 'viewDMKhuyenMai'])->name('ql_dmkhuye_nai');
         $data['bai_dangs'] = $query->paginate('10');
         return view('Quan_ly_bai_dang.quan_ly_bai_dang', $data);
     }
