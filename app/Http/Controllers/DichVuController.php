@@ -16,6 +16,8 @@ class DichVuController extends Controller
         $query1 = TCDichVuModel::query()->select('*', 'ql_dichvutrongcoi.id as id')->leftJoin('dm_dichvu', 'ql_dichvutrongcoi.id_dich_vu', '=', 'dm_dichvu.id');
         $data['dich_vu_cham_socs'] = $query->paginate(5);
         $data['dich_vu_trong_cois'] = $query1->paginate(5);
+        $data['dich_vu_cham_soc'] = DMDichVuModel::find($request->id);
+        $data['dich_vu_trong_coi'] = DMDichVuModel::find($request->id);
         $data['dm_dich_vus'] = DMDichVuModel::all();
         return view('Quan_ly_dich_vu.quan_ly_dich_vu', $data);
     }
