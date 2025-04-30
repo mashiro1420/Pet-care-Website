@@ -106,15 +106,11 @@ Route::post('xl_sua_baidang',[BaiDangController::class, 'xlSua']);
 Route::get('xoa_baidang',[BaiDangController::class, 'xlXoa'])->name('xoa_baidang');
 //QLDichVus Routes
 Route::get('ql_dichvu',[DichVuController::class, 'viewQuanLy'])->name('ql_dichvu');
-Route::get('them_chamsoc',[DichVuController::class, 'viewThemChamSoc'])->name('them_chamsoc');
 Route::post('xl_them_chamsoc',[DichVuController::class, 'xlThemChamSoc']);
-Route::get('them_trongcoi',[DichVuController::class, 'viewThemTrongCoi'])->name('them_trongcoi');
 Route::post('xl_them_trongcoi',[DichVuController::class, 'xlThemTrongCoi']);
 Route::get('xoa_chamsoc',[DichVuController::class, 'xlXoaChamSoc'])->name('xoa_chamsoc');
 Route::get('xoa_trongcoi',[DichVuController::class, 'xlXoaTrongCoi'])->name('xoa_trongcoi');
-Route::get('sua_chamsoc',[DichVuController::class, 'viewSuaChamSoc'])->name('sua_chamsoc');
 Route::post('xl_sua_chamsoc',[DichVuController::class, 'xlSuaChamSoc']);
-Route::get('sua_trongcoi',[DichVuController::class, 'viewSuaTrongCoi'])->name('sua_trongcoi');
 Route::post('xl_sua_trongcoi',[DichVuController::class, 'xlSuaTrongCoi']);
 // KhachHang Routes
 Route::get('ql_kh',[KhachHangController::class, 'viewQuanLy'])->name('ql_kh');
