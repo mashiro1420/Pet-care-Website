@@ -133,3 +133,11 @@ body {
   border-color: #FFC107;
   box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
 }
+
+.star-rating-dropdown .dropdown-item {
+  cursor: pointer;
+}
+
+.star-rating-dropdown .dropdown-toggle::after {
+  margin-left: 0.5rem;
+}

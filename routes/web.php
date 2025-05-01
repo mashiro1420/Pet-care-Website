@@ -6,6 +6,7 @@ use App\Http\Controllers\TaiKhoanController;
 use App\Http\Controllers\DanhMucController;
 use App\Http\Controllers\BaiDangController;
 use App\Http\Controllers\DichVuController;
+use App\Http\Controllers\ChamSocController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -112,5 +113,16 @@ Route::get('xoa_chamsoc',[DichVuController::class, 'xlXoaChamSoc'])->name('xoa_c
 Route::get('xoa_trongcoi',[DichVuController::class, 'xlXoaTrongCoi'])->name('xoa_trongcoi');
 Route::post('xl_sua_chamsoc',[DichVuController::class, 'xlSuaChamSoc']);
 Route::post('xl_sua_trongcoi',[DichVuController::class, 'xlSuaTrongCoi']);
+//QLChamSoc Routes
+Route::get('ql_chamsoc',[ChamSocController::class, 'viewQuanLy'])->name('ql_chamsoc');
+Route::get('khach_hang_lichchamsoc',[ChamSocController::class, 'viewKhachHang'])->name('khach_hang_lichchamsoc');
+Route::get('dat_lich',[ChamSocController::class, 'viewDatLich'])->name('dat_lich');
+Route::post('xl_dat_lich',[ChamSocController::class, 'xlDatLich']);
+Route::get('chi_tiet',[ChamSocController::class, 'viewChiTiet'])->name('chi_tiet');
+Route::get('sua_lich',[ChamSocController::class, 'viewSuaLich'])->name('sua_lich');
+Route::post('xl_sua_lich',[ChamSocController::class, 'xlSuaLich']);
+Route::post('xl_hoan_thanh',[ChamSocController::class, 'xlHoanThanh']);
+Route::post('xl_gui_mail_xac_nhan',[ChamSocController::class, 'xlGuiMailXacNhan']);
+
 // KhachHang Routes
 Route::get('ql_kh',[KhachHangController::class, 'viewQuanLy'])->name('ql_kh');

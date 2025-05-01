@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Mail\XacNhanDatLichMail;
 use App\Models\ChamSocModel;
 use App\Models\CSDichVuThemModel;
+use App\Models\DMTrangThaiModel;
 use App\Models\KhachHangModel;
+use App\Models\TaiKhoanModel;
+use App\Models\DMGiongThuCungModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -13,11 +16,24 @@ class ChamSocController extends Controller
 {
     public function viewQuanLy(Request $request)
     {
-
+        $data = [];
+        $data['cham_socs'] = ChamSocModel::orderBy('id','desc')->paginate(5);
+        $data['trang_thais'] = DMTrangThaiModel::all();
+        $data['giong_thu_cungs'] = DMGiongThuCungModel::all();
+        $data['tai_khoans'] = TaiKhoanModel::all();
+        $data['khach_hangs'] = KhachHangModel::all();
+        $data['dich_vus'] = CSDichVuThemModel::all();
+        return view('Quan_ly_cham_soc.quan_ly_dat_lich_cham_soc', $data);
     }
     public function viewKhachHang(Request $request)
     {
-        
+        $data = [];
+        $data['cham_socs'] = ChamSocModel::orderBy('id','desc')->paginate(5);
+        $data['trang_thais'] = DMTrangThaiModel::all();
+        $data['giong_thu_cungs'] = DMGiongThuCungModel::all();  
+        $data['tai_khoans'] = TaiKhoanModel::all();
+        $data['dich_vus'] = CSDichVuThemModel::all();
+        return view('Giao_dien_khach.Dat_lich_cham_soc.khach_hang_lich_cham_soc', $data);
     }
     public function viewDatLich(Request $request)
     {
@@ -25,7 +41,14 @@ class ChamSocController extends Controller
     }
     public function viewChiTiet(Request $request)
     {
-        
+        $data = [];
+        $data['cham_socs'] = ChamSocModel::orderBy('id', 'desc')->paginate(5);
+        $data['trang_thais'] = DMTrangThaiModel::all();
+        $data['giong_thu_cungs'] = DMGiongThuCungModel::all();
+        $data['tai_khoans'] = TaiKhoanModel::all();
+        $data['khach_hangs'] = KhachHangModel::all();
+        $data['dich_vus'] = CSDichVuThemModel::all();
+        return view('Quan_ly_cham_soc.chi_tiet', $data);
     }
     public function viewSuaLich(Request $request)
     {

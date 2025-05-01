@@ -14,7 +14,7 @@
 
 <body>
   @include('navbar')
-  <div class="container py-4">
+  <div class="container-fluid py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h3 class="mb-0">Quản lý tài khoản</h3>
       <a class="btn btn-warning" href="{{ route('them_tk') }}">
