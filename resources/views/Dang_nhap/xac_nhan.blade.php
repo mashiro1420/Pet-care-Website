@@ -22,7 +22,7 @@
           <label for="code" class="form-label required-field">Mã xác nhận</label>
           <input type="text" class="form-control" id="code" name="code" placeholder="Nhập mã xác nhận" required>
         </div>
-        <button type="submit" class="btn btn-warning w-100 mt-3">Gửi email xác nhận</button>
+        <button type="submit" class="btn btn-warning w-100 mt-3">Kiểm tra</button>
       </form>
     </div>
   </div>

@@ -14,7 +14,7 @@
 
 <body>
   @include('navbar')
-  <div class="container py-4">
+  <div class="container-fluid py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h3 class="mb-0">Quản lý bài đăng</h3>
       <a class="btn btn-warning" href="{{ route('them_baidang') }}">
@@ -34,11 +34,11 @@
             </div>
             <div class="col-md-3">
               <div class="form-group">
-                <label for="search_trangthai" class="form-label">Trạng thái</label>
-                <select class="form-select" name="search_trangthai">
+                <label for="search_loainoidung" class="form-label">Trạng thái</label>
+                <select class="form-select" name="search_loainoidung">
                   <option value="">Tất cả</option>
-                  <option value="active" {{ !empty($search_trangthai)&&$search_trangthai=='active'?"selected":"" }}>Mở</option>
-                  <option value="inactive" {{ !empty($search_trangthai)&&$search_trangthai=='inactive'?"selected":"" }}>Khóa</option>
+                  <option value="active" {{ !empty($search_loainoidung)&&$search_loainoidung=='active'?"selected":"" }}>Mở</option>
+                  <option value="inactive" {{ !empty($search_loainoidung)&&$search_loainoidung=='inactive'?"selected":"" }}>Khóa</option>
                 </select>
               </div>
             </div>
@@ -77,8 +77,8 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="search_trangthai" class="form-label">Loại nội dung</label>
-                <select class="form-select" name="search_trangthai">
+                <label for="search_loainoidung" class="form-label">Loại nội dung</label>
+                <select class="form-select" name="search_loainoidung">
                   <option value="">Tất cả</option>
                   @foreach ($loai_noi_dungs as $loai_noi_dung)
                     <option value="{{$loai_noi_dung->id}}" {{ !empty($search_loai_noi_dung)&&$search_loai_noi_dung==$loai_noi_dung->id?"selected":"" }}>{{$loai_noi_dung->ten_loai_noi_dung}}</option>

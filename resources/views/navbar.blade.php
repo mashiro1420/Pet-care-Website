@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
-    <div class="container">
+    <div class="container-fluid">
       <a class="navbar-brand" href="#">Hệ thống quản lý</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
@@ -33,6 +33,12 @@
           </li>
           <li class="nav-item">
             <a class="nav-link px-3" href="{{ route('ql_kh') }}">Quản lý khách hàng</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-3" href="{{ route('ql_chamsoc') }}">Quản lý chăm sóc</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-3" href="{{ route('khach_hang_lichchamsoc') }}">Khách hàng chăm sóc</a>
           </li>
         </ul>
       </div>

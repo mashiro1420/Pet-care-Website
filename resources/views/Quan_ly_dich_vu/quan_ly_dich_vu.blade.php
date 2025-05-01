@@ -45,7 +45,7 @@
                   <td>{{$dich_vu_cham_soc->id}}</td>
                   <td>{{$dich_vu_cham_soc->ten_dich_vu}}</td>
                   <td>
-                    <a class="btn btn-sm btn-primary btn-action me-1" data-bs-toggle="modal" data-bs-target="#modalUpdateDichVuChamSoc_{{ $dich_vu_cham_soc->id }}">
+                    <a class="btn btn-sm btn-primary btn-action me-1" data-bs-toggle="modal" data-bs-target="#modalUpdateDichVuChamSoc">
                       <i class="bi bi-pencil-square"></i>
                     </a>
                     <a class="btn btn-sm btn-danger btn-action me-1" href="">
@@ -117,7 +117,7 @@
                   <td>{{$dich_vu_trong_coi->id}}</td>
                   <td>{{$dich_vu_trong_coi->ten_dich_vu}}</td>
                   <td>
-                    <a class="btn btn-sm btn-primary btn-action me-1" data-bs-toggle="modal" data-bs-target="#modalUpdateDichVuTrongCoi_{{ $dich_vu_trong_coi->id }}">
+                    <a class="btn btn-sm btn-primary btn-action me-1" data-bs-toggle="modal" data-bs-target="#modalUpdateDichVuTrongCoi">
                       <i class="bi bi-pencil-square"></i>
                     </a>
                     <a class="btn btn-sm btn-danger btn-action me-1" href="">
@@ -233,24 +233,24 @@
     </div>
   </div>
   <!-- Modal Update DichVuChamSoc -->
-  <div class="modal fade" id="modalUpdateDichVuChamSoc_{{ $dich_vu_cham_soc->id }}" tabindex="-1" aria-labelledby="modalUpdateDichVuChamSocLabel_{{ $dich_vu_cham_soc->id }}" aria-hidden="true">
+  <div class="modal fade" id="modalUpdateDichVuChamSoc" tabindex="-1" aria-labelledby="modalUpdateDichVuChamSocLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modalUpdateDichVuChamSocLabel_{{ $dich_vu_cham_soc->id }}">Cập nhật dịch vụ chăm sóc</h5>
+          <h5 class="modal-title" id="modalUpdateDichVuChamSocLabel">Cập nhật dịch vụ chăm sóc</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="{{ route('updateDichVuChamSoc', $dich_vu_cham_soc->id) }}" method="POST">
+          <form action="" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-3">
               <label for="danh_muc_dich_vu" class="form-label">Chọn danh mục dịch vụ</label>
               <select class="form-select" id="danh_muc_dich_vu" name="danh_muc_dich_vu" required>
                 <option value="" disabled>-- Chọn danh mục --</option>
-                @foreach ($dm_dich_vus as $dm_dich_vu)
+                {{-- @foreach ($dm_dich_vus as $dm_dich_vu)
                   <option value="{{ $dm_dich_vu->id }}" @if ($dich_vu_cham_soc->danh_muc_dich_vu == $dm_dich_vu->id) selected @endif>{{ $dm_dich_vu->ten_dich_vu }}</option>
-                @endforeach
+                @endforeach --}}
               </select>
             </div>
             <div class="d-flex justify-content-between">
@@ -263,24 +263,24 @@
     </div>
   </div>
   <!-- Modal Update DichVuTrongCoi -->
-  <div class="modal fade" id="modalUpdateDichVuTrongCoi_{{ $dich_vu_trong_coi->id }}" tabindex="-1" aria-labelledby="modalUpdateDichVuTrongCoiLabel_{{ $dich_vu_trong_coi->id }}" aria-hidden="true">
+  <div class="modal fade" id="modalUpdateDichVuTrongCoi" tabindex="-1" aria-labelledby="modalUpdateDichVuTrongCoiLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modalUpdateDichVuTrongCoiLabel_{{ $dich_vu_trong_coi->id }}">Cập nhật dịch vụ trông coi</h5>
+          <h5 class="modal-title" id="modalUpdateDichVuTrongCoiLabel">Cập nhật dịch vụ trông coi</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="{{ route('updateDichVuTrongCoi', $dich_vu_trong_coi->id) }}" method="POST">
+          <form action="" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-3">
               <label for="danh_muc_dich_vu" class="form-label">Chọn danh mục dịch vụ</label>
               <select class="form-select" id="danh_muc_dich_vu" name="danh_muc_dich_vu" required>
                 <option value="" disabled>-- Chọn danh mục --</option>
-                @foreach ($dm_dich_vus as $dm_dich_vu)
+                {{-- @foreach ($dm_dich_vus as $dm_dich_vu)
                   <option value="{{ $dm_dich_vu->id }}" @if ($dich_vu_trong_coi->danh_muc_dich_vu == $dm_dich_vu->id) selected @endif>{{ $dm_dich_vu->ten_dich_vu }}</option>
-                @endforeach
+                @endforeach --}}
               </select>
             </div>
             <div class="d-flex justify-content-between">
