@@ -19,7 +19,7 @@
     <div class="container">
       <h2 class="section-title">Lịch chăm sóc thú cưng</h2>
       <div class="d-flex justify-content-end mb-4">
-        <a href="{{route('dat_lich')}}" class="btn btn-primary">
+        <a href="{{route('dat_lich_cs')}}" class="btn btn-primary">
           <i class="bi bi-calendar-plus me-2"></i>Đặt lịch chăm sóc
         </a>
       </div>
@@ -62,10 +62,10 @@
                 <td>{{ number_format($cham_soc->tong_tien, 0, ',', '.') }} đ</td>
                 <td><small>{{ $cham_soc->ghi_chu }}</small></td>
                 <td>
-                  <a href="{{ route('chi_tiet_user', ['id' => $cham_soc->id]) }}" class="btn btn-info btn-sm">
+                  <a href="{{ route('chi_tiet_user_cs', ['id' => $cham_soc->id]) }}" class="btn btn-info btn-sm">
                     <i class="bi bi-eye"></i>
                   </a>
-                  <a class="btn btn-sm btn-primary btn-action me-1" href="{{ route('sua_lich',['id'=>$cham_soc->id]) }}" style="background-color: rgb(197, 194, 5) !important;">
+                  <a class="btn btn-sm btn-primary btn-action me-1" href="{{ route('sua_lich_cs',['id'=>$cham_soc->id]) }}" style="background-color: rgb(197, 194, 5) !important;">
                     <i class="bi bi-pencil-square"></i>
                   </a>
                 </td>

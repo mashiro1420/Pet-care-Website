@@ -17,19 +17,19 @@
   <section class="main-content">
     <div class="container" id="form-section">
       <h2 class="form-title">Đặt lịch trông coi thú cưng</h2>
-      <form action="" method="POST">
+      <form action="{{url('xl_dat_lich_cs')}}" method="POST">
         @csrf
         <div class="mb-3">
           <label for="ngay_cham_soc" class="form-label">Ngày chăm sóc</label>
-          <input type="date" class="form-control" id="ngay_cham_soc" name="ngay_cham_soc" required>
+          <input type="date" class="form-control" id="ngay_cham_soc" name="ngay" required>
         </div>
         <div class="mb-3">
           <label for="gio_cham_soc" class="form-label">Giờ chăm sóc</label>
-          <input type="time" class="form-control" id="gio_cham_soc" name="gio_cham_soc" required>
+          <input type="time" class="form-control" id="gio_cham_soc" name="thoi_gian" required>
         </div>
         <div class="mb-3">
           <label for="giong_thu_cung" class="form-label">Giống thú cưng</label>
-          <select class="form-select" id="giong_thu_cung" name="giong_thu_cung" required>
+          <select class="form-select" id="giong_thu_cung" name="giong" required>
             <option value="" disabled selected>-- Chọn danh mục --</option>
             @foreach ($giong_thu_cungs as $giong_thu_cung)
               <option value="{{ $giong_thu_cung->id }}">{{ $giong_thu_cung->ten_giong_thu_cung }}</option>

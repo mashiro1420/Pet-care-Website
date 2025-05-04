@@ -23,7 +23,7 @@
     </div>
     <div class="card search-card mb-4">
       <div class="card-body">
-        <form action="{{ route('ql_tk') }}" method="get">
+        <form action="{{ route('ql_chamsoc') }}" method="get">
           @csrf
           <div class="row g-3">
             <div class="col-md-3">
@@ -48,20 +48,9 @@
                 <label for="search_ngay" class="form-label">Ngày chăm sóc</label><br>
                 <div class="d-flex justify-content-center align-items-center">
                   <span class="me-3">Từ</span>
-                  <input type="date" class="form-control" name="" value="">
+                  <input type="date" class="form-control" name="search_tu_cs" value="{{ !empty($search_tu_cs)?$search_tu_cs:"" }}">
                   <span class="mx-3">đến</span>
-                  <input type="date" class="form-control" name="" value="">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="search_thoigian" class="form-label">Giờ chăm sóc</label><br>
-                <div class="d-flex justify-content-center align-items-center">
-                  <span class="me-3">Từ</span>
-                  <input type="number" class="form-control" name="" value="">
-                  <span class="mx-3">đến</span>
-                  <input type="number" class="form-control" name="" value="">
+                  <input type="date" class="form-control" name="search_den_cs" value="{{ !empty($search_den_cs)?$search_den_cs:"" }}">
                 </div>
               </div>
             </div>
@@ -70,28 +59,17 @@
                 <label for="search_ngaydatlich" class="form-label">Ngày đặt lịch</label><br>
                 <div class="d-flex justify-content-center align-items-center">
                   <span class="me-3">Từ</span>
-                  <input type="date" class="form-control" name="" value="">
+                  <input type="date" class="form-control" name="search_tu_dat" value="{{ !empty($search_tu_dat)?$search_tu_dat:"" }}">
                   <span class="mx-3">đến</span>
-                  <input type="date" class="form-control" name="" value="">
+                  <input type="date" class="form-control" name="search_den_dat" value="{{ !empty($search_den_dat)?$search_den_dat:"" }}">
                 </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="search_trangthai" class="form-label">Giống thú cưng</label>
-                <select class="form-select" name="search_trangthai">
-                  <option value="">Tất cả</option>
-                  @foreach ($giong_thu_cungs as $giong_thu_cung)
-                    <option value="{{$giong_thu_cung->id}}" {{ !empty($search_giongthucung)&&$search_giongthucung==$trang_thai->id?"selected":"" }}>{{$giong_thu_cung->ten_giong_thu_cung}}</option>
-                  @endforeach
-                </select>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="search_danhgia" class="form-label">Đánh giá</label>
                 <div class="dropdown star-rating-dropdown">
-                  <input type="hidden" name="search_danhgia" id="search_danhgia_value">
+                  <input type="hidden" name="search_danhgia" id="search_danhgia_value" value="{{ !empty($search_danhgia)?$search_danhgia:"" }}">
                   <button class="form-select dropdown-toggle d-flex align-items-center justify-content-between" type="button" id="starRatingDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <span id="selectedRating">Chọn đánh giá</span>
                   </button>
@@ -168,7 +146,7 @@
             <tbody>
               @foreach ($cham_socs as $cham_soc)
                 <tr>
-                  <td>{{$cham_soc->id}}</td>
+                  <td>{{$cham_soc->cs_id}}</td>
                   <td>{{$cham_soc->ho_ten}}</td>
                   <td>{{$cham_soc->ten_trang_thai}}</td>
                   <td>{{$cham_soc->tai_khoan}}</td>
@@ -177,7 +155,7 @@
                   <td>{{$cham_soc->ten_giong_thu_cung}}</td>
                   <td>{{$cham_soc->danh_gia}}</td>
                   <td>
-                    <a href="{{ route('chi_tiet_admin', ['id' => $cham_soc->id]) }}" class="btn btn-info btn-sm">
+                    <a href="{{ route('chi_tiet_admin_cs', ['id' => $cham_soc->cs_id]) }}" class="btn btn-info btn-sm">
                       <i class="bi bi-eye-fill"></i> Chi tiết
                     </a>
                   </td>

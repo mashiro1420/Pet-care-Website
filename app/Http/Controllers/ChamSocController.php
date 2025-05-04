@@ -11,6 +11,7 @@ use App\Models\KhachHangModel;
 use App\Models\TaiKhoanModel;
 use App\Models\DMGiongThuCungModel;
 use App\Models\DMKhuyenMaiModel;
+use GuzzleHttp\Psr7\Query;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -19,11 +20,41 @@ class ChamSocController extends Controller
     public function viewQuanLy(Request $request)
     {
         $data = [];
-        $query = ChamSocModel::query()->select('*', 'ql_chamsoc.id as id')
-            ->join('ql_khachhang', 'ql_khachhang.id', '=', 'ql_chamsoc.id_khach_hang')
-            ->join('dm_trangthai', 'dm_trangthai.id', '=', 'ql_chamsoc.id_trang_thai')
-            ->join('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_chamsoc.id_giong')
-            ->join('ql_taikhoan', 'ql_taikhoan.tai_khoan', '=', 'ql_chamsoc.id_nhan_vien');
+        $query = ChamSocModel::query()->select('*', 'ql_chamsoc.id as cs_id','dm_trangthai.id as trang_thai')
+            ->leftJoin('ql_khachhang', 'ql_khachhang.id', '=', 'ql_chamsoc.id_khach_hang')
+            ->leftJoin('dm_trangthai', 'dm_trangthai.id', '=', 'ql_chamsoc.id_trang_thai')
+            ->leftJoin('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_chamsoc.id_giong')
+            ->leftJoin('ql_taikhoan', 'ql_taikhoan.tai_khoan', '=', 'ql_chamsoc.id_nhan_vien');
+        if($request->has('search_khachhang')&& !empty($request->search_khachhang)){
+            $query = $query->where('ho_ten', 'like', '%'.$request->search_khachhang.'%');
+            $data['search_khachhang'] = $request->search_khachhang;
+        }
+        if($request->has('search_trangthai')&& !empty($request->search_trangthai)){
+            $query = $query->where('trang_thai',$request->search_trangthai);
+            $data['search_trangthai'] = $request->search_trangthai;
+        }
+        if($request->filled('search_tu_cs')||$request->filled('search_den_cs')){
+            if(empty($request->search_tu_cs)) $search_tu_cs = date("Y-m-d");
+            else $search_tu_cs = $request->search_tu_cs;
+            if(empty($request->search_den_cs)) $search_den_cs =  date("Y-m-d");
+            else $search_den_cs = $request->search_den_cs;
+            $query = $query->whereBetween('ngay', [$search_tu_cs,$search_den_cs]);
+            $data['search_tu_cs'] = $request->search_tu_cs;
+            $data['search_den_cs'] = $request->search_den_cs;
+        }
+        if($request->filled('search_tu_dat')||$request->filled('search_den_dat')){
+            if(empty($request->search_tu_dat)) $search_tu_dat = date("Y-m-d");
+            else $search_tu_dat = $request->search_tu_dat;
+            if(empty($request->search_den_dat)) $search_den_dat =  date("Y-m-d");
+            else $search_den_dat = $request->search_den_dat;
+            $query = $query->whereBetween('ngay', [$search_tu_dat,$search_den_dat]);
+            $data['search_tu_dat'] = $request->search_tu_dat;
+            $data['search_den_dat'] = $request->search_den_dat;
+        }
+        if($request->has('search_danhgia')&& !empty($request->search_danhgia)){
+            $query = $query->where('danh_gia',$request->search_danhgia);
+            $data['search_danhgia'] = $request->search_danhgia;
+        }
         $data['cham_socs'] = $query->paginate(5);
         $data['trang_thais'] = DMTrangThaiModel::all();
         $data['giong_thu_cungs'] = DMGiongThuCungModel::all();
@@ -36,10 +67,10 @@ class ChamSocController extends Controller
     {
         $data = [];
         $query = ChamSocModel::query()->select('*', 'ql_chamsoc.id as id')
-            ->join('ql_khachhang', 'ql_khachhang.id', '=', 'ql_chamsoc.id_khach_hang')
-            ->join('dm_trangthai', 'dm_trangthai.id', '=', 'ql_chamsoc.id_trang_thai')
-            ->join('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_chamsoc.id_giong')
-            ->join('ql_taikhoan', 'ql_taikhoan.tai_khoan', '=', 'ql_chamsoc.id_nhan_vien');
+            ->leftJoin('ql_khachhang', 'ql_khachhang.id', '=', 'ql_chamsoc.id_khach_hang')
+            ->leftJoin('dm_trangthai', 'dm_trangthai.id', '=', 'ql_chamsoc.id_trang_thai')
+            ->leftJoin('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_chamsoc.id_giong')
+            ->leftJoin('ql_taikhoan', 'ql_taikhoan.tai_khoan', '=', 'ql_chamsoc.id_nhan_vien');
         $data['cham_socs'] = $query->paginate(5);
         $data['trang_thais'] = DMTrangThaiModel::all();
         $data['giong_thu_cungs'] = DMGiongThuCungModel::all();
@@ -57,7 +88,17 @@ class ChamSocController extends Controller
     public function viewChiTietAdmin(Request $request)
     {
         $data = [];
-        $data['cham_soc'] = ChamSocModel::find($request->id);
+        $data['cham_soc'] = ChamSocModel::query()->select('*', 'ql_chamsoc.id as cs_id')
+        ->leftJoin('ql_khachhang', 'ql_khachhang.id', '=', 'ql_chamsoc.id_khach_hang')
+        ->leftJoin('dm_trangthai', 'dm_trangthai.id', '=', 'ql_chamsoc.id_trang_thai')
+        ->leftJoin('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_chamsoc.id_giong')
+        ->leftJoin('ql_taikhoan', 'ql_taikhoan.tai_khoan', '=', 'ql_chamsoc.id_nhan_vien')
+        ->find($request->id);
+        $dich_vu_them = CSDichVuThemModel::where('id_cham_soc', $request->id)->get();
+        $data['dich_vu_them'] = [];
+        foreach ($dich_vu_them as $item) {
+            $data['dich_vu_them'][] = $item->id_dich_vu;
+        }
         $data['trang_thais'] = DMTrangThaiModel::all();
         $data['giong_thu_cungs'] = DMGiongThuCungModel::all();
         $data['tai_khoans'] = TaiKhoanModel::all();
@@ -68,14 +109,31 @@ class ChamSocController extends Controller
     public function viewChiTietUser(Request $request)
     {
         $data = []; 
-        $data['cham_soc'] = ChamSocModel::find($request->id);
+        $data['cham_soc'] = ChamSocModel::query()->select('*', 'ql_chamsoc.id as cs_id')
+        ->leftJoin('ql_khachhang', 'ql_khachhang.id', '=', 'ql_chamsoc.id_khach_hang')
+        ->leftJoin('dm_trangthai', 'dm_trangthai.id', '=', 'ql_chamsoc.id_trang_thai')
+        ->leftJoin('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_chamsoc.id_giong')
+        ->leftJoin('ql_taikhoan', 'ql_taikhoan.tai_khoan', '=', 'ql_chamsoc.id_nhan_vien')
+        ->find($request->id);
+        $dich_vu_them = CSDichVuThemModel::where('id_cham_soc', $request->id)->get();
+        $data['dich_vu_them'] = [];
+        foreach ($dich_vu_them as $item) {
+            $data['dich_vu_them'][] = $item->id_dich_vu;
+        }
+        // dd($data['dich_vu_them']);
         $data['dich_vus'] = DMDichVuModel::all();
         return view('Giao_dien_khach.Dat_lich_cham_soc.chi_tiet_user', $data);
     }
     public function viewThanhToan(Request $request)
     {
+        // dd($request);
         $data = [];
-        $data['cham_soc'] = ChamSocModel::find($request->id);
+        $data['cham_soc'] = ChamSocModel::query()->select('*', 'ql_chamsoc.id as cs_id')
+        ->leftJoin('ql_khachhang', 'ql_khachhang.id', '=', 'ql_chamsoc.id_khach_hang')
+        ->leftJoin('dm_trangthai', 'dm_trangthai.id', '=', 'ql_chamsoc.id_trang_thai')
+        ->leftJoin('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_chamsoc.id_giong')
+        ->leftJoin('ql_taikhoan', 'ql_taikhoan.tai_khoan', '=', 'ql_chamsoc.id_nhan_vien')
+        ->find($request->id);
         $data['trang_thais'] = DMTrangThaiModel::all();
         $data['giong_thu_cungs'] = DMGiongThuCungModel::all();
         $data['tai_khoans'] = TaiKhoanModel::all();
@@ -103,13 +161,7 @@ class ChamSocController extends Controller
         $dat_lich->id_giong = $request->giong;
         $dat_lich->ghi_chu = $request->ghi_chu;
         $dat_lich->save();
-        $dat_lich_moi = ChamSocModel::orderBy('id','desc')->first();
-        foreach ($request->dich_vu_them as $dich_vu) {
-            $dich_vu_them = new CSDichVuThemModel();
-            $dich_vu_them->id_cham_soc = $dat_lich_moi->id;
-            $dich_vu_them->id_dich_vu = $dich_vu;
-            $dich_vu_them->save();
-        }
+        
         $thong_tin = [
             'loai' => 1,
 			'email' => $khach->email,
@@ -118,30 +170,20 @@ class ChamSocController extends Controller
             'ngay' => $request->ngay,
             'thoi_gian' => $request->thoi_gian,
             'ghi_chu' => $request->ghi_chu,
-            'dich_vu_them' => $request->dich_vu_them,
             'dich_vu' => 'CS'
 		];
         $this->xlGuiMailXacNhan($thong_tin);
-        return redirect()->route('khach_dat_lich');
+        return redirect()->route('khach_hang_lichchamsoc');
     }
     public function xlSuaLich(Request $request)
     {
+        // dd($request);
         $dat_lich = ChamSocModel::find($request->id);
         $dat_lich->ngay = $request->ngay;
         $dat_lich->thoi_gian = $request->thoi_gian;
         $dat_lich->id_giong = $request->giong;
         $dat_lich->ghi_chu = $request->ghi_chu;
         $dat_lich->save();
-        $dich_vu_thems = CSDichVuThemModel::where('id_cham_soc','=', $request->id)->get();
-        foreach ($dich_vu_thems as $dich_vu_them){
-            $dich_vu_them->delete();
-        }
-        foreach ($request->dich_vu_them as $dich_vu) {
-            $dich_vu_them = new CSDichVuThemModel();
-            $dich_vu_them->id_cham_soc = $request->id;
-            $dich_vu_them->id_dich_vu = $dich_vu;
-            $dich_vu_them->save();
-        }
         $thong_tin = [
             'loai' => 2,
 			'email' => $dat_lich->KhachHang->email,
@@ -150,36 +192,51 @@ class ChamSocController extends Controller
             'ngay' => $request->ngay,
             'thoi_gian' => $request->thoi_gian,
             'ghi_chu' => $request->ghi_chu,
-            'dich_vu_them' => $request->dich_vu_them,
             'dich_vu' => 'CS'
 		];
         $this->xlGuiMailXacNhan($thong_tin);
-        return redirect()->route('khach_dat_lich');
+        return redirect()->route('khach_hang_lichchamsoc');
+    }
+    public function xlXacNhan(Request $request)
+    {
+        // dd($request);
+        $dat_lich = ChamSocModel::find($request->id);
+        $dat_lich->id_trang_thai = 2;
+        $dat_lich->id_nhan_vien = session('tai_khoan');
+        foreach ($request->dich_vu_them as $dich_vu) {
+            $dich_vu_them = new CSDichVuThemModel();
+            $dich_vu_them->id_cham_soc = $dat_lich->id;
+            $dich_vu_them->id_dich_vu = $dich_vu;
+            $dich_vu_them->save();
+        }
+        $dat_lich->save(); 
+        return redirect()->route('chi_tiet_admin_cs', ['id' => $request->id]);
+
     }
     public function xlHoanThanh(Request $request)
     {
+        // dd($request);
         $dat_lich = ChamSocModel::find($request->id);
-        $dat_lich->id_trang_thai = 2;
-        $dat_lich->danh_gia = $request->danh_gia;
-        $dat_lich->save(); 
+        $dat_lich->id_trang_thai = 3;
         $thong_tin = [
             'loai' => 3,
 			'email' => $dat_lich->KhachHang->email,
 			'ho_ten' => $dat_lich->KhachHang->ten_khach_hang,
             'sdt' => $dat_lich->KhachHang->sdt,
-            'ngay' => $request->ngay,
-            'thoi_gian' => $request->thoi_gian,
-            'ghi_chu' => $request->ghi_chu,
-            'dich_vu_them' => $request->dich_vu_them,
+            'ngay' => $dat_lich->ngay,
+            'thoi_gian' => $dat_lich->thoi_gian,
+            'trang_thai' => DMTrangThaiModel::find(3)->ten_trang_thai,
+            'ghi_chu' => $dat_lich->ghi_chu,
             'dich_vu' => 'CS'
 		];
+        $dat_lich->save();
         $this->xlGuiMailXacNhan($thong_tin);
-        return redirect()->route('ql_datlichchamsoc');
+        return redirect()->route('chi_tiet_admin_cs', ['id' => $request->id]);
 
     }
-    protected function xlGuiMailXacNhan( $thong_tin)
+    protected function xlGuiMailXacNhan(array $thong_tin)
     {
-		$result = Mail::to($thong_tin->email)->send(new XacNhanDatLichMail($thong_tin));
+		$result = Mail::to($thong_tin['email'])->send(new XacNhanDatLichMail($thong_tin));
         if($result){
 			session()->flash('bao_loi','Gửi thành công');
 			}

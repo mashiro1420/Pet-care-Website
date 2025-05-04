@@ -51,8 +51,8 @@ class DangNhapController extends Controller
 		}
 		if (session('bao_loi') == '') {
 			if(session('quyen') == 'Admin') return redirect()->route('ql_tk');
-			// elseif(session('quyen') == 'Quản lý')return redirect()->route('ql_nv');
-			// else return redirect()->route('ql_nv');
+			elseif(session('quyen') == 'Quản lý')return redirect()->route('ql_chamsoc');
+			else return redirect()->route('khach_hang_lichchamsoc');
 			
 		} else {
 				return redirect()->route('dang_nhap');

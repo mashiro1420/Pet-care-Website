@@ -116,15 +116,16 @@ Route::post('xl_sua_trongcoi',[DichVuController::class, 'xlSuaTrongCoi']);
 //QLChamSoc Routes
 Route::get('ql_chamsoc',[ChamSocController::class, 'viewQuanLy'])->name('ql_chamsoc');
 Route::get('khach_hang_lichchamsoc',[ChamSocController::class, 'viewKhachHang'])->name('khach_hang_lichchamsoc');
-Route::get('dat_lich',[ChamSocController::class, 'viewDatLich'])->name('dat_lich');
-Route::get('thanh_toan',[ChamSocController::class, 'viewThanhToan'])->name('thanh_toan');
-Route::post('xl_dat_lich',[ChamSocController::class, 'xlDatLich']);
-Route::get('chi_tiet_user',[ChamSocController::class, 'viewChiTietUser'])->name('chi_tiet_user');
-Route::get('chi_tiet_admin',[ChamSocController::class, 'viewChiTietAdmin'])->name('chi_tiet_admin');
-Route::get('sua_lich',[ChamSocController::class, 'viewSuaLich'])->name('sua_lich');
-Route::post('xl_sua_lich',[ChamSocController::class, 'xlSuaLich']);
-Route::post('xl_hoan_thanh',[ChamSocController::class, 'xlHoanThanh']);
-Route::post('xl_gui_mail_xac_nhan',[ChamSocController::class, 'xlGuiMailXacNhan']);
+Route::get('dat_lich_cs',[ChamSocController::class, 'viewDatLich'])->name('dat_lich_cs');
+Route::post('thanh_toan_cs',[ChamSocController::class, 'viewThanhToan'])->name('thanh_toan_cs');
+Route::post('xl_dat_lich_cs',[ChamSocController::class, 'xlDatLich']);
+Route::get('chi_tiet_user_cs',[ChamSocController::class, 'viewChiTietUser'])->name('chi_tiet_user_cs');
+Route::get('chi_tiet_admin_cs',[ChamSocController::class, 'viewChiTietAdmin'])->name('chi_tiet_admin_cs');
+Route::get('sua_lich_cs',[ChamSocController::class, 'viewSuaLich'])->name('sua_lich_cs');
+Route::post('xl_sua_lich_cs',[ChamSocController::class, 'xlSuaLich']);
+Route::post('xl_xac_nhan_cs',[ChamSocController::class, 'xlXacNhan']);
+Route::post('xl_hoan_thanh_cs',[ChamSocController::class, 'xlHoanThanh']);
+Route::post('xl_gui_mail_xac_nhan_cs',[ChamSocController::class, 'xlGuiMailXacNhan']);
 
 // KhachHang Routes
 Route::get('ql_kh',[KhachHangController::class, 'viewQuanLy'])->name('ql_kh');

@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="vi">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thêm bài đăng</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="icon" href="{{ asset('imgs/paw-solid.svg') }}" type="image/x-icon">
-  <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm bài đăng</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="{{ asset('imgs/paw-solid.svg') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 </head>
 
@@ -101,8 +103,8 @@
           <div class="row g-3">
             <div class="col-md-12">
               <div class="mb-3">
-                  <label for="noi_dung" class="form-label required-field">Nội dung</label>
-                  <textarea id="noi_dung" name="noi_dung" class="form-control" required></textarea>
+                <label for="noi_dung" class="form-label required-field">Nội dung</label>
+                <textarea id="noi_dung" name="noi_dung" class="form-control" ></textarea>
               </div>
             </div>
           </div>
@@ -118,19 +120,42 @@
       </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script> 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.6.1/tinymce.min.js" integrity="sha512-bib7srucEhHYYWglYvGY+EQb0JAAW0qSOXpkPTMgCgW8eLtswHA/K4TKyD4+FiXcRHcy8z7boYxk0HTACCTFMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     tinymce.init({
         selector: '#noi_dung',  // Chỉ định phần tử sẽ chuyển thành TinyMCE editor
-        plugins: 'image link lists textcolor',  // Các plugin cho TinyMCE
+        plugins: 'image paste link lists textcolor',  // Các plugin cho TinyMCE
         toolbar: 'undo redo | bold italic underline| fontsize fontfamily | alignleft aligncenter alignright | link image | bullist numlist outdent indent | removeformat | fontselect fontsizeselect forecolor', // Các công cụ trên thanh công cụ
         menubar: true,  // Bật thanh menu
-        image_upload_url: '/path-to-upload-image',  // Đường dẫn API để tải lên hình ảnh
+        image_upload_url: '/xl_upload',  // Đường dẫn API để tải lên hình ảnh
         file_picker_types: 'image',  // Chỉ cho phép chọn hình ảnh
-        height: 800  // Chiều cao của editor
-    });
+        height: 800,  // Chiều cao của editor
+        paste_data_images: true,
+        images_upload_handler: function (blobInfo, success, failure) {
+          const formData = new FormData();
+          formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+          return axios.post('/xl_upload', formData, {
+            headers: {
+              'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+              'Content-Type': 'multipart/form-data'
+            }
+          })
+              .then(response => {
+              console.log(response.data);
+            if (response.data && response.data.location) {
+              success(response.data.location);
+            } else {
+              failure('Upload failed: No location returned');
+            }
+          })
+          .catch(error => {
+            failure('Upload error: ' + error.message);
+          });
+        }
+      });
 </script>
 
 </body>

@@ -23,7 +23,7 @@
     </div>
     <div class="card search-card mb-4">
       <div class="card-body">
-        <form action="{{ route('ql_tk') }}" method="get">
+        <form action="{{ route('ql_baidang') }}" method="get">
           @csrf
           <div class="row g-3">
             <div class="col-md-3">
@@ -50,28 +50,6 @@
                   <input type="date" class="form-control" name="" value="">
                   <span class="mx-3">đến</span>
                   <input type="date" class="form-control" name="" value="">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="search_ngaydang" class="form-label">Số lượt xem</label><br>
-                <div class="d-flex justify-content-center align-items-center">
-                  <span class="me-3">Từ</span>
-                  <input type="number" class="form-control" name="" value="">
-                  <span class="mx-3">đến</span>
-                  <input type="number" class="form-control" name="" value="">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="search_ngaydang" class="form-label">Số lượt thích</label><br>
-                <div class="d-flex justify-content-center align-items-center">
-                  <span class="me-3">Từ</span>
-                  <input type="number" class="form-control" name="" value="">
-                  <span class="mx-3">đến</span>
-                  <input type="number" class="form-control" name="" value="">
                 </div>
               </div>
             </div>

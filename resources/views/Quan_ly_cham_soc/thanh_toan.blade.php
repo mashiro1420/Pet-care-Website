@@ -30,8 +30,8 @@
           <div class="row g-3">
             <div class="col-md-6">
               <div class="mb-3">
-                <label for="nhan_vien" class="form-label">Khách hàng</label>
-                <input type="text" class="form-control" name="nhan_vien" value="{{$cham_soc->ho_ten}}" readonly>
+                <label for="ho_ten" class="form-label">Khách hàng</label>
+                <input type="text" class="form-control" name="ho_ten" value="{{$cham_soc->ho_ten}}" readonly>
               </div>
             </div>
             <div class="col-md-6">
@@ -136,7 +136,7 @@
           </div>
           </div>
           <div class="col-12 d-flex justify-content-end gap-2 mt-4">
-            <a href="{{ route('chi_tiet', ['id' => $cham_soc->id]) }}" type="reset" class="btn btn-outline-secondary">
+            <a href="{{ route('chi_tiet_admin_cs', ['id' => $cham_soc->id]) }}" type="reset" class="btn btn-outline-secondary">
               <i class="bi bi-arrow-repeat me-1"></i>Quay lại
             </a>
             <button type="submit" class="btn btn-warning">

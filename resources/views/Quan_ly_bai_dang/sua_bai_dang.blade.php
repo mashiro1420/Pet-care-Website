@@ -53,7 +53,7 @@
                 <label for="trang_thai" class="form-label required-field">Trạng thái</label>
                 <select class="form-select" name="trang_thai" required>              
                   <option value="1" {{$bai_dang->trang_thai==1 ? "selected": ""}}>Mở</option>
-                  <option value="0" {{$bai_dang->trang_thai==0 ? "selected": ""</option>}}>Khóa</option>
+                  <option value="0" {{$bai_dang->trang_thai==0 ? "selected": ""}}>Khóa</option>
                 </select>
               </div>
             </div>

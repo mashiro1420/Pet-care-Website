@@ -7,6 +7,7 @@ use App\Models\DMLoaiNoiDungModel;
 use File;
 use GuzzleHttp\Psr7\UploadedFile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BaiDangController extends Controller
 {
@@ -14,7 +15,6 @@ class BaiDangController extends Controller
     {
         $query = BaiDangModel::select('*');
         $data['loai_noi_dungs'] = DMLoaiNoiDungModel::all();
-// Route::get('ql_dmkhuye_nai', [DanhMucController::class, 'viewDMKhuyenMai'])->name('ql_dmkhuye_nai');
         $data['bai_dangs'] = $query->paginate('10');
         return view('Quan_ly_bai_dang.quan_ly_bai_dang', $data);
     }
@@ -39,6 +39,7 @@ class BaiDangController extends Controller
     }
     public function xlThem(Request $request)
     {
+        dd($request);
         $nhan_vien = session('tai_khoan');
         $bai_dang = new BaiDangModel();
         $bai_dang->tieu_de = $request->tieu_de;
@@ -80,11 +81,11 @@ class BaiDangController extends Controller
         $bai_dang->trang_thai = $request->trang_thai;
         $bai_dang->save();
     }
-    protected function upload_file(File $file)
-    {
-        $filename = md5(time() . $file->getClientOriginalName()) . '.' . $file->getClientOriginalExtension();
-        return $filename;
-    }
+    // protected function upload_file(File $file)
+    // {
+    //     $filename = md5(time() . $file->getClientOriginalName()) . '.' . $file->getClientOriginalExtension();
+    //     return $filename;
+    // }
     public function xlThich(Request $request)
     {
         $bai_dang = BaiDangModel::find($request->id);
@@ -97,5 +98,20 @@ class BaiDangController extends Controller
         $bai_dang->trang_thai = $request->trang_thai;
         $bai_dang->ngay_dang = date('Y-m-d H:i:s');
         $bai_dang->save();
+    }
+    public function upload(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        $file = $request->file('file');
+        $filename = md5(time() . $file->getClientOriginalName()) . '.' . $file->getClientOriginalExtension();
+
+        $path = $file->storeAs('public/Bai_dang', $filename);
+
+        return response()->json([
+            'location' => Storage::url($path)
+        ]);
     }
 }

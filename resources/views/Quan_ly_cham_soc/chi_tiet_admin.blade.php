@@ -25,27 +25,28 @@
     </div>
     <div class="card">
       <div class="card-body p-4">
-        <form action="" method="">
+        <form action="{{ url('xl_xac_nhan_cs') }}" method="POST">
           @csrf
           <div class="row g-3">
+            <input type="text" class="form-control" name="id" value="{{$cham_soc->cs_id}}" hidden>
             <div class="col-md-6">
               <div class="mb-3">
-                <label for="nhan_vien" class="form-label">Khách hàng</label>
-                <input type="text" class="form-control" name="nhan_vien" value="{{$cham_soc->ho_ten}}" readonly>
+                <label for="ho_ten" class="form-label">Khách hàng</label>
+                <input type="text" class="form-control" name="ho_ten" value="{{$cham_soc->ho_ten}}" readonly>
               </div>
             </div>
             <div class="col-md-6">
               <div class="mb-3">
-                <label for="thumb_nail" class="form-label">Trạng thái</label>
-                <input type="text" class="form-control" name="thumb_nail" value="{{$cham_soc->trang_thai}}" readonly>
+                <label for="trang_thai" class="form-label">Trạng thái</label>
+                <input type="text" class="form-control" name="trang_thai" value="{{$cham_soc->ten_trang_thai}}" readonly>
               </div>
             </div> 
           </div>
           <div class="row g-3">
             <div class="col-md-6">
               <div class="mb-3">
-                <label for="ngay_dang" class="form-label">Nhân viên</label>
-                <input type="date" class="form-control" name="ngay_dang" value="{{$cham_soc->tai_khoan}}" readonly> 
+                <label for="nhan_vien" class="form-label">Nhân viên</label>
+                <input type="text" class="form-control" name="nhan_vien" value="{{$cham_soc->tai_khoan}}" readonly> 
               </div>
             </div>
             <div class="col-md-6">
@@ -103,10 +104,10 @@
           </div>
           <div class="form-group">
             @php
-              $selected = old('dich_vu', [1, 2]);
+              $selected = $dich_vu_them;
             @endphp
-              <label for="dich_vu">Chọn dịch vụ</label>
-              <select class="js-example-basic-multiple form-control" name="dich_vu[]" id="dich_vu" multiple='multiple' required>
+              <label for="dich_vu_them">Chọn dịch vụ</label>
+              <select class="js-example-basic-multiple form-control" name="dich_vu_them[]" id="dich_vu_them" multiple='multiple' required>
                 @foreach ($dich_vus as $dich_vu)
                   <option value="{{ $dich_vu->id }}" {{ in_array($dich_vu->id, $selected) ? 'selected' : '' }}>
                     {{ $dich_vu->ten_dich_vu }}
@@ -118,14 +119,25 @@
             <button type="reset" class="btn btn-outline-secondary">
               <i class="bi bi-arrow-repeat me-1"></i>Quay lại
             </button>
-            <button type="submit" class="btn btn-warning">
-              <i class="fa-solid fa-circle-check"></i>Xác nhận
+            <button type="submit" class="btn btn-warning" {{$cham_soc->id_trang_thai!=1?'disabled':''}}>
+              <i class="fa-solid fa-gears"></i>Xác nhận
             </button>
-            <a href="{{ route('thanh_toan', ['id' => $cham_soc->id]) }}" type="submit" class="btn btn-warning">
+          </form>
+          <form action="{{ url('xl_hoan_thanh_cs') }}" method="post">
+            @csrf
+            <input type="text" class="form-control" name="id" value="{{$cham_soc->cs_id}}" hidden>
+            <button  type="submit" class="btn btn-warning" {{$cham_soc->id_trang_thai!=2?'disabled':''}}>
+              <i class="fa-solid fa-circle-check"></i>Hoàn thành
+            </button>
+          </form>
+          <form action="{{ route('thanh_toan_cs') }}" method="post">
+            @csrf
+            <input type="text" class="form-control" name="id" value="{{$cham_soc->cs_id}}" hidden>
+            <button  type="submit" class="btn btn-warning" {{$cham_soc->id_trang_thai!=3?'disabled':''}}>
               <i class="fa-solid fa-money-bill-wave"></i>Thanh toán
-            </a>
+            </button>
+          </form>
           </div>
-        </form>
       </div>
     </div>
   </div>

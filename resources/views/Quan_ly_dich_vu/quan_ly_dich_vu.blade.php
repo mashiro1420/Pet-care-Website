@@ -45,9 +45,6 @@
                   <td>{{$dich_vu_cham_soc->id}}</td>
                   <td>{{$dich_vu_cham_soc->ten_dich_vu}}</td>
                   <td>
-                    <a class="btn btn-sm btn-primary btn-action me-1" data-bs-toggle="modal" data-bs-target="#modalUpdateDichVuChamSoc">
-                      <i class="bi bi-pencil-square"></i>
-                    </a>
                     <a class="btn btn-sm btn-danger btn-action me-1" href="">
                       <i class="bi bi-trash"></i>
                     </a>
@@ -117,9 +114,6 @@
                   <td>{{$dich_vu_trong_coi->id}}</td>
                   <td>{{$dich_vu_trong_coi->ten_dich_vu}}</td>
                   <td>
-                    <a class="btn btn-sm btn-primary btn-action me-1" data-bs-toggle="modal" data-bs-target="#modalUpdateDichVuTrongCoi">
-                      <i class="bi bi-pencil-square"></i>
-                    </a>
                     <a class="btn btn-sm btn-danger btn-action me-1" href="">
                       <i class="bi bi-trash"></i>
                     </a>
@@ -183,11 +177,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="" method="POST">
+          <form action="{{ url('xl_them_chamsoc') }}" method="POST">
             @csrf
             <div class="mb-3">
               <label for="danh_muc_dich_vu" class="form-label">Chọn danh mục dịch vụ</label>
-              <select class="form-select" id="danh_muc_dich_vu" name="danh_muc_dich_vu" required>
+              <select class="form-select" id="danh_muc_dich_vu" name="id_dich_vu_cs" required>
                 <option value="" disabled selected>-- Chọn danh mục --</option>
                 @foreach ($dm_dich_vus as $dm_dich_vu)
                   <option value="{{ $dm_dich_vu->id }}">{{ $dm_dich_vu->ten_dich_vu }}</option>
@@ -212,11 +206,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="" method="POST">
+          <form action="{{ url('xl_them_trongcoi') }}" method="POST">
             @csrf
             <div class="mb-3">
               <label for="danh_muc_dich_vu" class="form-label">Chọn danh mục dịch vụ</label>
-              <select class="form-select" id="danh_muc_dich_vu" name="danh_muc_dich_vu" required>
+              <select class="form-select" id="danh_muc_dich_vu" name="id_dich_vu_tc" required>
                 <option value="" disabled selected>-- Chọn danh mục --</option>
                 @foreach ($dm_dich_vus as $dm_dich_vu)
                   <option value="{{ $dm_dich_vu->id }}">{{ $dm_dich_vu->ten_dich_vu }}</option>
@@ -225,66 +219,6 @@
             </div>
             <div class="d-flex justify-content-between">
               <button type="submit" class="btn btn-primary">Thêm</button>
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Modal Update DichVuChamSoc -->
-  <div class="modal fade" id="modalUpdateDichVuChamSoc" tabindex="-1" aria-labelledby="modalUpdateDichVuChamSocLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalUpdateDichVuChamSocLabel">Cập nhật dịch vụ chăm sóc</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="" method="POST">
-            @csrf
-            @method('PUT')
-            <div class="mb-3">
-              <label for="danh_muc_dich_vu" class="form-label">Chọn danh mục dịch vụ</label>
-              <select class="form-select" id="danh_muc_dich_vu" name="danh_muc_dich_vu" required>
-                <option value="" disabled>-- Chọn danh mục --</option>
-                {{-- @foreach ($dm_dich_vus as $dm_dich_vu)
-                  <option value="{{ $dm_dich_vu->id }}" @if ($dich_vu_cham_soc->danh_muc_dich_vu == $dm_dich_vu->id) selected @endif>{{ $dm_dich_vu->ten_dich_vu }}</option>
-                @endforeach --}}
-              </select>
-            </div>
-            <div class="d-flex justify-content-between">
-              <button type="submit" class="btn btn-primary">Cập nhật</button>
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Modal Update DichVuTrongCoi -->
-  <div class="modal fade" id="modalUpdateDichVuTrongCoi" tabindex="-1" aria-labelledby="modalUpdateDichVuTrongCoiLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalUpdateDichVuTrongCoiLabel">Cập nhật dịch vụ trông coi</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="" method="POST">
-            @csrf
-            @method('PUT')
-            <div class="mb-3">
-              <label for="danh_muc_dich_vu" class="form-label">Chọn danh mục dịch vụ</label>
-              <select class="form-select" id="danh_muc_dich_vu" name="danh_muc_dich_vu" required>
-                <option value="" disabled>-- Chọn danh mục --</option>
-                {{-- @foreach ($dm_dich_vus as $dm_dich_vu)
-                  <option value="{{ $dm_dich_vu->id }}" @if ($dich_vu_trong_coi->danh_muc_dich_vu == $dm_dich_vu->id) selected @endif>{{ $dm_dich_vu->ten_dich_vu }}</option>
-                @endforeach --}}
-              </select>
-            </div>
-            <div class="d-flex justify-content-between">
-              <button type="submit" class="btn btn-primary">Cập nhật</button>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
             </div>
           </form>

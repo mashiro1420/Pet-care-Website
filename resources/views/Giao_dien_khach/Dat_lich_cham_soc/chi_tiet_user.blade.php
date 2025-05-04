@@ -95,7 +95,7 @@
           </div>
         </div>
         @php
-          $selected = old('dich_vu', [1, 2]); // hoặc $cham_soc->dich_vus nếu có
+          $selected = $dich_vu_them; // hoặc $cham_soc->dich_vus nếu có
         @endphp
 
         <div class="form-group">

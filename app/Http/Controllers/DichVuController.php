@@ -44,21 +44,25 @@ class DichVuController extends Controller
         $dich_vu = new CSDichVuModel();
         $dich_vu->id_dich_vu = $request->id_dich_vu_cs;
         $dich_vu->save();
+        return redirect()->route('ql_dichvu');
     }
     public function xlThemTrongCoi( Request $request )
     {
         $dich_vu = new TCDichVuModel();
         $dich_vu->id_dich_vu = $request->id_dich_vu_tc;
         $dich_vu->save();
+        return redirect()->route('ql_dichvu');
     }
     public function xlXoaChamSoc( Request $request )
     {
         $dich_vu = CSDichVuModel::find( $request->id);
         $dich_vu->delete();
+        return redirect()->route('ql_dichvu');
     }
     public function xlXoaTrongCoi( Request $request )
     {
         $dich_vu = TCDichVuModel::find( $request->id);
         $dich_vu->delete();
+        return redirect()->route('ql_dichvu');
     }
 }

@@ -17,19 +17,20 @@
   <section class="main-content">
     <div class="container" id="form-section">
       <h2 class="form-title">Cập nhật lịch trông coi thú cưng</h2>
-      <form action="" method="POST">
+      <form action="{{url('xl_sua_lich_cs')}}" method="POST">
         @csrf
         <div class="mb-3">
-          <label for="ngay_cham_soc" class="form-label">Ngày chăm sóc</label>
-          <input type="date" class="form-control" id="ngay_cham_soc" name="ngay_cham_soc" value="{{$cham_soc->ngay}}" required>
+          <input type="text" class="form-control" id="id" name="id" value="{{$cham_soc->id}}" hidden>
+          <label for="ngay" class="form-label">Ngày chăm sóc</label>
+          <input type="date" class="form-control" id="ngay" name="ngay" value="{{$cham_soc->ngay}}" required>
         </div>
         <div class="mb-3">
-          <label for="gio_cham_soc" class="form-label">Giờ chăm sóc</label>
-          <input type="time" class="form-control" id="gio_cham_soc" name="gio_cham_soc" value="{{$cham_soc->thoi_gian}}" required>
+          <label for="thoi_gian" class="form-label">Giờ chăm sóc</label>
+          <input type="time" class="form-control" id="thoi_gian" name="thoi_gian" value="{{$cham_soc->thoi_gian}}" required>
         </div>
         <div class="mb-3">
-          <label for="giong_thu_cung" class="form-label">Giống thú cưng</label>
-          <select class="form-select" id="giong_thu_cung" name="giong_thu_cung" required>
+          <label for="giong" class="form-label">Giống thú cưng</label>
+          <select class="form-select" id="giong" name="giong" required>
             @foreach ($giong_thu_cungs as $giong_thu_cung)
               <option value="{{ $giong_thu_cung->id }}" {{ $cham_soc->id_giong_thu_cung == $giong_thu_cung->id ? 'selected' : '' }}>{{ $giong_thu_cung->ten_giong_thu_cung }}</option>
             @endforeach
@@ -37,9 +38,7 @@
         </div>
         <div class="mb-3">
           <label for="ghi_chu" class="form-label">Ghi chú</label>
-          <textarea class="form-control" id="ghi_chu" name="ghi_chu" rows="3">
-            {{$cham_soc->ghi_chu}}
-          </textarea>
+          <textarea class="form-control" id="ghi_chu" name="ghi_chu" rows="3">{{$cham_soc->ghi_chu}}</textarea>
         </div>
         <div class="text-center">
           <button type="submit" class="btn btn-primary">
