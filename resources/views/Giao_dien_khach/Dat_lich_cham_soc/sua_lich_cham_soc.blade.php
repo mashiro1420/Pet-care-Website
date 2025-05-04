@@ -45,8 +45,11 @@
           <button type="submit" class="btn btn-primary">
             <i class="bi bi-calendar-check me-2"></i>Cập nhật lịch
           </button>
+          <a href="" class="btn btn-secondary btn-danger ms-2">
+            <i class="bi bi-x-circle me-2"></i>Hủy lịch chăm sóc
+          </a>
           <a href="{{ route('khach_hang_lichchamsoc') }}" class="btn btn-secondary ms-2">
-            <i class="bi bi-x-circle me-2"></i>Hủy
+            Quay lại
           </a>
         </div>
       </form>
