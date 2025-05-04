@@ -26,7 +26,7 @@
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Tên dịch vụ</th>
-                <th scope="col">Mô tả</th>
+                <th scope="col">Giá</th>
                 <th scope="col" class="text-center">Hành động</th>
               </tr>
             </thead>

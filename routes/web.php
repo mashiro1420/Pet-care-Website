@@ -117,6 +117,7 @@ Route::post('xl_sua_trongcoi',[DichVuController::class, 'xlSuaTrongCoi']);
 Route::get('ql_chamsoc',[ChamSocController::class, 'viewQuanLy'])->name('ql_chamsoc');
 Route::get('khach_hang_lichchamsoc',[ChamSocController::class, 'viewKhachHang'])->name('khach_hang_lichchamsoc');
 Route::get('dat_lich',[ChamSocController::class, 'viewDatLich'])->name('dat_lich');
+Route::get('thanh_toan',[ChamSocController::class, 'viewThanhToan'])->name('thanh_toan');
 Route::post('xl_dat_lich',[ChamSocController::class, 'xlDatLich']);
 Route::get('chi_tiet',[ChamSocController::class, 'viewChiTiet'])->name('chi_tiet');
 Route::get('sua_lich',[ChamSocController::class, 'viewSuaLich'])->name('sua_lich');

@@ -8,6 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <link rel="icon" href="{{ asset('imgs/paw-solid.svg') }}" type="image/x-icon">
   <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
@@ -36,7 +37,7 @@
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="thumb_nail" class="form-label">Trạng thái</label>
-                <input type="file" class="form-control" name="thumb_nail" value="{{$cham_soc->trang_thai}}" readonly>
+                <input type="text" class="form-control" name="thumb_nail" value="{{$cham_soc->trang_thai}}" readonly>
               </div>
             </div> 
           </div>
@@ -100,23 +101,17 @@
               </div>
             </div>
           </div>
-          @php
-            $dichVuOptions = [
-                'Trông giữ thú cưng (Nội trú)',
-                'Khám sức khỏe định kỳ',
-                'Dịch vụ dắt chó đi dạo',
-            ];
-            // Các dịch vụ được chọn sẵn
-            $selectedDichVu = old('dich_vu', ['Trông giữ thú cưng (Nội trú)', 'Khám sức khỏe định kỳ']);
-          @endphp
           <div class="form-group">
+            @php
+              $selected = old('dich_vu', [1, 2]);
+            @endphp
               <label for="dich_vu">Chọn dịch vụ</label>
-              <select name="dich_vu[]" id="dich_vu" class="form-control" multiple>
-                  @foreach ($dichVuOptions as $option)
-                      <option value="{{ $option }}" {{ in_array($option, $selectedDichVu) ? 'selected' : '' }}>
-                          {{ $option }}
-                      </option>
-                  @endforeach
+              <select class="js-example-basic-multiple form-control" name="dich_vu[]" id="dich_vu" multiple='multiple' required>
+                @foreach ($dich_vus as $dich_vu)
+                  <option value="{{ $dich_vu->id }}" {{ in_array($dich_vu->id, $selected) ? 'selected' : '' }}>
+                    {{ $dich_vu->ten_dich_vu }}
+                  </option>
+                @endforeach
               </select>
           </div>
           <div class="col-12 d-flex justify-content-end gap-2 mt-4">
@@ -126,18 +121,24 @@
             <button type="submit" class="btn btn-warning">
               <i class="fa-solid fa-circle-check"></i>Xác nhận
             </button>
-            <button type="submit" class="btn btn-warning">
+            <a href="{{route('thanh_toan')}}" type="submit" class="btn btn-warning">
               <i class="fa-solid fa-money-bill-wave"></i>Thanh toán
-            </button>
+            </a>
           </div>
         </form>
       </div>
     </div>
   </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.6.1/tinymce.min.js" integrity="sha512-bib7srucEhHYYWglYvGY+EQb0JAAW0qSOXpkPTMgCgW8eLtswHA/K4TKyD4+FiXcRHcy8z7boYxk0HTACCTFMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
+    });
+  </script>
 </body>
 
 </html>
