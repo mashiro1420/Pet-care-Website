@@ -40,126 +40,37 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>#CS001</td>
-              <td>02/05/2025</td>
-              <td>09:00</td>
-              <td>Chó Corgi</td>
-              <td><span class="badge badge-confirmed">Đã xác nhận</span></td>
-              <td>Nguyễn Văn A</td>
-              <td>
-                <div class="rating">
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-half"></i>
-                </div>
-              </td>
-              <td>500.000 đ</td>
-              <td><small>Tắm và cắt tỉa lông</small></td>
-              <td>
-                <a href="#" class="btn btn-info btn-sm">
-                  <i class="bi bi-eye"></i>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>#CS002</td>
-              <td>01/05/2025</td>
-              <td>14:00</td>
-              <td>Mèo Ba Tư</td>
-              <td><span class="badge badge-completed">Hoàn thành</span></td>
-              <td>Trần Thị B</td>
-              <td>
-                <div class="rating">
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                </div>
-              </td>
-              <td>650.000 đ</td>
-              <td><small>Tắm và spa</small></td>
-              <td>
-                <a href="#" class="btn btn-info btn-sm">
-                  <i class="bi bi-eye"></i>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>#CS003</td>
-              <td>05/05/2025</td>
-              <td>10:00</td>
-              <td>Chó Husky</td>
-              <td><span class="badge badge-pending">Chờ xác nhận</span></td>
-              <td>Chưa phân công</td>
-              <td>
-                <div class="rating">
-                  <i class="bi bi-star"></i>
-                  <i class="bi bi-star"></i>
-                  <i class="bi bi-star"></i>
-                  <i class="bi bi-star"></i>
-                  <i class="bi bi-star"></i>
-                </div>
-              </td>
-              <td>800.000 đ</td>
-              <td><small>Tắm, cắt tỉa và chăm sóc y tế</small></td>
-              <td>
-                <a href="#" class="btn btn-info btn-sm">
-                  <i class="bi bi-eye"></i>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>#CS004</td>
-              <td>30/04/2025</td>
-              <td>16:00</td>
-              <td>Mèo Anh lông ngắn</td>
-              <td><span class="badge badge-cancelled">Đã hủy</span></td>
-              <td>Phạm Văn C</td>
-              <td>
-                <div class="rating">
-                  <i class="bi bi-star"></i>
-                  <i class="bi bi-star"></i>
-                  <i class="bi bi-star"></i>
-                  <i class="bi bi-star"></i>
-                  <i class="bi bi-star"></i>
-                </div>
-              </td>
-              <td>450.000 đ</td>
-              <td><small>Khách hàng hủy do bận việc đột xuất</small></td>
-              <td>
-                <a href="#" class="btn btn-info btn-sm">
-                  <i class="bi bi-eye"></i>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>#CS005</td>
-              <td>03/05/2025</td>
-              <td>13:00</td>
-              <td>Chó Poodle</td>
-              <td><span class="badge badge-confirmed">Đã xác nhận</span></td>
-              <td>Lê Thị D</td>
-              <td>
-                <div class="rating">
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star"></i>
-                </div>
-              </td>
-              <td>550.000 đ</td>
-              <td><small>Cắt tỉa lông nghệ thuật</small></td>
-              <td>
-                <a href="#" class="btn btn-info btn-sm">
-                  <i class="bi bi-eye"></i>
-                </a>
-              </td>
-            </tr>
+            @foreach ($cham_socs as $cham_soc)
+              <tr>
+                <td>{{ $cham_soc->id }}</td>
+                <td>{{ $cham_soc->ngay }}</td>
+                <td>{{ $cham_soc->thoi_gian }}</td>
+                <td>{{ $cham_soc->ten_giong_thu_cung }}</td>
+                <td><span class="badge badge-confirmed">{{ $cham_soc->ten_trang_thai }}</span></td>
+                <td>{{ $cham_soc->tai_khoan }}</td>
+                <td>
+                  <div class="rating">
+                    @for ($i = 0; $i < 5; $i++)
+                      @if ($i < $cham_soc->danh_gia)
+                        <i class="bi bi-star-fill"></i>
+                      @else 
+                        <i class="bi bi-star"></i>
+                      @endif
+                    @endfor
+                  </div>
+                </td>
+                <td>{{ number_format($cham_soc->tong_tien, 0, ',', '.') }} đ</td>
+                <td><small>{{ $cham_soc->ghi_chu }}</small></td>
+                <td>
+                  <a href="{{ route('chi_tiet_user', ['id' => $cham_soc->id]) }}" class="btn btn-info btn-sm">
+                    <i class="bi bi-eye"></i>
+                  </a>
+                  <a class="btn btn-sm btn-primary btn-action me-1" href="{{ route('sua_lich',['id'=>$cham_soc->id]) }}" style="background-color: rgb(197, 194, 5) !important;">
+                    <i class="bi bi-pencil-square"></i>
+                  </a>
+                </td>
+              </tr>
+            @endforeach   
           </tbody>
         </table>
       </div>

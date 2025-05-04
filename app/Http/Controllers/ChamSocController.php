@@ -10,6 +10,7 @@ use App\Models\DMTrangThaiModel;
 use App\Models\KhachHangModel;
 use App\Models\TaiKhoanModel;
 use App\Models\DMGiongThuCungModel;
+use App\Models\DMKhuyenMaiModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -34,10 +35,16 @@ class ChamSocController extends Controller
     public function viewKhachHang(Request $request)
     {
         $data = [];
-        $data['cham_socs'] = ChamSocModel::orderBy('id','desc')->paginate(5);
+        $query = ChamSocModel::query()->select('*', 'ql_chamsoc.id as id')
+            ->join('ql_khachhang', 'ql_khachhang.id', '=', 'ql_chamsoc.id_khach_hang')
+            ->join('dm_trangthai', 'dm_trangthai.id', '=', 'ql_chamsoc.id_trang_thai')
+            ->join('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_chamsoc.id_giong')
+            ->join('ql_taikhoan', 'ql_taikhoan.tai_khoan', '=', 'ql_chamsoc.id_nhan_vien');
+        $data['cham_socs'] = $query->paginate(5);
         $data['trang_thais'] = DMTrangThaiModel::all();
-        $data['giong_thu_cungs'] = DMGiongThuCungModel::all();  
+        $data['giong_thu_cungs'] = DMGiongThuCungModel::all();
         $data['tai_khoans'] = TaiKhoanModel::all();
+        $data['khach_hangs'] = KhachHangModel::all();
         $data['dich_vus'] = CSDichVuThemModel::all();
         return view('Giao_dien_khach.Dat_lich_cham_soc.khach_hang_lich_cham_soc', $data);
     }
@@ -47,7 +54,7 @@ class ChamSocController extends Controller
         $data['giong_thu_cungs'] = DMGiongThuCungModel::all();
         return view('Giao_dien_khach.Dat_lich_cham_soc.dat_lich_cham_soc', $data);
     }
-    public function viewChiTiet(Request $request)
+    public function viewChiTietAdmin(Request $request)
     {
         $data = [];
         $data['cham_soc'] = ChamSocModel::find($request->id);
@@ -56,11 +63,33 @@ class ChamSocController extends Controller
         $data['tai_khoans'] = TaiKhoanModel::all();
         $data['khach_hangs'] = KhachHangModel::all();
         $data['dich_vus'] = DMDichVuModel::all();
-        return view('Quan_ly_cham_soc.chi_tiet', $data);
+        return view('Quan_ly_cham_soc.chi_tiet_admin', $data);
+    }
+    public function viewChiTietUser(Request $request)
+    {
+        $data = []; 
+        $data['cham_soc'] = ChamSocModel::find($request->id);
+        $data['dich_vus'] = DMDichVuModel::all();
+        return view('Giao_dien_khach.Dat_lich_cham_soc.chi_tiet_user', $data);
+    }
+    public function viewThanhToan(Request $request)
+    {
+        $data = [];
+        $data['cham_soc'] = ChamSocModel::find($request->id);
+        $data['trang_thais'] = DMTrangThaiModel::all();
+        $data['giong_thu_cungs'] = DMGiongThuCungModel::all();
+        $data['tai_khoans'] = TaiKhoanModel::all();
+        $data['khach_hangs'] = KhachHangModel::all();
+        $data['dich_vus'] = DMDichVuModel::all();
+        $data['khuyen_mais'] = DMKhuyenMaiModel::all();
+        return view('Quan_ly_cham_soc.thanh_toan', $data);
     }
     public function viewSuaLich(Request $request)
     {
-        
+        $data = [];
+        $data['cham_soc'] = ChamSocModel::find($request->id);
+        $data['giong_thu_cungs'] = DMGiongThuCungModel::all();
+        return view('Giao_dien_khach.Dat_lich_cham_soc.sua_lich_cham_soc', $data);
     }
     public function xlDatLich(Request $request)
     {

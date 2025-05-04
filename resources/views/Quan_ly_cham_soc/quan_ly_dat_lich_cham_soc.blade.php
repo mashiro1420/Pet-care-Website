@@ -177,7 +177,7 @@
                   <td>{{$cham_soc->ten_giong_thu_cung}}</td>
                   <td>{{$cham_soc->danh_gia}}</td>
                   <td>
-                    <a href="{{ route('chi_tiet', ['id' => $cham_soc->id]) }}" class="btn btn-info btn-sm">
+                    <a href="{{ route('chi_tiet_admin', ['id' => $cham_soc->id]) }}" class="btn btn-info btn-sm">
                       <i class="bi bi-eye-fill"></i> Chi tiết
                     </a>
                   </td>

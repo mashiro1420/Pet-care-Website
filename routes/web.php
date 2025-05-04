@@ -119,7 +119,8 @@ Route::get('khach_hang_lichchamsoc',[ChamSocController::class, 'viewKhachHang'])
 Route::get('dat_lich',[ChamSocController::class, 'viewDatLich'])->name('dat_lich');
 Route::get('thanh_toan',[ChamSocController::class, 'viewThanhToan'])->name('thanh_toan');
 Route::post('xl_dat_lich',[ChamSocController::class, 'xlDatLich']);
-Route::get('chi_tiet',[ChamSocController::class, 'viewChiTiet'])->name('chi_tiet');
+Route::get('chi_tiet_user',[ChamSocController::class, 'viewChiTietUser'])->name('chi_tiet_user');
+Route::get('chi_tiet_admin',[ChamSocController::class, 'viewChiTietAdmin'])->name('chi_tiet_admin');
 Route::get('sua_lich',[ChamSocController::class, 'viewSuaLich'])->name('sua_lich');
 Route::post('xl_sua_lich',[ChamSocController::class, 'xlSuaLich']);
 Route::post('xl_hoan_thanh',[ChamSocController::class, 'xlHoanThanh']);

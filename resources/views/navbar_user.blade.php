@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto align-items-center">
         <li class="nav-item">
-          <a class="nav-link active" href="#">Lịch chăm sóc</a>
+          <a class="nav-link" href="{{route('khach_hang_lichchamsoc')}}">Lịch chăm sóc</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Lịch trông coi</a>

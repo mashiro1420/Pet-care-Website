@@ -121,7 +121,7 @@
             <button type="submit" class="btn btn-warning">
               <i class="fa-solid fa-circle-check"></i>Xác nhận
             </button>
-            <a href="{{route('thanh_toan')}}" type="submit" class="btn btn-warning">
+            <a href="{{ route('thanh_toan', ['id' => $cham_soc->id]) }}" type="submit" class="btn btn-warning">
               <i class="fa-solid fa-money-bill-wave"></i>Thanh toán
             </a>
           </div>

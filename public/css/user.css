@@ -266,7 +266,6 @@ s body {
   .rating {
     color: #FFD166;
   }
-
   /* Table responsive */
   @media (max-width: 992px) {
     .schedule-table {
