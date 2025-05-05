@@ -13,6 +13,7 @@ use App\Models\KhachHangModel;
 use App\Models\TaiKhoanModel;
 use App\Models\DMGiongThuCungModel;
 use App\Models\DMKhuyenMaiModel;
+use Carbon\Carbon;
 use GuzzleHttp\Psr7\Query;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -86,6 +87,13 @@ class ChamSocController extends Controller
     {
         $data = [];
         $data['giong_thu_cungs'] = DMGiongThuCungModel::all();
+        $thoi_gian =['08:00:00','08:30:00','09:00:00','09:30:00','10:00:00','10:30:00','11:00:00','11:30:00','13:00:00','13:30:00','14:00:00','14:30:00','15:00:00','15:30:00','16:00:00','16:30:00'] ;
+        $hien_tai = Carbon::now()->format('H:i:s');
+        // foreach($thoi_gian as $key => $value){
+        //     $temp_time =  Carbon::createFromFormat('H:i:s', $value);
+        //     if($temp_time->lessThanOrEqualTo())
+        // }
+        $data[''] = TaiKhoanModel::all();
         return view('Giao_dien_khach.Dat_lich_cham_soc.dat_lich_cham_soc', $data);
     }
     public function viewChiTietAdmin(Request $request)
@@ -170,6 +178,8 @@ class ChamSocController extends Controller
         $dat_lich = new ChamSocModel();
 
         $khach = KhachHangModel::where('email','=',session('tai_khoan'))->first();
+        $thoi_gian = ChamSocModel::where('thoi_gian', $request->thoi_gian)->get()->count();
+        if($thoi_gian>2) return redirect()->route('khach_hang_lichchamsoc');
         $dat_lich->id_khach_hang = $khach->id;
         $dat_lich->id_trang_thai = 1;
         $dat_lich->ngay = $request->ngay;

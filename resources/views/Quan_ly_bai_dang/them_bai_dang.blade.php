@@ -27,40 +27,32 @@
 
     <div class="card">
       <div class="card-body p-4">
-        <form action="{{ url('xl_them_baidang') }}" method="POST">
+        <form action="{{ url('xl_them_baidang') }}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="row g-3">
             <div class="col-md-6">
               <div class="mb-3">
-                <label for="nhan_vien" class="form-label required-field">Tiêu đề</label>
-                <input type="text" class="form-control" name="nhan_vien" placeholder="Nhập tiêu đề" required>
+                <label for="tieu_de" class="form-label required-field">Tiêu đề</label>
+                <input type="text" class="form-control" name="tieu_de" placeholder="Nhập tiêu đề" required>
               </div>
             </div>
             <div class="col-md-6">
               <div class="mb-3">
-                <label for="thumb_nail" class="form-label required-field">Thumbnail</label>
-                <input type="file" class="form-control" name="thumb_nail" required>
+                <label for="thumbnail" class="form-label required-field">Thumbnail</label>
+                <input type="file" class="form-control" name="thumbnail" required accept="image/*">
               </div>
             </div> 
           </div>
           <div class="row g-3">
             <div class="col-md-6">
               <div class="mb-3">
-                <label for="ngay_dang" class="form-label required-field">Ngày đăng</label>
-                <input type="date" class="form-control" name="ngay_dang" required> 
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="mb-3">
                 <label for="trang_thai" class="form-label required-field">Trạng thái</label>
                 <select class="form-select" name="trang_thai" required>              
                   <option value="1">Mở</option>
-                  <option value="0">Khóa</option>
+                  <option value="0">Ẩn</option>
                 </select>
               </div>
             </div>
-          </div>
-          <div class="row g-3">
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="loai_noi_dung" class="form-label required-field">Loại nội dung</label>
@@ -69,12 +61,6 @@
                       <option value="{{ $loai_noi_dung->id }}">{{ $loai_noi_dung->ten_loai_noi_dung }}</option>
                     @endforeach
                   </select> 
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="mb-3">
-                <label for="nhan_vien" class="form-label required-field">Nhân viên đăng bài</label>
-                <input type="text" class="form-control" name="nhan_vien" placeholder="Nhập tên nhân viên đăng bài" required>
               </div>
             </div>
           </div>
@@ -88,15 +74,15 @@
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="hinh_anh" class="form-label">Hình ảnh</label>
-                <input type="file" class="form-control" name="hinh_anh" multiple>
+                <input type="file" class="form-control" name="hinh_anh" accept="image/*">
               </div>
             </div>
           </div>
           <div class="row g-3">
             <div class="col-md-12">
               <div class="mb-3">
-                <label for="bai_dang" class="form-label required-field">Tóm tắt</label>
-                <textarea class="form-control" name="bai_dang" id="" cols="30" rows="10" required></textarea>
+                <label for="tom_tat" class="form-label required-field">Tóm tắt</label>
+                <textarea class="form-control" name="tom_tat" id="" cols="30" rows="10" required></textarea>
               </div>
             </div>
           </div>

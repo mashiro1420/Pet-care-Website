@@ -17,9 +17,6 @@
   <div class="container-fluid py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h3 class="mb-0">Quản lý lịch chăm sóc</h3>
-      <a class="btn btn-warning" href="{{ route('them_baidang') }}">
-        <i class="bi bi-plus-circle me-1"></i>Thêm lịch chăm sóc
-      </a>
     </div>
     <div class="card search-card mb-4">
       <div class="card-body">

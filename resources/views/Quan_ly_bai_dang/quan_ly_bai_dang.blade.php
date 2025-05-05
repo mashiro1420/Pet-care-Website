@@ -88,36 +88,32 @@
           <table class="table table-hover">
             <thead>
               <tr>
-                <th scope="col">ID</th>
                 <th scope="col">Tiêu đề</th>
-                <th scope="col">Tóm tắt</th>
                 <th scope="col">Ngày đăng</th>
+                <th scope="col">Loại nội dung</th>
+                <th scope="col">Người đăng</th>
                 <th scope="col">Lượt xem</th>
                 <th scope="col">Lượt thích</th>
                 <th scope="col">Trạng thái</th>
-                <th scope="col">Loại nội dung</th>
-                <th scope="col">Người đăng</th>
-                <th scope="col">Link video</th>
                 <th scope="col">Hành động</th>
               </tr>
             </thead>
             <tbody>
               @foreach ($bai_dangs as $bai_dang)
                 <tr>
-                  <td>{{$bai_dang->id}}</td>
                   <td>{{$bai_dang->tieu_de}}</td>
-                  <td>{{$bai_dang->tom_tat}}</td>
                   <td>{{$bai_dang->ngay_dang}}</td>
+                  <td>{{$bai_dang->ten_loai_noi_dung}}</td>
+                  <td>{{$bai_dang->ten_nhan_vien}}</td>
                   <td>{{$bai_dang->luot_xem}}</td>
                   <td>{{$bai_dang->luot_thich}}</td>
-                  <td>{{$bai_dang->trang_thai}}</td>
-                  <td>{{$bai_dang->loai_noi_dung}}</td>
-                  <td>{{$bai_dang->nguoi_dang}}</td>
-                  <td>{{$bai_dang->nguoi_dang}}</td>
                   <td><span class="status-{{$bai_dang->trang_thai==1?"active":"inactive"}}">{{$bai_dang->trang_thai==1?"Hoạt động":"Bị khóa"}}</span></td>
                   <td>
-                    <a class="btn btn-sm btn-primary btn-action me-1" href="{{ route('sua_tk',['id'=>$bai_dang->bai_dang]) }}">
+                    <a class="btn btn-sm btn-primary btn-action me-1" href="{{ route('sua_baidang',['id'=>$bai_dang->bd_id]) }}">
                       <i class="bi bi-pencil-square"></i>
+                    </a>
+                    <a class="btn btn-sm btn-primary btn-action me-1" href="{{ route('dang_lai',['id'=>$bai_dang->bd_id]) }}">
+                      <i class="bi bi-arrow-clockwise"></i>
                     </a>
                   </td>
               @endforeach

@@ -28,26 +28,21 @@
         <form action="{{ url('xl_sua_baidang') }}" method="POST">
           @csrf
           <div class="row g-3">
+          <input type="text" class="form-control" name="id" value="{{$bai_dang->id}}" hidden>
             <div class="col-md-6">
               <div class="mb-3">
-                <label for="nhan_vien" class="form-label required-field">Tiêu đề</label>
-                <input type="text" class="form-control" name="nhan_vien" value="{{$bai_dang->tieu_de}}" required>
+                <label for="tieu_de" class="form-label required-field">Tiêu đề</label>
+                <input type="text" class="form-control" name="tieu_de" value="{{$bai_dang->tieu_de}}" required>
               </div>
             </div>
             <div class="col-md-6">
               <div class="mb-3">
-                <label for="thumb_nail" class="form-label required-field">Thumbnail</label>
-                <input type="file" class="form-control" name="thumb_nail" value="{{$bai_dang->thumbnail}}" required>
+                <label for="thumbnail" class="form-label">Thumbnail</label>
+                <input type="file" class="form-control" name="thumbnail" value="{{$bai_dang->thumbnail}}">
               </div>
             </div> 
           </div>
           <div class="row g-3">
-            <div class="col-md-6">
-              <div class="mb-3">
-                <label for="ngay_dang" class="form-label required-field">Ngày đăng</label>
-                <input type="date" class="form-control" name="ngay_dang" value="{{$bai_dang->ngay_dang}}" required> 
-              </div>
-            </div>
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="trang_thai" class="form-label required-field">Trạng thái</label>
@@ -57,8 +52,6 @@
                 </select>
               </div>
             </div>
-          </div>
-          <div class="row g-3">
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="loai_noi_dung" class="form-label required-field">Loại nội dung</label>
@@ -69,12 +62,6 @@
                       </option>
                     @endforeach
                   </select> 
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="mb-3">
-                <label for="nhan_vien" class="form-label required-field">Nhân viên đăng bài</label>
-                <input type="text" class="form-control" name="nhan_vien" value="{{$bai_dang->id_nhan_vien}}" required>
               </div>
             </div>
           </div>
@@ -95,10 +82,8 @@
           <div class="row g-3">
             <div class="col-md-12">
               <div class="mb-3">
-                <label for="bai_dang" class="form-label required-field">Tóm tắt</label>
-                <textarea class="form-control" name="bai_dang" id="" cols="30" rows="10" required>
-                  {{$bai_dang->tom_tat}}
-                </textarea>
+                <label for="tom_tat" class="form-label required-field">Tóm tắt</label>
+                <textarea class="form-control" name="tom_tat" id="" cols="30" rows="10" required>{{$bai_dang->tom_tat}}</textarea>
               </div>
             </div>
           </div>
@@ -106,9 +91,7 @@
             <div class="col-md-12">
               <div class="mb-3">
                   <label for="noi_dung" class="form-label required-field">Nội dung</label>
-                  <textarea id="noi_dung" name="noi_dung" class="form-control" required>
-                    {{$bai_dang->noi_dung}}
-                  </textarea>
+                  <textarea id="noi_dung" name="noi_dung" class="form-control" required>{{$bai_dang->noi_dung}}</textarea>
               </div>
             </div>
           </div>
