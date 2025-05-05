@@ -25,105 +25,60 @@
     </div>
     <div class="card">
       <div class="card-body p-4">
-        <form action="" method="">
+        <form action="{{ url('xl_ap_dung_km_cs') }}" method="post">
           @csrf
           <div class="row g-3">
+          <input type="text" class="form-control" name="id" value="{{$thanh_toan->id}}" hidden>
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="ho_ten" class="form-label">Khách hàng</label>
                 <input type="text" class="form-control" name="ho_ten" value="{{$cham_soc->ho_ten}}" readonly>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="mb-3">
-                <label for="thumb_nail" class="form-label">Trạng thái</label>
-                <input type="text" class="form-control" name="thumb_nail" value="{{$cham_soc->trang_thai}}" readonly>
-              </div>
-            </div> 
           </div>
           <div class="row g-3">
-            <div class="col-md-6">
-              <div class="mb-3">
-                <label for="ngay_dang" class="form-label">Nhân viên</label>
-                <input type="date" class="form-control" name="ngay_dang" value="{{$cham_soc->tai_khoan}}" readonly> 
-              </div>
-            </div>
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="trang_thai" class="form-label">Ngày chăm sóc</label>
                 <input type="date" class="form-control" name="ngay" value="{{$cham_soc->ngay}}" readonly>
               </div>
             </div>
-          </div>
-          <div class="row g-3">
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="loai_noi_dung" class="form-label">Thời gian chăm sóc</label>
                 <input type="text" class="form-control" name="thoi_gian" value="{{$cham_soc->thoi_gian}}" readonly>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="mb-3">
-                <label for="nhan_vien" class="form-label">Ngày đặt lịch</label>
-                <input type="text" class="form-control" name="ngay_dat_lich" value="{{$cham_soc->ngay_dat_lich}}" readonly>
-              </div>
-            </div>
           </div>
           <div class="row g-3">
-            <div class="col-md-6">
-              <div class="mb-3">
-                <label for="ten_giong_thu_cung" class="form-label">Giống thú cưng</label>
-                <input type="text" class="form-control" name="ten_giong_thu_cung" value="{{$cham_soc->ten_giong_thu_cung}}" readonly>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="mb-3">
-                <label for="danh_gia" class="form-label">Đánh giá</label>
-                <div class="form-control bg-light">
-                  @for ($i = 1; $i <= 5; $i++)
-                    @if ($i <= $cham_soc->danh_gia)
-                      <i class="bi bi-star-fill text-warning"></i>
-                    @else
-                      <i class="bi bi-star text-secondary"></i>
-                    @endif
-                  @endfor
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row g-3">
-            <div class="col-md-12">
-              <div class="mb-3">
-                <label for="ghi_chu" class="form-label">Ghi chú</label>
-                <textarea class="form-control" name="ghi_chu" cols="30" rows="10" readonly>
-                  {{$cham_soc->ghi_chu}}
-                </textarea>
-              </div>
-            </div>
-          </div>
-          <div class="row g-3">
-            <div class="col-md-6">
-              <div class="mb-3">
-                @php
-                  $selected = old('dich_vu', [1, 2]);
-                @endphp
-                  <label for="dich_vu">Chọn dịch vụ</label>
-                  <select class="js-example-basic-multiple form-control" name="dich_vu[]" id="dich_vu" multiple='multiple' required>
-                    @foreach ($dich_vus as $dich_vu)
-                      <option value="{{ $dich_vu->id }}" {{ in_array($dich_vu->id, $selected) ? 'selected' : '' }}>
-                        {{ $dich_vu->ten_dich_vu }}
-                      </option>
-                    @endforeach
-                  </select>
-              </div>
-            </div>
+          <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Dịch vụ</th>
+                <th scope="col">Đơn giá</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ($dich_vu_them as $dich_vu )
+              <?php $count++ ?>
+                <tr>
+                  <td>{{$count}}</t>
+                  <td>{{$dich_vu->ten_dich_vu}}</td>
+                  <td>{{$dich_vu->don_gia}}</td>    
+                </tr>      
+              @endforeach
+            </tbody>
+          </table>
+        </div>
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="khuyen_mai">Khuyến mãi</label>
                   <select class="form-select" name="khuyen_mai" id="khuyen_mai" required>
                     <option value="" disabled selected>-- Chọn khuyến mãi --</option>
                     @foreach ($khuyen_mais as $khuyen_mai)
-                      <option value="{{ $khuyen_mai->id }}">{{ $khuyen_mai->ten_khuyen_mai }}</option>
+                      <option value="{{ $khuyen_mai->id }}" {{ $thanh_toan->id_khuyen_mai==$khuyen_mai->id?'selected':'' }}>{{ $khuyen_mai->ten_khuyen_mai }}</option>
                     @endforeach
                   </select>
                 </div>
@@ -131,7 +86,7 @@
             </div>
             <div class="col-md-12">
               <span class="price">Tổng tiền:</span> 
-              <span class="price">0 VNĐ</span> 
+              <span class="price">{{ $thanh_toan->tong_tien }} VNĐ</span> 
             </div>
           </div>
           </div>
@@ -139,11 +94,44 @@
             <a href="{{ route('chi_tiet_admin_cs', ['id' => $cham_soc->id]) }}" type="reset" class="btn btn-outline-secondary">
               <i class="bi bi-arrow-repeat me-1"></i>Quay lại
             </a>
-            <button type="submit" class="btn btn-warning">
-              <i class="fa-solid fa-circle-check"></i>Hoàn thành
+            <button type="submit" class="btn btn-warning" {{!empty($thanh_toan->id_khuyen_mai)?'disabled':''}}>
+              <i class="fa-solid fa-circle-check"></i>Áp dụng khuyến mãi
             </button>
+          </form>
+        </div>
+      <form action="{{ url('xl_thanh_toan_cs') }}" method="post">
+        @csrf
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label for="danh_gia" class="form-label">Đánh giá</label>
+              <div class="form-control bg-light">
+                @for ($i = 1; $i <= 5; $i++)
+                  @if ($i <= $cham_soc->danh_gia)
+                    <i class="bi bi-star-fill text-warning"></i>
+                  @else
+                    <i class="bi bi-star text-secondary"></i>
+                  @endif
+                @endfor
+              </div>
+            </div>
           </div>
-        </form>
+        </div>
+        <div class="row g-3">
+          <div class="col-md-12">
+            <div class="mb-3">
+              <label for="ghi_chu" class="form-label">Ghi chú thanh toán</label>
+              <textarea class="form-control" name="ghi_chu" cols="30" rows="5"></textarea>
+            </div>
+          </div>
+        </div>
+        <input type="text" class="form-control" name="id" value="{{$cham_soc->cs_id}}" hidden>
+        <div class="col-12 d-flex justify-content-end gap-2 mt-4">
+          <button  type="submit" class="btn btn-warning">
+            <i class="fa-solid fa-circle-check"></i>Hoàn thành thanh toán
+          </button>
+        </div>
+      </form>
       </div>
     </div>
   </div>

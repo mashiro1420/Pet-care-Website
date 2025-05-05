@@ -107,7 +107,7 @@
               $selected = $dich_vu_them;
             @endphp
               <label for="dich_vu_them">Chọn dịch vụ</label>
-              <select class="js-example-basic-multiple form-control" name="dich_vu_them[]" id="dich_vu_them" multiple='multiple' required>
+              <select class="js-example-basic-multiple form-control" name="dich_vu_them[]" id="dich_vu_them" multiple='multiple' {{ $cham_soc->id_trang_thai==1||$cham_soc->id_trang_thai==2?'required':'disabled' }}>
                 @foreach ($dich_vus as $dich_vu)
                   <option value="{{ $dich_vu->id }}" {{ in_array($dich_vu->id, $selected) ? 'selected' : '' }}>
                     {{ $dich_vu->ten_dich_vu }}
@@ -130,7 +130,7 @@
               <i class="fa-solid fa-circle-check"></i>Hoàn thành
             </button>
           </form>
-          <form action="{{ route('thanh_toan_cs') }}" method="post">
+          <form action="{{ route('thanh_toan_cs') }}" method="get">
             @csrf
             <input type="text" class="form-control" name="id" value="{{$cham_soc->cs_id}}" hidden>
             <button  type="submit" class="btn btn-warning" {{$cham_soc->id_trang_thai!=3?'disabled':''}}>
