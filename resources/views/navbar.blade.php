@@ -37,6 +37,9 @@
           <li class="nav-item">
             <a class="nav-link px-3" href="{{ route('ql_chamsoc') }}">Quản lý chăm sóc</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link px-3" href="{{ route('ql_trongcoi') }}">Quản lý trông coi</a>
+          </li>
         </ul>
       </div>
       <a class="btn btn-outline-dark ms-3" href="{{ route('doi_mk',['id'=>session('tai_khoan')]) }}">
