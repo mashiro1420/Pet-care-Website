@@ -113,7 +113,20 @@
             <input type="hidden" name="dich_vu[]" value="{{ $id }}">
           @endforeach
         </div>
-
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label for="khuyen_mai" class="form-label">Khuyến mãi đã sử dụng</label>
+              <input type="text" class="form-control" name="khuyen_mai" value="{{$cham_soc->khuyen_mai}}" readonly>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label for="tong_tien" class="form-label">Tổng tiền</label>
+              <input type="text" class="form-control" name="tong_tien" value="{{$cham_soc->tong_tien}}" readonly>
+            </div>
+          </div>
+        </div>
         <div class="col-12 d-flex justify-content-end gap-2 mt-4">
           <a href="{{route('khach_hang_lichchamsoc')}}" type="reset" class="btn btn-outline-secondary">
             <i class="bi bi-arrow-repeat me-1"></i>Quay lại

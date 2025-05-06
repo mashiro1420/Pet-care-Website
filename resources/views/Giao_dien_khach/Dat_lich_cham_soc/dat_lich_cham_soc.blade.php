@@ -52,5 +52,50 @@
     </div>
   </section>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const ngay_cham_soc = document.getElementById('ngay_cham_soc');
+      const gio_cham_soc = document.getElementById('gio_cham_soc');
+
+      // Thiết lập min cho input ngày là hôm nay
+      const hien_tai = new Date();
+      const yyyy = hien_tai.getFullYear();
+      const mm = String(hien_tai.getMonth() + 1).padStart(2, '0');
+      const dd = String(hien_tai.getDate()).padStart(2, '0');
+      const hien_tai_str = `${yyyy}-${mm}-${dd}`;
+      ngay_cham_soc.setAttribute('min', hien_tai_str);
+
+      // Hàm kiểm tra giờ nếu ngày là hôm nay
+      function ktra_thoi_gian() {
+        const ngay_da_chon = new Date(ngay_cham_soc.value);
+        const now = new Date();
+
+        // Nếu ngày trùng với hôm nay
+        if (ngay_da_chon.toDateString() === now.toDateString()) {
+          const selectedTime = gio_cham_soc.value;
+          if (!selectedTime) return;
+
+          const [hour, minute] = selectedTime.split(':');
+          const ngay_da_chon_time = new Date(ngay_da_chon);
+          ngay_da_chon_time.setHours(parseInt(hour), parseInt(minute), 0, 0);
+
+          if (ngay_da_chon_time < now) {
+            alert('Giờ chăm sóc không hợp lệ.');
+            gio_cham_soc.value = '';
+            gio_cham_soc.focus();
+          }
+        }
+      }
+
+      // Gọi kiểm tra khi thay đổi giờ hoặc ngày
+      gio_cham_soc.addEventListener('change', ktra_thoi_gian);
+      ngay_cham_soc.addEventListener('change', () => {
+        // Nếu giờ đã chọn sẵn, kiểm tra lại khi thay đổi ngày
+        if (gio_cham_soc.value) ktra_thoi_gian();
+      });
+    });
+  </script>
+
+
 </body>
 </html>
