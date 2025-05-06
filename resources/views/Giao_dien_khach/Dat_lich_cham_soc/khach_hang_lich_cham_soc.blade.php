@@ -65,9 +65,19 @@
                   <a href="{{ route('chi_tiet_user_cs', ['id' => $cham_soc->id]) }}" class="btn btn-info btn-sm">
                     <i class="bi bi-eye"></i>
                   </a>
-                  <a class="btn btn-sm btn-primary btn-action me-1" href="{{ route('sua_lich_cs',['id'=>$cham_soc->id]) }}" style="background-color: rgb(197, 194, 5) !important;">
-                    <i class="bi bi-pencil-square"></i>
-                  </a>
+                  @if ($cham_soc->ten_trang_thai !== 'Đã thanh toán')
+                    <a class="btn btn-sm btn-primary btn-action me-1" 
+                      href="{{ route('sua_lich_cs', ['id' => $cham_soc->id]) }}" 
+                      style="background-color: rgb(197, 194, 5) !important;"
+                      title="Sửa lịch chăm sóc">
+                      <i class="bi bi-pencil-square"></i>
+                    </a>
+                  @else
+                    <button class="btn btn-sm btn-secondary me-1" disabled 
+                            title="Không thể sửa vì lịch đã thanh toán">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                  @endif
                 </td>
               </tr>
             @endforeach   
