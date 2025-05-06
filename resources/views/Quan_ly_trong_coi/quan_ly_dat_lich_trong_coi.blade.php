@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.tcs">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/tcs/all.min.tcs" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8tcR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" href="{{ asset('imgs/paw-solid.svg') }}" type="image/x-icon">
-  <link rel="stylesheet" href="{{ asset('tcs/admin.tcs') }}">
+  <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 
 <body>
