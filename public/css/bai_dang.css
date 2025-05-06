@@ -1,0 +1,81 @@
+:root {
+  --primary-color: #FF6B6B;
+  --secondary-color: #4ECDC4;
+  --dark-color: #1A535C;
+  --light-color: #F7FFF7;
+}
+
+body {
+  background-color: var(--light-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--dark-color);
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 40px;
+  position: relative;
+  color: var(--dark-color);
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: var(--primary-color);
+  margin: 15px auto 0;
+  border-radius: 2px;
+}
+
+.card-post {
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card-post:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-post img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-post .card-body {
+  padding: 20px;
+}
+
+.card-post .card-title {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.btn-readmore {
+  background-color: var(--secondary-color);
+  border: none;
+  font-weight: 600;
+  color: white;
+}
+
+.btn-readmore:hover {
+  background-color: #3dbeb6;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(78, 205, 196, 0.3);
+}
+
+.pagination .page-item.active .page-link {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.pagination .page-link:hover {
+  color: var(--primary-color);
+}

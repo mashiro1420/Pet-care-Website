@@ -20,6 +20,33 @@ class BaiDangController extends Controller
         $data['bai_dangs'] = $query->paginate('10');
         return view('Quan_ly_bai_dang.quan_ly_bai_dang', $data);
     }
+    public function viewUser(Request $request)
+    {
+        $query = BaiDangModel::select('*','ql_baidang.id as bd_id')
+        ->leftJoin('ql_taikhoan','ql_taikhoan.tai_khoan','=','ql_baidang.id_nhan_vien')
+        ->leftJoin('dm_loainoidung','dm_loainoidung.id','=','ql_baidang.id_loai_noi_dung');
+        $data['loai_noi_dungs'] = DMLoaiNoiDungModel::all();
+        $data['bai_dangs'] = $query->where('ql_baidang.trang_thai',1)->paginate('12');
+        return view('Giao_dien_khach.Bai_dang.bai_dang', $data);
+    }
+    public function viewBaiDangUser(Request $request)
+    {
+        $query = BaiDangModel::select('*','ql_baidang.id as bd_id')
+        ->leftJoin('ql_taikhoan','ql_taikhoan.tai_khoan','=','ql_baidang.id_nhan_vien')
+        ->leftJoin('dm_loainoidung','dm_loainoidung.id','=','ql_baidang.id_loai_noi_dung');
+        $data['loai_noi_dungs'] = DMLoaiNoiDungModel::all();
+        $data['bai_dangs'] = $query->where('ql_baidang.trang_thai',1)->paginate('12');
+        return view('Giao_dien_khach.Bai_dang.chi_tiet_bai_dang', $data);
+    }
+    public function viewChiTiet(Request $request)
+    {
+        $query = BaiDangModel::select('*', 'ql_baidang.id as bd_id')
+            ->leftJoin('ql_taikhoan', 'ql_taikhoan.tai_khoan', '=', 'ql_baidang.id_nhan_vien')
+            ->leftJoin('dm_loainoidung', 'dm_loainoidung.id', '=', 'ql_baidang.id_loai_noi_dung');
+        $data['loai_noi_dungs'] = DMLoaiNoiDungModel::all();
+        $data['bai_dangs'] = $query->where('ql_baidang.trang_thai', 1)->paginate('12');
+        return view('Giao_dien_khach.Bai_dang.bai_dang', $data);
+    }
     public function viewThem(Request $request)
     {
         $data['loai_noi_dungs']= DMLoaiNoiDungModel::all();
@@ -31,14 +58,14 @@ class BaiDangController extends Controller
         $data['loai_noi_dungs']= DMLoaiNoiDungModel::all();
         return view('Quan_ly_bai_dang.sua_bai_dang', $data);
     }
-    public function viewBaiDang(Request $request)
-    {
-        $bai_dang = BaiDangModel::find($request->id);
-        $bai_dang->luot_xem +=1;
-        $bai_dang->save();
-        $data['bai_dang']=$bai_dang;
-        return view('Quan_ly_bai_dang.chi_tiet_bai_dang', $data);
-    }
+    // public function viewBaiDang(Request $request)
+    // {
+    //     $bai_dang = BaiDangModel::find($request->id);
+    //     $bai_dang->luot_xem +=1;
+    //     $bai_dang->save();
+    //     $data['bai_dang']=$bai_dang;
+    //     return view('Quan_ly_bai_dang.chi_tiet_bai_dang', $data);
+    // }
     public function xlThem(Request $request)
     {
         // dd($request);

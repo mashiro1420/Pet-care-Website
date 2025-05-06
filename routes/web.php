@@ -100,6 +100,8 @@ Route::post('xl_sua_dmloainoidung', [DanhMucController::class, 'xlSuaDMLoaiNoiDu
 Route::get('xoa_dmloainoidung', [DanhMucController::class, 'xlXoaDMLoaiNoiDung'])->name('xoa_dmloainoidung');
 //BaiDang Routes
 Route::get('ql_baidang',[BaiDangController::class, 'viewQuanLy'])->name('ql_baidang');
+Route::get('baidang_user',[BaiDangController::class, 'viewUser'])->name('baidang_user');
+Route::get('chi_tiet_baidang',[BaiDangController::class, 'viewBaiDangUser'])->name('chi_tiet_baidang');
 Route::get('them_baidang',[BaiDangController::class, 'viewThem'])->name('them_baidang');
 Route::post('xl_them_baidang',[BaiDangController::class, 'xlThem']);
 Route::get('sua_baidang',[BaiDangController::class, 'viewSua'])->name('sua_baidang');
