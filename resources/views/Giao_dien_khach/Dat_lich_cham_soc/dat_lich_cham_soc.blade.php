@@ -16,7 +16,7 @@
   @include('navbar_user')
   <section class="main-content">
     <div class="container" id="form-section">
-      <h2 class="form-title">Đặt lịch trông coi thú cưng</h2>
+      <h2 class="form-title">Đặt lịch chăm sóc thú cưng</h2>
       <form action="{{url('xl_dat_lich_cs')}}" method="POST">
         @csrf
         <div class="mb-3">

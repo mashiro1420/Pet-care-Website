@@ -6,14 +6,30 @@ use App\Mail\XacNhanDatLichMail;
 use App\Models\KhachHangModel;
 use App\Models\TCDichVuThemModel;
 use App\Models\TrongCoiModel;
+use App\Models\DMGiongThuCungModel;
+use App\Models\DMTrangThaiModel;
+use App\Models\CSDichVuThemModel;
+use App\Models\TaiKhoanModel;
 use Illuminate\Http\Request;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 
 class TrongCoiController extends Controller
 {
     public function viewQuanLy(Request $request)
     {
-
+        $data = [];
+        $query = TrongCoiModel::query()->select('*', 'ql_chamsoc.id as cs_id', 'dm_trangthai.id as trang_thai')
+            ->leftJoin('ql_khachhang', 'ql_khachhang.id', '=', 'ql_chamsoc.id_khach_hang')
+            ->leftJoin('dm_trangthai', 'dm_trangthai.id', '=', 'ql_chamsoc.id_trang_thai')
+            ->leftJoin('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_chamsoc.id_giong')
+            ->leftJoin('ql_taikhoan', 'ql_taikhoan.tai_khoan', '=', 'ql_chamsoc.id_nhan_vien');
+        $data['cham_socs'] = $query->paginate(5);
+        $data['trang_thais'] = DMTrangThaiModel::all();
+        $data['giong_thu_cungs'] = DMGiongThuCungModel::all();
+        $data['tai_khoans'] = TaiKhoanModel::all();
+        $data['khach_hangs'] = KhachHangModel::all();
+        $data['dich_vus'] = CSDichVuThemModel::all();
+        return view('Quan_ly_trong_coi.quan_ly_dat_lich_trong_coi', $data);
     }
     public function viewKhachHang(Request $request)
     {

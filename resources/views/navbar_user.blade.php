@@ -12,7 +12,7 @@
           <a class="nav-link" href="{{route('khach_hang_lichchamsoc')}}">Lịch chăm sóc</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Lịch trông coi</a>
+          <a class="nav-link" href="{{route('khach_hang_lichtrongcoi')}}">Lịch trông coi</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Xem bài đăng</a>

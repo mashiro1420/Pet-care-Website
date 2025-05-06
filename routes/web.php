@@ -129,6 +129,20 @@ Route::post('xl_hoan_thanh_cs',[ChamSocController::class, 'xlHoanThanh']);
 Route::post('xl_ap_dung_km_cs',[ChamSocController::class, 'xlApDungKM']);
 Route::post('xl_thanh_toan_cs',[ChamSocController::class, 'xlThanhToan']);
 Route::post('xl_gui_mail_xac_nhan_cs',[ChamSocController::class, 'xlGuiMailXacNhan']);
-
+//QLTrongCoi Routes
+Route::get('ql_trongcoi',[DichVuController::class, 'viewQuanLy'])->name('ql_trongcoi');
+Route::get('khach_hang_lichtrongcoi',[DichVuController::class, 'viewKhachHang'])->name('khach_hang_lichtrongcoi');
+Route::get('dat_lich_tc',[DichVuController::class, 'viewDatLich'])->name('dat_lich_tc');
+Route::get('thanh_toan_tc',[DichVuController::class, 'viewThanhToan'])->name('thanh_toan_tc');
+Route::post('xl_dat_lich_tc',[DichVuController::class, 'xlDatLich']);
+Route::get('chi_tiet_user_tc',[DichVuController::class, 'viewChiTietUser'])->name('chi_tiet_user_tc');
+Route::get('chi_tiet_admin_tc',[DichVuController::class, 'viewChiTietAdmin'])->name('chi_tiet_admin_tc');
+Route::get('sua_lich_tc',[DichVuController::class, 'viewSuaLich'])->name('sua_lich_tc');
+Route::post('xl_sua_lich_tc',[DichVuController::class, 'xlSuaLich']);
+Route::post('xl_xac_nhan_tc',[DichVuController::class, 'xlXacNhan']);
+Route::post('xl_hoan_thanh_tc',[DichVuController::class, 'xlHoanThanh']);
+Route::post('xl_ap_dung_km_tc',[DichVuController::class, 'xlApDungKM']);
+Route::post('xl_thanh_toan_tc',[DichVuController::class, 'xlThanhToan']);
+Route::post('xl_gui_mail_xac_nhan_tc',[DichVuController::class, 'xlGuiMailXacNhan']);
 // KhachHang Routes
 Route::get('ql_kh',[KhachHangController::class, 'viewQuanLy'])->name('ql_kh');
