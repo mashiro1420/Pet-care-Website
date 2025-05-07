@@ -15,7 +15,7 @@
           <a class="nav-link" href="{{route('khach_hang_lichtrongcoi')}}">Lịch trông coi</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Xem bài đăng</a>
+          <a class="nav-link" href="{{route('baidang_user')}}">Xem bài đăng</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

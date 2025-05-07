@@ -29,7 +29,7 @@
                 <span><i class="bi bi-eye"></i> {{ $bai_dang->luot_xem }} | <i class="bi bi-hand-thumbs-up"></i> {{ $bai_dang->luot_thich }}</span>
               </div>
               <div class="mt-3">
-                <a href="{{ route('chi_tiet_baidang', $bai_dang->id) }}" class="btn btn-readmore btn-sm">
+                <a href="{{ route('chi_tiet_baidang', ['id'=>$bai_dang->bd_id]) }}" class="btn btn-readmore btn-sm">
                   <i class="bi bi-eye me-1"></i> Xem chi tiết
                 </a>
               </div>

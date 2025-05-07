@@ -109,6 +109,7 @@ Route::get('sua_baidang',[BaiDangController::class, 'viewSua'])->name('sua_baida
 Route::post('xl_sua_baidang',[BaiDangController::class, 'xlSua']);
 Route::get('xl_dang_lai',[BaiDangController::class, 'xlDangLai'])->name('dang_lai');
 Route::get('xoa_baidang',[BaiDangController::class, 'xlXoa'])->name('xoa_baidang');
+Route::get('xl_thich',[BaiDangController::class, 'xlThich'])->name('xl_thich');
 //QLDichVus Routes
 Route::get('ql_dichvu',[DichVuController::class, 'viewQuanLy'])->name('ql_dichvu');
 Route::post('xl_them_chamsoc',[DichVuController::class, 'xlThemChamSoc']);

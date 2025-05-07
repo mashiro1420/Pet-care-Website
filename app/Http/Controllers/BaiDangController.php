@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BaiDangModel;
 use App\Models\DMLoaiNoiDungModel;
-use File;
+use Illuminate\Support\Facades\File;
 use GuzzleHttp\Psr7\UploadedFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -31,11 +31,14 @@ class BaiDangController extends Controller
     }
     public function viewBaiDangUser(Request $request)
     {
-        $query = BaiDangModel::select('*','ql_baidang.id as bd_id')
-        ->leftJoin('ql_taikhoan','ql_taikhoan.tai_khoan','=','ql_baidang.id_nhan_vien')
-        ->leftJoin('dm_loainoidung','dm_loainoidung.id','=','ql_baidang.id_loai_noi_dung');
+        $bai_dang = BaiDangModel::find($request->id);
         $data['loai_noi_dungs'] = DMLoaiNoiDungModel::all();
-        $data['bai_dangs'] = $query->where('ql_baidang.trang_thai',1)->paginate('12');
+        $bai_dang->luot_xem +=1;
+        $bai_dang->save();
+        $data['bai_dang'] = BaiDangModel::select('*','ql_baidang.id as bd_id')
+        ->leftJoin('ql_taikhoan','ql_taikhoan.tai_khoan','=','ql_baidang.id_nhan_vien')
+        ->leftJoin('dm_loainoidung','dm_loainoidung.id','=','ql_baidang.id_loai_noi_dung')
+        ->find($request->id);
         return view('Giao_dien_khach.Bai_dang.chi_tiet_bai_dang', $data);
     }
     public function viewChiTiet(Request $request)
@@ -61,7 +64,6 @@ class BaiDangController extends Controller
     // public function viewBaiDang(Request $request)
     // {
     //     $bai_dang = BaiDangModel::find($request->id);
-    //     $bai_dang->luot_xem +=1;
     //     $bai_dang->save();
     //     $data['bai_dang']=$bai_dang;
     //     return view('Quan_ly_bai_dang.chi_tiet_bai_dang', $data);
@@ -73,8 +75,9 @@ class BaiDangController extends Controller
         $bai_dang = new BaiDangModel();
         $bai_dang->tieu_de = $request->tieu_de;
         if ($request->hasFile('thumbnail')) {
+            $thumbnail = $request->thumbnail;
             $filename = md5(time().rand(1,100) . $request->thumbnail->getClientOriginalName()) . '.' . $request->thumbnail->getClientOriginalExtension();
-            $request->thumbnail->move('Bai_dang_data', $filename);
+            $thumbnail->move('Bai_dang_data', $filename);
             $bai_dang->thumbnail = $filename;
         }
         $bai_dang->tom_tat = $request->tom_tat;
@@ -83,9 +86,10 @@ class BaiDangController extends Controller
         $bai_dang->id_loai_noi_dung  = $request->loai_noi_dung ;
         $bai_dang->id_nhan_vien  = $nhan_vien;
         if ($request->hasFile('hinh_anh')) {
+            $hinh_anh = $request->hinh_anh;
             $filename = md5(time().rand(1,100) . $request->hinh_anh->getClientOriginalName()) . '.' . $request->hinh_anh->getClientOriginalExtension();
-            $request->hinh_anh->move('Bai_dang_data', $filename);
-            $bai_dang->hinh_anh = $request->hinh_anh;
+            $hinh_anh->move('Bai_dang_data', $filename);
+            $bai_dang->hinh_anh = $filename;
         }
         $bai_dang->link_video = $request->link_video;
 
@@ -100,8 +104,9 @@ class BaiDangController extends Controller
             if(File::exists('Bai_dang_data/' . $bai_dang->thumbnail)){
                 File::delete('Bai_dang_data/' . $bai_dang->thumbnail);
             }
+            $thumbnail = $request->thumbnail;
             $filename = md5(time().rand(1,100) . $request->thumbnail->getClientOriginalName()) . '.' . $request->thumbnail->getClientOriginalExtension();
-            $request->thumbnail->move('Bai_dang_data', $filename);
+            $thumbnail->move('Bai_dang_data', $filename);
             $bai_dang->thumbnail = $filename;
         }
         $bai_dang->tom_tat = $request->tom_tat;
@@ -111,9 +116,10 @@ class BaiDangController extends Controller
             if(File::exists('Bai_dang_data/' . $bai_dang->hinh_anh)){
                 File::delete('Bai_dang_data/' . $bai_dang->hinh_anh);
             }
+            $hinh_anh = $request->hinh_anh;
             $filename = md5(time().rand(1,100) . $request->hinh_anh->getClientOriginalName()) . '.' . $request->hinh_anh->getClientOriginalExtension();
-            $request->hinh_anh->move('Bai_dang_data', $filename);
-            $bai_dang->hinh_anh = $request->hinh_anh;
+            $hinh_anh->move('Bai_dang_data', $filename);
+            $bai_dang->hinh_anh = $filename;
         }
         $bai_dang->link_video = $request->link_video;
         $bai_dang->trang_thai = $request->trang_thai;
@@ -124,8 +130,10 @@ class BaiDangController extends Controller
     public function xlThich(Request $request)
     {
         $bai_dang = BaiDangModel::find($request->id);
+        // dd($bai_dang);
         $bai_dang->luot_thich +=1;
         $bai_dang->save();
+        return redirect()->back();
     }
     public function xlDangLai(Request $request)
     {

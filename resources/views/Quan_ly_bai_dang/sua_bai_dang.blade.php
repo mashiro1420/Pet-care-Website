@@ -38,7 +38,7 @@
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="thumbnail" class="form-label">Thumbnail</label>
-                <input type="file" class="form-control" name="thumbnail" value="{{$bai_dang->thumbnail}}">
+                <input type="file" class="form-control" name="thumbnail" value="{{$bai_dang->thumbnail}}" required accept="image/*">
               </div>
             </div> 
           </div>
@@ -75,7 +75,7 @@
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="hinh_anh" class="form-label">Hình ảnh</label>
-                <input type="file" class="form-control" name="hinh_anh" value="{{$bai_dang->hinh_anh}}" multiple>
+                <input type="file" class="form-control" name="hinh_anh" value="{{$bai_dang->hinh_anh}}"  accept="image/*">
               </div>
             </div>
           </div>
