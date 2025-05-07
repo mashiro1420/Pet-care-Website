@@ -29,6 +29,8 @@
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Tên dịch vụ</th>
+                <th scope="col">Hiện dịch vụ</th>
+                <th scope="col">Loại dịch vụ</th>
                 <th scope="col">Mô tả</th>
                 <th scope="col" class="text-center">Hành động</th>
               </tr>
@@ -38,6 +40,8 @@
                 <tr>
                   <td>{{$dich_vu->id}}</td>
                   <td>{{$dich_vu->ten_dich_vu}}</td>
+                  <td>{{$dich_vu->hien==1?'Hiện':'Ẩn'}}</td>
+                  <td>{{$dich_vu->loai==1?'Chăm sóc':'Trông coi'}}</td>
                   <td class="w-50">{{$dich_vu->mo_ta}}</td>
                   <td class="text-center">
                     <a class="btn btn-sm btn-primary btn-action me-1" href="{{ route('sua_dmdichvu',['id'=>$dich_vu->id]) }}">

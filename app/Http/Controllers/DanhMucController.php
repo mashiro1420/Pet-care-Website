@@ -45,6 +45,8 @@ class DanhMucController extends Controller
         $gia = new DMGiaModel();
         $dich_vu->ten_dich_vu = $request->ten_dich_vu;
         $dich_vu->mo_ta = $request->mo_ta;
+        $dich_vu->hien = $request->hien;
+        $dich_vu->loai = $request->loai;
         $dich_vu->save();
         $dich_vu_moi = DMDichVuModel::orderBy('id','desc')->first();
         $gia->id_dich_vu = $dich_vu_moi->id;
@@ -59,6 +61,8 @@ class DanhMucController extends Controller
         $dich_vu->ten_dich_vu = $request->ten_dich_vu;
         $dich_vu->mo_ta = $request->mo_ta;
         $gia->don_gia = $request->don_gia;
+        $dich_vu->hien = $request->hien;
+        $dich_vu->loai = $request->loai;
         $gia->save();
         $dich_vu->save();
         return redirect()->route('ql_dmdichvu');
@@ -399,17 +403,6 @@ class DanhMucController extends Controller
         $trang_thai->ten_trang_thai = $request->ten_trang_thai;
         $trang_thai->save(); 
         return redirect()->route('ql_dmtrangthai');
-    }
-    public function xlXoaDMTrangThai(Request $request)
-    {
-        $trang_thai = DMTrangThaiModel::find( $request->id );
-        try {
-            $trang_thai->delete();
-            return redirect()->route('ql_dmtrangthai');
-        }
-        catch (Exception $e) {
-            return redirect()->route('ql_dmtrangthai')->with('bao_loi',$e);
-        }
     }
     public function viewDMLoaiNoiDung(Request $request)
     {

@@ -26,7 +26,7 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label for="search_khachhang" class="form-label">Khách hàng</label>
-                <input type="text" class="form-control" name="search_khachhang" value="{{ !empty($search_khachhang)?$search_khachhang:"" }}" placeholder="Nhập tiêu đề">
+                <input type="text" class="form-control" name="search_khachhang" value="{{ !empty($search_khachhang)?$search_khachhang:"" }}" placeholder="Nhập tên khách hàng">
               </div>
             </div>
             <div class="col-md-3">

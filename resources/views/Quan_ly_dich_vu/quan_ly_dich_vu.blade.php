@@ -183,7 +183,7 @@
               <label for="danh_muc_dich_vu" class="form-label">Chọn danh mục dịch vụ</label>
               <select class="form-select" id="danh_muc_dich_vu" name="id_dich_vu_cs" required>
                 <option value="" disabled selected>-- Chọn danh mục --</option>
-                @foreach ($dm_dich_vus as $dm_dich_vu)
+                @foreach ($dm_dich_vu_css as $dm_dich_vu)
                   <option value="{{ $dm_dich_vu->id }}">{{ $dm_dich_vu->ten_dich_vu }}</option>
                 @endforeach
               </select>
@@ -212,7 +212,7 @@
               <label for="danh_muc_dich_vu" class="form-label">Chọn danh mục dịch vụ</label>
               <select class="form-select" id="danh_muc_dich_vu" name="id_dich_vu_tc" required>
                 <option value="" disabled selected>-- Chọn danh mục --</option>
-                @foreach ($dm_dich_vus as $dm_dich_vu)
+                @foreach ($dm_dich_vu_tcs as $dm_dich_vu)
                   <option value="{{ $dm_dich_vu->id }}">{{ $dm_dich_vu->ten_dich_vu }}</option>
                 @endforeach
               </select>

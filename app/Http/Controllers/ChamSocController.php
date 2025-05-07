@@ -8,6 +8,7 @@ use App\Models\CSDichVuModel;
 use App\Models\CSDichVuThemModel;
 use App\Models\CSThanhToanModel;
 use App\Models\DMDichVuModel;
+use App\Models\DMLoaiThuCungModel;
 use App\Models\DMTrangThaiModel;
 use App\Models\KhachHangModel;
 use App\Models\TaiKhoanModel;
@@ -33,7 +34,7 @@ class ChamSocController extends Controller
             $data['search_khachhang'] = $request->search_khachhang;
         }
         if($request->has('search_trangthai')&& !empty($request->search_trangthai)){
-            $query = $query->where('trang_thai',$request->search_trangthai);
+            $query = $query->where('id_trang_thai',$request->search_trangthai);
             $data['search_trangthai'] = $request->search_trangthai;
         }
         if($request->filled('search_tu_cs')||$request->filled('search_den_cs')){
@@ -75,25 +76,21 @@ class ChamSocController extends Controller
             ->leftJoin('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_chamsoc.id_giong')
             ->leftJoin('ql_taikhoan', 'ql_taikhoan.tai_khoan', '=', 'ql_chamsoc.id_nhan_vien')
             ->leftJoin('ql_thanhtoanchamsoc','ql_chamsoc.id','=','ql_thanhtoanchamsoc.id_cham_soc');
-        $data['cham_socs'] = $query->paginate(5);
+        $data['cham_socs'] = $query->orderBy('ngay','desc')->paginate(5);
         $data['trang_thais'] = DMTrangThaiModel::all();
         $data['giong_thu_cungs'] = DMGiongThuCungModel::all();
         $data['tai_khoans'] = TaiKhoanModel::all();
         $data['khach_hangs'] = KhachHangModel::all();
         $data['dich_vus'] = CSDichVuThemModel::all();
+        $data['count'] = 0;
         return view('Giao_dien_khach.Dat_lich_cham_soc.khach_hang_lich_cham_soc', $data);
     }
     public function viewDatLich(Request $request)
     {
         $data = [];
-        $data['giong_thu_cungs'] = DMGiongThuCungModel::all();
-        $thoi_gian =['08:00:00','08:30:00','09:00:00','09:30:00','10:00:00','10:30:00','11:00:00','11:30:00','13:00:00','13:30:00','14:00:00','14:30:00','15:00:00','15:30:00','16:00:00','16:30:00'] ;
-        $hien_tai = Carbon::now()->format('H:i:s');
-        // foreach($thoi_gian as $key => $value){
-        //     $temp_time =  Carbon::createFromFormat('H:i:s', $value);
-        //     if($temp_time->lessThanOrEqualTo())
-        // }
-        $data[''] = TaiKhoanModel::all();
+        $data['loai_thu_cungs'] = DMLoaiThuCungModel::all();
+        $data['giong_thu_cungs'] = DMGiongThuCungModel::select('*','dm_loaithucung.id as loai_id','dm_giongthucung.id as id')
+            ->leftJoin('dm_loaithucung','dm_giongthucung.id_loai_thu_cung','=','dm_loaithucung.id')->get();
         return view('Giao_dien_khach.Dat_lich_cham_soc.dat_lich_cham_soc', $data);
     }
     public function viewChiTietAdmin(Request $request)
@@ -118,7 +115,7 @@ class ChamSocController extends Controller
         $data['giong_thu_cungs'] = DMGiongThuCungModel::all();
         $data['tai_khoans'] = TaiKhoanModel::all();
         $data['khach_hangs'] = KhachHangModel::all();
-        $data['dich_vus'] = DMDichVuModel::all();
+        $data['dich_vus'] = DMDichVuModel::where('hien',1)->where('loai',1)->get();
         return view('Quan_ly_cham_soc.chi_tiet_admin', $data);
     }
     public function viewChiTietUser(Request $request)
@@ -136,7 +133,7 @@ class ChamSocController extends Controller
             $data['dich_vu_them'][] = $item->id_dich_vu;
         }
         // dd($data['dich_vu_them']);
-        $data['dich_vus'] = DMDichVuModel::all();
+        $data['dich_vus'] = DMDichVuModel::where('hien',1)->where('loai',1)->get();
         return view('Giao_dien_khach.Dat_lich_cham_soc.chi_tiet_user', $data);
     }
     public function viewThanhToan(Request $request)
@@ -162,7 +159,7 @@ class ChamSocController extends Controller
         $data['giong_thu_cungs'] = DMGiongThuCungModel::all();
         $data['tai_khoans'] = TaiKhoanModel::all();
         $data['khach_hangs'] = KhachHangModel::all();
-        $data['dich_vus'] = DMDichVuModel::all();
+        $data['dich_vus'] = DMDichVuModel::where('hien',1)->where('loai',1)->get();
         $data['khuyen_mais'] = DMKhuyenMaiModel::all();
         return view('Quan_ly_cham_soc.thanh_toan', $data);
     }
@@ -170,7 +167,9 @@ class ChamSocController extends Controller
     {
         $data = [];
         $data['cham_soc'] = ChamSocModel::find($request->id);
-        $data['giong_thu_cungs'] = DMGiongThuCungModel::all();
+        $data['loai_thu_cungs'] = DMLoaiThuCungModel::all();        
+        $data['giong_thu_cungs'] = DMGiongThuCungModel::select('*','dm_loaithucung.id as loai_id','dm_giongthucung.id as id')
+        ->leftJoin('dm_loaithucung','dm_giongthucung.id_loai_thu_cung','=','dm_loaithucung.id')->get();
         return view('Giao_dien_khach.Dat_lich_cham_soc.sua_lich_cham_soc', $data);
     }
     public function xlDatLich(Request $request)
@@ -178,8 +177,12 @@ class ChamSocController extends Controller
         $dat_lich = new ChamSocModel();
 
         $khach = KhachHangModel::where('email','=',session('tai_khoan'))->first();
-        $thoi_gian = ChamSocModel::where('thoi_gian', $request->thoi_gian)->get()->count();
-        if($thoi_gian>2) return redirect()->route('khach_hang_lichchamsoc');
+        
+        $thoi_gian = Carbon::createFromTimeString($request->thoi_gian);
+        $bat_dau_gio = $thoi_gian->startOfHour()->toTimeString();
+        $ket_thuc_gio = $thoi_gian->endOfHour()->toTimeString();
+        $so_luong = ChamSocModel::where('ngay', $request->ngay)->whereBetween('thoi_gian',[$bat_dau_gio,$ket_thuc_gio])->get()->count();
+        if($so_luong>5) return redirect()->route('khach_hang_lichchamsoc');
         $dat_lich->id_khach_hang = $khach->id;
         $dat_lich->id_trang_thai = 1;
         $dat_lich->ngay = $request->ngay;
@@ -291,6 +294,21 @@ class ChamSocController extends Controller
 
         $cham_soc->save();
         return redirect()->route('ql_chamsoc');
+    }
+    public function xlHuy(Request $request)
+    {
+        $dat_lich = ChamSocModel::find($request->id);
+        $dat_lich->id_trang_thai = 5;
+        $dat_lich->save();
+        $thong_tin = [
+            'loai' => 4,
+			'email' => $dat_lich->KhachHang->email,
+			'ho_ten' => $dat_lich->KhachHang->ten_khach_hang,
+            'sdt' => $dat_lich->KhachHang->sdt,
+            'dich_vu' => 'CS'
+		];
+        // $this->xlGuiMailXacNhan($thong_tin);
+        return redirect()->route('khach_hang_lichchamsoc');
     }
     protected function xlGuiMailXacNhan(array $thong_tin)
     {

@@ -80,6 +80,11 @@
               </tr>
             </thead>
             <tbody>
+                <tr>
+                  <td>{{$count}}</t>
+                  <td>Trông giữ thú cưng (Nội trú) trên giờ </td>
+                  <td>{{$gia_trong}} X {{ $so_gio }}</td>    
+                </tr>      
               @foreach ($dich_vu_them as $dich_vu )
               <?php $count++ ?>
                 <tr>
@@ -110,7 +115,7 @@
           </div>
           </div>
           <div class="col-12 d-flex justify-content-end gap-2 mt-4">
-            <a href="{{ route('chi_tiet_admin_cs', ['id' => $trong_coi->id]) }}" type="reset" class="btn btn-outline-secondary">
+            <a href="{{ route('chi_tiet_admin_tc', ['id' => $trong_coi->id]) }}" type="reset" class="btn btn-outline-secondary">
               <i class="bi bi-arrow-repeat me-1"></i>Quay lại
             </a>
             <button type="submit" class="btn btn-warning" {{!empty($thanh_toan->id_khuyen_mai)?'disabled':''}}>
@@ -118,7 +123,7 @@
             </button>
           </form>
         </div>
-      <form action="{{ url('xl_thanh_toan_cs') }}" method="post">
+      <form action="{{ url('xl_thanh_toan_tc') }}" method="post">
         @csrf
         <div class="row g-3">
           <div class="col-md-6">
@@ -144,7 +149,7 @@
             </div>
           </div>
         </div>
-        <input type="text" class="form-control" name="id" value="{{$trong_coi->cs_id}}" hidden>
+        <input type="text" class="form-control" name="id" value="{{$trong_coi->tc_id}}" hidden>
         <div class="col-12 d-flex justify-content-end gap-2 mt-4">
           <button  type="submit" class="btn btn-warning">
             <i class="fa-solid fa-circle-check"></i>Hoàn thành thanh toán

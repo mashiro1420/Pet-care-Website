@@ -16,7 +16,7 @@ class TrongCoiModel extends Model
     public $timestamps = false;
     public function KhachHang()
     {
-        return $this->hasOne(KhachHangModel::class, 'id_khach_hang');
+        return $this->hasOne(KhachHangModel::class, 'id','id_khach_hang');
     }
     public function TrangThai()
     {

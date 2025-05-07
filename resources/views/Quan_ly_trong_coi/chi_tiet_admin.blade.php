@@ -25,7 +25,7 @@
     </div>
     <div class="card">
       <div class="card-body p-4">
-        <form action="{{ url('xl_xac_nhan_cs') }}" method="POST">
+        <form action="{{ url('xl_xac_nhan_tc') }}" method="POST">
           @csrf
           <div class="row g-3">
             <input type="text" class="form-control" name="id" value="{{$trong_coi->tc_id}}" hidden>
@@ -45,12 +45,6 @@
           <div class="row g-3">
             <div class="col-md-6">
               <div class="mb-3">
-                <label for="nhan_vien" class="form-label">Nhân viên</label>
-                <input type="text" class="form-control" name="nhan_vien" value="{{$trong_coi->tai_khoan}}" readonly> 
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="mb-3">
                 <label for="trang_thai" class="form-label">Ngày trông coi</label>
                 <div class="d-flex justify-content-center align-items-center">
                   <span class="me-3">Từ ngày</span>
@@ -60,15 +54,13 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row g-3">
-            <div class="col-md-6">
+            <div class="col-md-3">
               <div class="mb-3">
                 <label for="gio_nhan" class="form-label">Giờ nhận</label>
                 <input type="text" class="form-control" name="gio_nhan" value="{{$trong_coi->gio_nhan}}" readonly>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
               <div class="mb-3">
                 <label for="gio_tra" class="form-label">Giờ trả</label>
                 <input type="text" class="form-control" name="gio_tra" value="{{$trong_coi->gio_tra}}" readonly>
@@ -101,7 +93,7 @@
             <div class="col-md-12">
               <div class="mb-3">
                 <label for="ngay_dat_lich" class="form-check-label">Ngày đặt lịch</label>
-                <input type="date" class="form-control" name="ngay_dat_lich" value="{{$trong_coi->ngay_dat_lich}}" readonly>
+                <input type="text" class="form-control" name="ngay_dat_lich" value="{{$trong_coi->ngay_dat_lich}}" readonly>
               </div>
             </div>
           </div>
@@ -109,9 +101,7 @@
             <div class="col-md-12">
               <div class="mb-3">
                 <label for="ghi_chu" class="form-label">Ghi chú</label>
-                <textarea class="form-control" name="ghi_chu" cols="30" rows="10" readonly>
-                  {{$trong_coi->ghi_chu}}
-                </textarea>
+                <textarea class="form-control" name="ghi_chu" cols="30" rows="10" readonly>{{$trong_coi->ghi_chu}}</textarea>
               </div>
             </div>
           </div>
@@ -150,16 +140,16 @@
               <i class="fa-solid fa-gears"></i>Xác nhận
             </button>
           </form>
-          <form action="{{ url('xl_hoan_thanh_cs') }}" method="post">
+          <form action="{{ url('xl_hoan_thanh_tc') }}" method="post">
             @csrf
-            <input type="text" class="form-control" name="id" value="{{$trong_coi->cs_id}}" hidden>
+            <input type="text" class="form-control" name="id" value="{{$trong_coi->tc_id}}" hidden>
             <button  type="submit" class="btn btn-warning" {{$trong_coi->id_trang_thai!=2?'disabled':''}}>
               <i class="fa-solid fa-circle-check"></i>Hoàn thành
             </button>
           </form>
-          <form action="{{ route('thanh_toan_cs') }}" method="get">
+          <form action="{{ route('thanh_toan_tc') }}" method="get">
             @csrf
-            <input type="text" class="form-control" name="id" value="{{$trong_coi->cs_id}}" hidden>
+            <input type="text" class="form-control" name="id" value="{{$trong_coi->tc_id}}" hidden>
             <button  type="submit" class="btn btn-warning" {{$trong_coi->id_trang_thai!=3?'disabled':''}}>
               <i class="fa-solid fa-money-bill-wave"></i>Thanh toán
             </button>

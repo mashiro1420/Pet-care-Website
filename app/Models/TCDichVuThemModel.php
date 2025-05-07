@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class TCDichVuThemModel extends Model
 {
     use HasFactory;
-    protected $fillable = ['id','id_dich_vu'];
-    protected $table = 'ql_dichvutrongcoi';
+    protected $fillable = ['id','id_dich_vu','id_trong_coi'];
+    protected $table = 'dvt_trongcoi';
     protected $primaryKey = 'id';
     protected $keytype = 'int';
     public $incrementing = true;

@@ -41,9 +41,6 @@
                     <a class="btn btn-sm btn-primary btn-action me-1" href="{{ route('sua_dmtrangthai',['id'=>$trang_thai->id]) }}">
                       <i class="bi bi-pencil-square"></i>
                     </a>
-                    <a class="btn btn-sm btn-danger btn-action me-1" href="{{ route('xoa_dmtrangthai',['id'=>$trang_thai->id]) }}">
-                      <i class="bi bi-trash"></i>
-                    </a>
                   </td>
               @endforeach
             </tbody>

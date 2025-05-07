@@ -37,6 +37,20 @@
                 <label for="don_gia" class="form-label required-field">Đơn giá</label>
                 <input type="text" class="form-control" name="don_gia" placeholder="Nhập đơn giá" required>
               </div>
+              <div class="mb-3">
+                <label for="hien" class="form-label required-field">Hiện dịch vụ</label>
+                <select class="form-select" name="hien" id="hien" required>
+                    <option value="1" >Hiện</option>
+                    <option value="0" >Ẩn</option>
+                  </select>
+              </div>
+              <div class="mb-3">
+                <label for="loai" class="form-label required-field">Loại dịch vụ</label>
+                <select class="form-select" name="loai" id="loai" required>
+                    <option value="1" >Chăm sóc</option>
+                    <option value="2" >Trông coi</option>
+                  </select>
+              </div>
             </div>
             <div class="col-md-6">
               <div class="mb-3">

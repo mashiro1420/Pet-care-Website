@@ -37,21 +37,21 @@
         <div class="row g-3">
           <div class="col-md-6">
             <div class="mb-3">
-              <label for="tai_khoan" class="form-label">Nhân viên</label>
-              <input type="text" class="form-control" name="tai_khoan" value="{{$trong_coi->tai_khoan}}" readonly> 
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="mb-3">
-              <label for="ngay_trong_coi" class="form-label">Ngày trông coi</label>
+              <label for="ngay_trong_coi" class="form-label">Ngày trông coi</label><br>
               <span>Từ</span>
               <input type="date" class="form-control" name="ngay" value="{{$trong_coi->tu_ngay}}" readonly>
               <span>đến</span>
-              <input type="date" class="form-control" name="ngay" value="{{$trong_coi->den_ngay}}">
+              <input type="date" class="form-control" name="ngay" value="{{$trong_coi->den_ngay}}"readonly>
             </div>
           </div>
         </div>
         <div class="row g-3">
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label for="nhan_vien" class="form-label">Ngày đặt lịch</label>
+              <input type="text" class="form-control" name="ngay_dat_lich" value="{{$trong_coi->ngay_dat_lich}}" readonly>
+            </div>
+          </div>
           <div class="col-md-3">
             <div class="mb-3">
               <label for="loai_noi_dung" class="form-label">Giờ nhận</label>
@@ -62,12 +62,6 @@
             <div class="mb-3">
               <label for="loai_noi_dung" class="form-label">Giờ trả</label>
               <input type="text" class="form-control" name="thoi_gian" value="{{$trong_coi->gio_tra}}" readonly>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="mb-3">
-              <label for="nhan_vien" class="form-label">Ngày đặt lịch</label>
-              <input type="text" class="form-control" name="ngay_dat_lich" value="{{$trong_coi->ngay_dat_lich}}" readonly>
             </div>
           </div>
         </div>
@@ -97,9 +91,7 @@
           <div class="col-md-12">
             <div class="mb-3">
               <label for="ghi_chu" class="form-label">Ghi chú</label>
-              <textarea class="form-control" name="ghi_chu" cols="30" rows="10" readonly>
-                {{$trong_coi->ghi_chu}}
-              </textarea>
+              <textarea class="form-control" name="ghi_chu" cols="30" rows="10" readonly>{{$trong_coi->ghi_chu}}</textarea>
             </div>
           </div>
         </div>

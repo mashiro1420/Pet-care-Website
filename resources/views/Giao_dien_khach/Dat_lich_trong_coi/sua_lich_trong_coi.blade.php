@@ -17,29 +17,21 @@
   <section class="main-content">
     <div class="container" id="form-section">
       <h2 class="form-title">Cập nhật lịch trông coi thú cưng</h2>
-      <form action="{{url('xl_sua_lich_cs')}}" method="POST">
+      <form action="{{url('xl_sua_lich_tc')}}" method="POST">
         @csrf
         <div class="mb-3">
           <input type="text" class="form-control" id="id" name="id" value="{{$trong_coi->id}}" hidden>
-          <label for="ngay" class="form-label">Ngày chăm sóc</label>
+          <label for="ngay" class="form-label">Ngày chăm sóc</label><br>
           <span>Từ</span>
           <input type="date" class="form-control" id="tu_ngay" name="tu_ngay" value="{{$trong_coi->tu_ngay}}" required>
           <span>đến</span>
           <input type="date" class="form-control" id="den_ngay" name="den_ngay" value="{{$trong_coi->den_ngay}}" required>
         </div>
         <div class="mb-3">
-          <label for="gio_nhan" class="form-label">Giờ nhận</label>
-          <input type="time" class="form-control" id="gio_nhan" name="gio_nhan" value="{{$trong_coi->gio_nhan}}" required>
-        </div>
-        <div class="mb-3">
-          <label for="gio_nhan" class="form-label">Giờ trả</label>
-          <input type="time" class="form-control" id="gio_nhan" name="gio_nhan" value="{{$trong_coi->gio_tra}}" required>
-        </div>
-        <div class="mb-3">
           <label for="giong" class="form-label">Giống thú cưng</label>
           <select class="form-select" id="giong" name="giong" required>
             @foreach ($giong_thu_cungs as $giong_thu_cung)
-              <option value="{{ $giong_thu_cung->id }}" {{ $trong_coi->id_giong_thu_cung == $giong_thu_cung->id ? 'selected' : '' }}>{{ $giong_thu_cung->ten_giong_thu_cung }}</option>
+              <option value="{{ $giong_thu_cung->id }}" {{ $trong_coi->id_giong == $giong_thu_cung->id ? 'selected' : '' }}>{{ $giong_thu_cung->ten_giong_thu_cung }}</option>
             @endforeach
           </select>
         </div>
@@ -51,7 +43,7 @@
           <button type="submit" class="btn btn-primary">
             <i class="bi bi-calendar-check me-2"></i>Cập nhật lịch
           </button>
-          <a href="" class="btn btn-secondary btn-danger ms-2">
+          <a href="{{ route('xl_huy_tc',['id' => $trong_coi->id]) }}" class="btn btn-secondary btn-danger ms-2"  {{$trong_coi->id_trang_thai!=1?'hidden':''}}>
             <i class="bi bi-x-circle me-2"></i>Hủy lịch trông coi
           </a>
           <a href="{{ route('khach_hang_lichtrongcoi') }}" class="btn btn-secondary ms-2">

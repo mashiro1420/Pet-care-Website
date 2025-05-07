@@ -37,6 +37,20 @@
                 <label for="don_gia" class="form-label required-field">Đơn giá</label>
                 <input type="number" class="form-control" name="don_gia" value="{{$gia->don_gia}}" required>
               </div>
+              <div class="mb-3">
+                <label for="hien" class="form-label required-field">Hiện dịch vụ</label>
+                <select class="form-select" name="hien" id="hien" required>
+                    <option value="1" {{ $dich_vu->hien==1?'selected':'' }}>Hiện</option>
+                    <option value="0" {{ $dich_vu->hien==0?'selected':'' }}>Ẩn</option>
+                  </select>
+              </div>
+              <div class="mb-3">
+                <label for="loai" class="form-label required-field">Loại dịch vụ</label>
+                <select class="form-select" name="loai" id="loai" required>
+                    <option value="1" {{ $dich_vu->loai==1?'selected':'' }}>Chăm sóc</option>
+                    <option value="2" {{ $dich_vu->loai==2?'selected':'' }}>Trông coi</option>
+                  </select>
+              </div>
             </div>
             <div class="col-md-6">
               <div class="mb-3">

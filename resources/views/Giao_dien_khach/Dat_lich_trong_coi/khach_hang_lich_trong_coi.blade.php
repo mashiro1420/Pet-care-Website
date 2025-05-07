@@ -19,7 +19,7 @@
     <div class="container">
       <h2 class="section-title">Lịch trông coi thú cưng</h2>
       <div class="d-flex justify-content-end mb-4">
-        <a href="{{route('dat_lich_cs')}}" class="btn btn-primary">
+        <a href="{{route('dat_lich_tc')}}" class="btn btn-primary">
           <i class="bi bi-calendar-plus me-2"></i>Đặt lịch trông coi
         </a>
       </div>
@@ -33,10 +33,8 @@
               <th scope="col">Giờ trả</th>
               <th scope="col">Giống thú cưng</th>
               <th scope="col">Trạng thái</th>
-              <th scope="col">Nhân viên</th>
               <th scope="col">Đánh giá</th>
               <th scope="col">Tổng tiền</th>
-              <th scope="col">Ghi chú</th>
               <th scope="col">Chi tiết</th>
             </tr>
           </thead>
@@ -49,7 +47,6 @@
                 <td>{{ $trong_coi->gio_tra }}</td>
                 <td>{{ $trong_coi->ten_giong_thu_cung }}</td>
                 <td><span class="badge badge-confirmed">{{ $trong_coi->ten_trang_thai }}</span></td>
-                <td>{{ $trong_coi->tai_khoan }}</td>
                 <td>
                   <div class="rating">
                     @for ($i = 0; $i < 5; $i++)
@@ -62,21 +59,20 @@
                   </div>
                 </td>
                 <td>{{ number_format($trong_coi->tong_tien, 0, ',', '.') }} đ</td>
-                <td><small>{{ $trong_coi->ghi_chu }}</small></td>
                 <td>
-                  <a href="{{ route('chi_tiet_user_cs', ['id' => $trong_coi->id]) }}" class="btn btn-info btn-sm">
+                  <a href="{{ route('chi_tiet_user_tc', ['id' => $trong_coi->id]) }}" class="btn btn-info btn-sm">
                     <i class="bi bi-eye"></i>
                   </a>
-                  @if ($trong_coi->ten_trang_thai !== 'Đã thanh toán')
+                  @if ($trong_coi->ten_trang_thai !== 'Đã thanh toán'&&$trong_coi->ten_trang_thai !== 'Đã hủy')
                     <a class="btn btn-sm btn-primary btn-action me-1" 
-                      href="{{ route('sua_lich_cs', ['id' => $trong_coi->id]) }}" 
+                      href="{{ route('sua_lich_tc', ['id' => $trong_coi->id]) }}" 
                       style="background-color: rgb(197, 194, 5) !important;"
                       title="Sửa lịch trông coi">
                       <i class="bi bi-pencil-square"></i>
                     </a>
                   @else
                     <button class="btn btn-sm btn-secondary me-1" disabled 
-                            title="Không thể sửa vì lịch đã thanh toán">
+                            title="Không thể sửa vì lịch đã thanh toán hoặc hủy">
                       <i class="bi bi-pencil-square"></i>
                     </button>
                   @endif

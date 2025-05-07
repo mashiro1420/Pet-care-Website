@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta id="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quản lý lịch trông coi</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/tcs/bootstrap.min.tcs" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.tcs">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/tcs/all.min.tcs" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8tcR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" href="{{ asset('imgs/paw-solid.svg') }}" type="image/x-icon">
   <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
@@ -20,13 +20,13 @@
     </div>
     <div class="card search-card mb-4">
       <div class="card-body">
-        <form action="{{ route('ql_chamsoc') }}" method="get">
-          @tcrf
+        <form action="{{ route('ql_trongcoi') }}" method="get">
+          @csrf
           <div class="row g-3">
             <div class="col-md-3">
               <div class="form-group">
                 <label for="search_khachhang" class="form-label">Khách hàng</label>
-                <input type="text" class="form-control" name="search_khachhang" value="{{ !empty($search_khachhang)?$search_khachhang:"" }}" placeholder="Nhập tiêu đề">
+                <input type="text" class="form-control" name="search_khachhang" value="{{ !empty($search_khachhang)?$search_khachhang:"" }}" placeholder="Nhập tên khách hàng">
               </div>
             </div>
             <div class="col-md-3">
@@ -59,28 +59,6 @@
                   <input type="date" class="form-control" name="search_tu_dat" value="{{ !empty($search_tu_dat)?$search_tu_dat:"" }}">
                   <span class="mx-3">đến</span>
                   <input type="date" class="form-control" name="search_den_dat" value="{{ !empty($search_den_dat)?$search_den_dat:"" }}">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="search_gionhan" class="form-label">Giờ nhận</label><br>
-                <div class="d-flex justify-content-center align-items-center">
-                  <span class="me-3">Từ</span>
-                  <input type="time" class="form-control" name="search_tu_gionhan" value="{{ !empty($search_tu_gionhan)?$search_tu_gionhan:"" }}">
-                  <span class="mx-3">đến</span>
-                  <input type="time" class="form-control" name="search__den_gionhan" value="{{ !empty($search__den_gionhan)?$search__den_gionhan:"" }}">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="search_giotra" class="form-label">Giờ trả</label><br>
-                <div class="d-flex justify-content-center align-items-center">
-                  <span class="me-3">Từ</span>
-                  <input type="time" class="form-control" name="search_tu_giotra" value="{{ !empty($search_tu_giotra)?$search_tu_giotra:"" }}">
-                  <span class="mx-3">đến</span>
-                  <input type="time" class="form-control" name="search__den_giotra" value="{{ !empty($search__den_giotra)?$search__den_giotra:"" }}">
                 </div>
               </div>
             </div>
@@ -176,7 +154,7 @@
                   <td>{{$trong_coi->ten_giong_thu_cung}}</td>
                   <td>{{$trong_coi->danh_gia}}</td>
                   <td>
-                    <a href="{{ route('chi_tiet_admin_tc', ['id' => $trong_coi->id]) }}" class="btn btn-info btn-sm">
+                    <a href="{{ route('chi_tiet_admin_tc', ['id' => $trong_coi->tc_id]) }}" class="btn btn-info btn-sm">
                       <i class="bi bi-eye-fill"></i> Chi tiết
                     </a>
                   </td>

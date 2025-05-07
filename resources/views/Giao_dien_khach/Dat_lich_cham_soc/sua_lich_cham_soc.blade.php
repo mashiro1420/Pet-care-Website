@@ -32,7 +32,7 @@
           <label for="giong" class="form-label">Giống thú cưng</label>
           <select class="form-select" id="giong" name="giong" required>
             @foreach ($giong_thu_cungs as $giong_thu_cung)
-              <option value="{{ $giong_thu_cung->id }}" {{ $cham_soc->id_giong_thu_cung == $giong_thu_cung->id ? 'selected' : '' }}>{{ $giong_thu_cung->ten_giong_thu_cung }}</option>
+              <option value="{{ $giong_thu_cung->id }}" {{ $cham_soc->id_giong == $giong_thu_cung->id ? 'selected' : '' }}>{{ $giong_thu_cung->ten_giong_thu_cung }}</option>
             @endforeach
           </select>
         </div>
@@ -44,7 +44,7 @@
           <button type="submit" class="btn btn-primary">
             <i class="bi bi-calendar-check me-2"></i>Cập nhật lịch
           </button>
-          <a href="" class="btn btn-secondary btn-danger ms-2">
+          <a href="{{ route('xl_huy_cs',['id' => $cham_soc->id]) }}" class="btn btn-secondary btn-danger ms-2" {{$cham_soc->id_trang_thai!=1?'hidden':''}}>
             <i class="bi bi-x-circle me-2"></i>Hủy lịch chăm sóc
           </a>
           <a href="{{ route('khach_hang_lichchamsoc') }}" class="btn btn-secondary ms-2">

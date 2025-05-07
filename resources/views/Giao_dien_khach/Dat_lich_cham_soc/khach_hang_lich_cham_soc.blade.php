@@ -35,14 +35,14 @@
               <th scope="col">Nhân viên</th>
               <th scope="col">Đánh giá</th>
               <th scope="col">Tổng tiền</th>
-              <th scope="col">Ghi chú</th>
               <th scope="col">Chi tiết</th>
             </tr>
           </thead>
           <tbody>
             @foreach ($cham_socs as $cham_soc)
+            <?php $count++ ?>
               <tr>
-                <td>{{ $cham_soc->id }}</td>
+                <td>{{ $count }}</td>
                 <td>{{ $cham_soc->ngay }}</td>
                 <td>{{ $cham_soc->thoi_gian }}</td>
                 <td>{{ $cham_soc->ten_giong_thu_cung }}</td>
@@ -60,12 +60,11 @@
                   </div>
                 </td>
                 <td>{{ number_format($cham_soc->tong_tien, 0, ',', '.') }} đ</td>
-                <td><small>{{ $cham_soc->ghi_chu }}</small></td>
                 <td>
                   <a href="{{ route('chi_tiet_user_cs', ['id' => $cham_soc->id]) }}" class="btn btn-info btn-sm">
                     <i class="bi bi-eye"></i>
                   </a>
-                  @if ($cham_soc->ten_trang_thai !== 'Đã thanh toán')
+                  @if ($cham_soc->ten_trang_thai !== 'Đã thanh toán'&&$cham_soc->ten_trang_thai !== 'Đã hủy')
                     <a class="btn btn-sm btn-primary btn-action me-1" 
                       href="{{ route('sua_lich_cs', ['id' => $cham_soc->id]) }}" 
                       style="background-color: rgb(197, 194, 5) !important;"
@@ -74,7 +73,7 @@
                     </a>
                   @else
                     <button class="btn btn-sm btn-secondary me-1" disabled 
-                            title="Không thể sửa vì lịch đã thanh toán">
+                            title="Không thể sửa vì lịch đã thanh toán hoặc hủy">
                       <i class="bi bi-pencil-square"></i>
                     </button>
                   @endif
