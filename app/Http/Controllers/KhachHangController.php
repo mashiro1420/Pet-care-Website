@@ -93,4 +93,9 @@ class KhachHangController extends Controller
         $khach_hang->save();
         return redirect()->route('ql_hoi_vien');
     }
+    public function viewChiTietTaiKhoan(Request $request)
+    {
+        $data = [];
+        return view('Giao_dien_khach.chi_tiet_tai_khoan', $data);
+    }
 }

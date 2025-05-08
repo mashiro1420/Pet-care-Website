@@ -22,7 +22,7 @@
             <i class="bi bi-person-circle user-icon"></i>
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-            <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Thông tin tài khoản</a></li>
+            <li><a class="dropdown-item" href="{{route('chi_tiet_tk')}}"><i class="bi bi-person me-2"></i>Thông tin tài khoản</a></li>
             <li><a class="dropdown-item" href="{{ route('doi_mk',['id'=>session('tai_khoan')]) }}"><i class="bi bi-key me-2"></i>Đổi mật khẩu</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{{ url('xl_dang_xuat') }}"><i class="bi bi-box-arrow-right me-2"></i>Đăng xuất</a></li>

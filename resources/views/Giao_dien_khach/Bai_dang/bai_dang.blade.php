@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link rel="icon" href="imgs/paw-solid.svg" type="image/x-icon">
+  <link rel="stylesheet" href="{{ asset('css/user.css') }}">
   <link rel="stylesheet" href="{{ asset('css/bai_dang.css') }}">
 </head>
 <body>

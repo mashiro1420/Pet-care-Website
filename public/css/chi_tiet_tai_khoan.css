@@ -1,0 +1,58 @@
+:root {
+    --primary-color: #FF6B6B;
+    --secondary-color: #4ECDC4;
+    --dark-color: #1A535C;
+    --light-color: #F7FFF7;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+#account-section {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+.form-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--dark-color);
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.form-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-color);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+.form-label {
+    font-weight: 600;
+}
+
+.progress {
+    height: 24px;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    font-weight: 600;
+}
+
+.btn-outline-secondary {
+    font-weight: 600;
+}

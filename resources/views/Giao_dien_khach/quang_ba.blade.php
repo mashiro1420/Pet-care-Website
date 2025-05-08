@@ -65,7 +65,7 @@
             <a href="#services" class="btn btn-primary">
               <i class="bi bi-info-circle me-2"></i>Tìm hiểu thêm
             </a>
-            <a href="#booking" class="btn btn-outline-light">
+            <a href="{{route('dang_nhap')}}" class="btn btn-outline-light">
               <i class="bi bi-calendar-check me-2"></i>Đặt lịch ngay
             </a>
           </div>

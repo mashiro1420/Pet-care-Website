@@ -42,6 +42,7 @@ Route::get('them_tk',[TaiKhoanController::class, 'viewThem'])->name('them_tk');
 Route::post('xl_them_tk',[TaiKhoanController::class, 'xlThem']);
 Route::get('sua_tk',[TaiKhoanController::class, 'viewSua'])->name('sua_tk');
 Route::post('xl_sua_tk',[TaiKhoanController::class, 'xlSua']);
+
 //DMDichVu Routes
 Route::get('ql_dmdichvu', [DanhMucController::class, 'viewDMDichVu'])->name('ql_dmdichvu');
 Route::get('them_dmdichvu', [DanhMucController::class, 'viewThemDMDichVu'])->name('them_dmdichvu');
@@ -152,3 +153,4 @@ Route::get('xl_huy_tc',[TrongCoiController::class, 'xlHuy'])->name('xl_huy_tc');
 Route::post('xl_gui_mail_xac_nhan_tc',[TrongCoiController::class, 'xlGuiMailXacNhan']);
 // KhachHang Routes
 Route::get('ql_kh',[KhachHangController::class, 'viewQuanLy'])->name('ql_kh');
+Route::get('chi_tiet_tk',[KhachHangController::class, 'viewChiTietTaiKhoan'])->name('chi_tiet_tk');
