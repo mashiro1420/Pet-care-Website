@@ -82,7 +82,6 @@ class BaiDangController extends Controller
         }
         $bai_dang->tom_tat = $request->tom_tat;
         $bai_dang->noi_dung = $request->noi_dung;
-        // $bai_dang->ngay_dang = $request->ngay_dang;
         $bai_dang->id_loai_noi_dung  = $request->loai_noi_dung ;
         $bai_dang->id_nhan_vien  = $nhan_vien;
         if ($request->hasFile('hinh_anh')) {

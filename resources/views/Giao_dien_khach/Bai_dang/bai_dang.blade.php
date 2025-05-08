@@ -20,7 +20,7 @@
       @foreach($bai_dangs as $bai_dang)
         <div class="col-md-4 mb-4">
           <div class="card card-post h-100">
-            <img src="{{ $bai_dang->thumbnail ?? 'imgs/default-post.jpg' }}" class="card-img-top" alt="Ảnh bài đăng">
+            <img src="{{ asset('Bai_dang_data/'.$bai_dang->thumbnail) ?? 'imgs/default-post.jpg' }}" class="card-img-top" alt="Ảnh bài đăng">
             <div class="card-body">
               <h5 class="card-title">{{ $bai_dang->tieu_de }}</h5>
               <p class="card-text text-truncate">{{ Str::limit($bai_dang->tom_tat, 100) }}</p>

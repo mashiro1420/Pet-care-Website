@@ -18,13 +18,14 @@
   <div class="post-container">
     <h1 class="post-title">{{ $bai_dang->tieu_de }}</h1>
 
-  <div class="post-meta mb-3">
-    <p><strong>Ngày đăng:</strong> {{ \Carbon\Carbon::parse($bai_dang->ngay_dang)->format('d/m/Y H:i') }}</p>
-    <p><strong>Lượt xem:</strong> {{ $bai_dang->luot_xem }} | <strong>Lượt thích:</strong> {{ $bai_dang->luot_thich }}</p>
-    <p><strong>Loại nội dung:</strong> {{ $bai_dang->ten_loai ?? 'Chưa phân loại' }}</p>
-    <p><strong>Nhân viên đăng:</strong> {{ $bai_dang->ho_ten ?? 'Không rõ' }} (ID: {{ $bai_dang->id_nhan_vien }})</p>
+  <div class="row post-meta mb-3">
+    <div class="col-md-4"><strong>Ngày đăng:</strong> {{ \Carbon\Carbon::parse($bai_dang->ngay_dang)->format('d/m/Y H:i') }}</div>
+    <div class="col-md-4"><strong>Lượt xem:</strong> {{ $bai_dang->luot_xem }} | <strong>Lượt thích:</strong> {{ $bai_dang->luot_thich }}</div>
   </div>
-
+  <div class="row post-meta mb-3">
+    <div class="col-md-4"><strong>Loại nội dung:</strong> {{ $bai_dang->ten_loai_noi_dung ?? 'Chưa phân loại' }}</div>
+    <div class="col-md-4"><strong>Nhân viên đăng:</strong> {{ $bai_dang->ten_nhan_vien ?? 'Không rõ' }} (ID: {{ $bai_dang->id_nhan_vien }})</div>
+  </div>
   
   
   @if($bai_dang->tom_tat)
@@ -41,7 +42,7 @@
   </div>
 
   @if($bai_dang->hinh_anh)
-    <img src="{{ $bai_dang->hinh_anh }}" alt="Hình ảnh chi tiết" class="post-image mb-3">
+    <img src="{{ asset('Bai_dang_data/'.$bai_dang->hinh_anh) }}" alt="Hình ảnh chi tiết" class="post-image mb-3">
   @endif
 
   @if($bai_dang->link_video)
