@@ -94,7 +94,7 @@
               </tr>
             </thead>
             <tbody>
-              @if(empty($search_member))
+              {{-- @if(empty($search_member)) --}}
               @foreach ($khach_hangs as $khach_hang)
                 <?php $count++ ?>
                 <tr>
@@ -104,18 +104,17 @@
                   <td>{{$khach_hang->sdt}}</td>
                   <td>{{$khach_hang->email }}</td>
                   <td>{{$khach_hang->cccd}}</td>
-                  <td>{{$khach_hang->LoaiKhach->ten_loai_khach }}</td>
+                  <td>{{$khach_hang->ten_loai_khach}}</td>
                   <td>{{$khach_hang->ngay_tao}}</td>
                   <td>
-                    <a href="{{ route('chi_tiet_kh', ['id' => $khach_hang->id_khach_hang]) }}" class="btn btn-info btn-sm">
+                    <a href="{{ route('chi_tiet_kh', ['id' => $khach_hang->khach_hang_id]) }}" class="btn btn-info btn-sm">
                       <i class="bi bi-eye-fill"></i> Chi tiết
                     </a>
                   </td>
                 </tr>
                 @endforeach
-                @else
+                {{-- @else
                 @foreach ($hoi_viens as $hoi_vien)
-                <?php $count++ ?>
                 <tr>
                   <td>{{$count}}</td>
                   <td>{{$hoi_vien->KhachHang->ho_ten}}</td>
@@ -127,7 +126,7 @@
                   <td>{{$hoi_vien->KhachHang->ngay_tao}}</td>
                 </tr>
                 @endforeach
-                @endIf
+                @endIf --}}
             </tbody>
           </table>
         </div>

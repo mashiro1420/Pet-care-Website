@@ -7,6 +7,7 @@ use App\Http\Controllers\DanhMucController;
 use App\Http\Controllers\BaiDangController;
 use App\Http\Controllers\DichVuController;
 use App\Http\Controllers\ChamSocController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\TrongCoiController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('Giao_dien_khach.quang_ba');
 });
+Route::get('quay_lai',[Controller::class, 'quayLai'])->name('quay_lai');
 // DangNhap Routes
 Route::get('dang_nhap',[DangNhapController::class, 'viewDangNhap'])->name('dang_nhap');
 Route::get('dang_ky',[DangNhapController::class, 'viewDangKy'])->name('dang_ky');
@@ -155,5 +157,5 @@ Route::post('xl_gui_mail_xac_nhan_tc',[TrongCoiController::class, 'xlGuiMailXacN
 Route::get('ql_kh',[KhachHangController::class, 'viewQuanLy'])->name('ql_kh');
 Route::get('chi_tiet_tk',[KhachHangController::class, 'viewChiTietTaiKhoan'])->name('chi_tiet_tk');
 Route::get('chi_tiet_kh',[KhachHangController::class, 'viewChiTietKhachHang'])->name('chi_tiet_kh');
-Route::post('xl_dky_hv_tructiep',[KhachHangController::class, 'xlDKHoiVienTrucTiep']);
 Route::post('xl_dky_hv', [KhachHangController::class, 'xlDKHoiVien']);
+Route::post('cap_nhat_tai_khoan', [KhachHangController::class, 'xlCapNhatTaiKhoan']);

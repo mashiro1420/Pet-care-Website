@@ -14,6 +14,7 @@ use App\Models\TCThanhToanModel;
 use App\Models\TrongCoiModel;
 use App\Models\DMGiongThuCungModel;
 use App\Models\DMTrangThaiModel;
+use App\Models\HoiVienModel;
 use App\Models\TaiKhoanModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -287,6 +288,11 @@ class TrongCoiController extends Controller
     public function xlThanhToan(Request $request)
     {
         $trong_coi = TrongCoiModel::find($request->id);
+        $hoi_vien = HoiVienModel::find($trong_coi->id_khach_hang);
+        if($hoi_vien){
+            $hoi_vien->diem_hoi_vien = $hoi_vien->diem_hoi_vien + 10;
+            $hoi_vien->save();
+        }
         $trong_coi->id_trang_thai = 4;
         $trong_coi->save();
         // $thong_tin = [

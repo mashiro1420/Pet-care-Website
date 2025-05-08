@@ -25,7 +25,7 @@
     </div>
     <div class="card">
       <div class="card-body p-4">
-        <form action="{{ url('xl_xac_nhan_cs') }}" method="POST">
+        <form >
           @csrf
           <div class="row g-3">
             {{-- <input type="text" class="form-control" name="id" value="{{$khach_hang->id}}" hidden> --}}
@@ -88,7 +88,7 @@
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="nhan_vien" class="form-label">Loại khách hàng</label>
-                <input type="text" class="form-control" name="ngay_dat_lich" value="{{$khach_hang->ten_loai_khach_hang}}" readonly>
+                <input type="text" class="form-control" name="ngay_dat_lich" value="{{$khach_hang->ten_loai_khach}}" readonly>
               </div>
             </div>
           </div>
@@ -107,10 +107,7 @@
             </div>
           </div>
           <div class="col-12 d-flex justify-content-end gap-2 mt-4">
-            <a href="{{route('ql_kh')}}" class="btn btn-outline-secondary">
-              <i class="bi bi-arrow-repeat me-1"></i>Quay lại
-            </a>
-            <button type="submit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalDangKyHoiVien">
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalDangKyHoiVien" {{ empty($khach_hang->hoi_vien_id)?"":"hidden" }}>
               <i class="fa-solid fa-gears"></i>Đăng ký hội viên
             </button>
           </form>
@@ -127,8 +124,9 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="{{ url('xl_dky_hv_tructiep') }}" method="POST">
+          <form action="{{ url('xl_dky_hv') }}" method="POST">
             @csrf
+            <input type="text" class="form-control" name="id_khach_hang" value="{{ $khach_hang->khach_hang_id }}" hidden>
             <div class="mb-3">
                 <label for="cccd" class="form-label">Căn cước công dân</label>
                 <input type="text" class="form-control" name="cccd" required placeholder="Nhập căn cước công dân">

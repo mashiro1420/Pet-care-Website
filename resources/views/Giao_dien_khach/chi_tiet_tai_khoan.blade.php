@@ -18,60 +18,100 @@
       <div class="row g-3">
         <div class="col-md-6">
           <label class="form-label">Họ và tên</label>
-          <input type="text" class="form-control" value="Nguyễn Văn A" readonly>
-        </div>
-        <div class="col-md-6">
-          <label class="form-label">Quyền</label>
-          <input type="text" class="form-control" value="Khách hàng" readonly>
+          <input type="text" class="form-control" value="{{ $khach_hang->ho_ten }}" readonly>
         </div>
         <div class="col-md-6">
           <label class="form-label">Ngày sinh</label>
-          <input type="date" class="form-control" value="2000-01-01" readonly>
+          <input type="date" class="form-control" value="{{ $khach_hang->ngay_sinh }}" readonly>
         </div>
         <div class="col-md-6">
           <label class="form-label">Số điện thoại</label>
-          <input type="text" class="form-control" value="0901234567" readonly>
+          <input type="text" class="form-control" value="{{ $khach_hang->sdt }}" readonly>
         </div>
         <div class="col-md-6">
           <label class="form-label">Email</label>
-          <input type="email" class="form-control" value="nguyenvana@example.com" readonly>
+          <input type="email" class="form-control" value="{{ $khach_hang->email }}" readonly>
         </div>
         <div class="col-md-6">
           <label class="form-label">Căn cước công dân</label>
-          <input type="text" class="form-control" value="012345678901" readonly>
+          <input type="text" class="form-control" value="{{ $khach_hang->cccd }}" readonly>
         </div>
         <div class="col-md-6">
           <label class="form-label">Ngày làm CCCD</label>
-          <input type="date" class="form-control" value="2019-05-10" readonly>
+          <input type="date" class="form-control" value="{{ $khach_hang->ngay_lam_cc }}" readonly>
         </div>
         <div class="col-md-6">
           <label class="form-label">Nơi làm CCCD</label>
-          <input type="text" class="form-control" value="Công an TP. HCM" readonly>
+          <input type="text" class="form-control" value="{{ $khach_hang->noi_lam_cc }}" readonly>
         </div>
+        <div class="col-md-6">
+          <label class="form-label">Loại khách hàng</label>
+          <input type="text" class="form-control" value="{{ $khach_hang->ten_loai_khach }}" readonly>
+        </div>
+        @if(!empty($khach_hang->hoi_vien_id))
         <div class="col-md-6">
           <label class="form-label">Điểm hội viên</label>
-          <input type="text" class="form-control" value="720" readonly>
-        </div>
-        <div class="col-md-6">
-          <label class="form-label">Loại hội viên</label>
-          <input type="text" class="form-control" value="Bạc" readonly>
+          <input type="text" class="form-control" value="{{ $khach_hang->diem_hoi_vien }}" readonly>
         </div>
       </div>
 
       <div class="mt-5">
         <label class="form-label">Tiến trình thăng cấp hội viên</label>
         <div class="progress">
-          <div class="progress-bar bg-success" role="progressbar" style="width: 72%" aria-valuenow="720" aria-valuemin="0" aria-valuemax="1000">
-            720 / 1000 điểm
+          <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="{{ $khach_hang->diem_hoi_vien }}" aria-valuemin="0" aria-valuemax="<?php switch (true) {
+            case ($khach_hang->diem_hoi_vien<$muc[0]):
+                echo $muc[0];
+                break;
+            case ($khach_hang->diem_hoi_vien<$muc[1]&&$khach_hang->diem_hoi_vien>=$muc[0]):
+                echo $muc[1];
+                break;
+            case ($khach_hang->diem_hoi_vien<$muc[2]&&$khach_hang->diem_hoi_vien>=$muc[1]):
+                echo $muc[2];
+                break;
+            default:
+                echo $khach_hang->diem_hoi_vien;
+                break;
+        } ?>">
+        <?php switch (true) {
+          case ($khach_hang->diem_hoi_vien<$muc[0]):
+              echo $khach_hang->diem_hoi_vien." / ".$muc[0]." điểm";
+              break;
+          case ($khach_hang->diem_hoi_vien<$muc[1]&&$khach_hang->diem_hoi_vien>=$muc[0]):
+              echo $khach_hang->diem_hoi_vien." / ".$muc[1]." điểm";
+              break;
+          case ($khach_hang->diem_hoi_vien<$muc[2]&&$khach_hang->diem_hoi_vien>=$muc[1]):
+              echo $khach_hang->diem_hoi_vien." / ".$muc[2]." điểm";
+              break;
+          default:
+              echo $khach_hang->diem_hoi_vien;
+              break;
+      } ?>
+            {{-- 720 / 1000 điểm --}}
           </div>
         </div>
-        <small class="text-muted">Còn 280 điểm để lên hội viên Vàng</small>
+        <small class="text-muted">
+          <?php 
+          switch (true) {
+          case ($khach_hang->diem_hoi_vien>=0 && $khach_hang->diem_hoi_vien<$muc[0]):
+              echo "Còn ".$muc[0]-$khach_hang->diem_hoi_vien." điểm để lên hội viên Bạc";
+              break;
+          case ($khach_hang->diem_hoi_vien<$muc[1]&&$khach_hang->diem_hoi_vien>=$muc[0]):
+              echo "Còn ".$muc[1]-$khach_hang->diem_hoi_vien." điểm để lên hội viên Vàng";
+              break;
+          case ($khach_hang->diem_hoi_vien<$muc[2]&&$khach_hang->diem_hoi_vien>=$muc[1]):
+              echo "Còn ".$muc[2]-$khach_hang->diem_hoi_vien." điểm để lên hội viên Kim Cương";
+              break;
+          default:
+              echo "Khách hàng đã đạt cấp độ hội viên tối đa";
+              break;
+      } ?></small>
       </div>
+      @endIf
       <div class="text-end mt-4">
         <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalChinhSuaTaiKhoan">
           <i class="bi bi-pencil-square me-1"></i>Chỉnh sửa
         </button>
-        <button class="btn btn-success ms-2" type="button" data-bs-toggle="modal" data-bs-target="#modalDangKyHoiVien">
+        <button class="btn btn-success ms-2" type="button" data-bs-toggle="modal" data-bs-target="#modalDangKyHoiVien" {{ empty($khach_hang->hoi_vien_id)?"":"hidden" }}>
           <i class="bi bi-person-plus me-1"></i>
           Đăng ký hội viên
         </button>
@@ -88,9 +128,10 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="{{ url('xl_dky_hv_tructiep') }}" method="POST">
+          <form action="{{ url('xl_dky_hv') }}" method="POST">
             @csrf
             <div class="mb-3">
+              <input type="text" class="form-control" name="id_khach_hang" value="{{ $khach_hang->khach_hang_id }}" hidden>
                 <label for="cccd" class="form-label">Căn cước công dân</label>
                 <input type="text" class="form-control" name="cccd" required placeholder="Nhập căn cước công dân">
             </div>
@@ -124,34 +165,37 @@
           @csrf
           <div class="row g-3">
             <div class="col-md-6">
+              <input type="text" class="form-control" name="id_khach_hang" value="{{ $khach_hang->khach_hang_id }}" hidden>
               <label class="form-label">Họ và tên</label>
-              <input type="text" class="form-control" name="ho_ten" value="Nguyễn Văn A" required>
+              <input type="text" class="form-control" name="ho_ten" value="{{ $khach_hang->ho_ten }}" required>
             </div>
             <div class="col-md-6">
               <label class="form-label">Ngày sinh</label>
-              <input type="date" class="form-control" name="ngay_sinh" value="2000-01-01" required>
+              <input type="date" class="form-control" name="ngay_sinh" value="{{ $khach_hang->ngay_sinh }}" required>
             </div>
             <div class="col-md-6">
               <label class="form-label">Số điện thoại</label>
-              <input type="text" class="form-control" name="so_dien_thoai" value="0901234567" required>
+              <input type="text" class="form-control" name="sdt" value="{{ $khach_hang->sdt }}" required>
             </div>
             <div class="col-md-6">
               <label class="form-label">Email</label>
-              <input type="email" class="form-control" name="email" value="nguyenvana@example.com" required>
+              <input type="email" class="form-control" name="email" value="{{ $khach_hang->email }}" required>
             </div>
+            @if (!empty($khach_hang->hoi_vien_id))
             <div class="col-md-6">
               <label class="form-label">Căn cước công dân</label>
-              <input type="text" class="form-control" name="cccd" value="012345678901" required>
+              <input type="text" class="form-control" name="cccd" value="{{ $khach_hang->cccd }}" required>
             </div>
             <div class="col-md-6">
               <label class="form-label">Ngày làm CCCD</label>
-              <input type="date" class="form-control" name="ngay_lam_cccd" value="2019-05-10" required>
+              <input type="date" class="form-control" name="ngay_lam_cc" value="{{ $khach_hang->ngay_lam_cc }}" required>
             </div>
             <div class="col-md-6">
               <label class="form-label">Nơi làm CCCD</label>
-              <input type="text" class="form-control" name="noi_lam_cccd" value="Công an TP. HCM" required>
+              <input type="text" class="form-control" name="noi_lam_cc" value="{{ $khach_hang->noi_lam_cc }}" required>
             </div>
           </div>
+          @endif
           <div class="mt-4 text-end">
             <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>

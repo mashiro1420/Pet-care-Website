@@ -13,7 +13,9 @@ class KhachHangController extends Controller
     public function viewQuanLy(Request $request)
     {
         $data=[];
-        $query = KhachHangModel::query()->select('*');
+        $query = KhachHangModel::query()->select('*','ql_khachhang.id as khach_hang_id','dm_loaikhachhang.id as loai_id','ql_hoivien.id as hoi_vien_id')
+        ->leftJoin('dm_loaikhachhang','dm_loaikhachhang.id','=','ql_khachhang.id_loai_khach_hang')
+        ->leftJoin('ql_hoivien','ql_hoivien.id_khach_hang','=','ql_khachhang.id');
         if($request->has('search_email')&& !empty($request->search_email)){
             $query = $query->where('email', 'like', '%'.$request->search_email.'%');
             $data['search_email'] = $request->search_email;
@@ -34,8 +36,8 @@ class KhachHangController extends Controller
             $query = $query->where('id_loai_khach_hang',$request->search_customer);
             $data['search_customer'] = $request->search_customer;
         }
-        if($request->has('search_member')){
-            $data['hoi_viens'] = HoiVienModel::paginate(5);
+        if($request->has('search_member')&& !empty($request->search_member)){
+            $query = $query->whereNotNull('ql_hoivien.id');
             $data['search_member'] = $request->search_member;
             // $query = HoiVienModel::leftJoin('ql_khachhang','ql_khachhang.id','=','ql_hoivien.id_khach_hang')
             // ->leftJoin('dm_loaikhachhang','dm_loaikhachhang.id','=','ql_hoivien.id_khachhang')
@@ -45,68 +47,54 @@ class KhachHangController extends Controller
         $data['count']=0;
         return view('Quan_ly_khach_hang.quan_ly_khach_hang',$data);
     }
-    public function viewQLHoiVien(Request $request)
-    {
-        $query = HoiVienModel:: select('*','ql_khachhang.id as khach_hang_id')
-            ->leftJoin('ql_khachhang','ql_hoivien.id_khach_hang','=','ql_khachhang.id')
-            ->leftJoin('dm_loaikhachhang','ql_hoivien.id_loai_khach_hang','=','dm_loaikhachhang.id');
-        $data['hoi_viens'] = $query->paginate(5);
-        $data['loai_khach_hangs'] = DMLoaiKhachHangModel::where('hoi_vien','=',1);
-        $data['count'] = 0;
-        return view('Quan_ly_khach_hang.quan_ly_hoi_vien',$data);
-    }
-    public function viewDKHoiVien(Request $request)
-    {
-        $data = [];
-        return view('Quan_ly_khach_hang.quan_ly_hoi_vien',$data);
-    }
-    public function viewKhachHoiVien(Request $request)
-    {
-        $tai_khoan_hien_tai = TaiKhoanModel::find(session('tai_khoan'));
-        $data['hoi_vien'] = HoiVienModel::where('id_khach_hang','=',$tai_khoan_hien_tai->KhachHang->id);
-        if(empty($data['hoi_vien'])) return view('Giao_dien_khach.dang_ky_hoi_vien');
-        else return view('Giao_dien_khach.khach_hoi_vien',$data);
-    }
     public function viewChiTietKhachHang(Request $request)
     {
         $data = []; 
-        $data['khach_hang'] = KhachHangModel::find($request->id);
+        $data['khach_hang'] = KhachHangModel::query()->select('*','ql_khachhang.id as khach_hang_id','dm_loaikhachhang.id as loai_id','ql_hoivien.id as hoi_vien_id')
+        ->leftJoin('dm_loaikhachhang','dm_loaikhachhang.id','=','ql_khachhang.id_loai_khach_hang')
+        ->leftJoin('ql_hoivien','ql_hoivien.id_khach_hang','=','ql_khachhang.id')->find($request->id);
         return view('Quan_ly_khach_hang.chi_tiet_kh', $data);   
-    }
-    public function xlDKHoiVien(Request $request)
-    {
-        $tai_khoan_hien_tai = TaiKhoanModel::find(session('tai_khoan'));
-        $loai_khach_hang = DMLoaiKhachHangModel::where('ten_loai_khach','=','Hội viên mới');
-        $khach_hang = $tai_khoan_hien_tai->KhachHang;
-        $khach_hang->cccd = $request->cccd;
-        $khach_hang->ngay_lam_cc = $request->ngay_lam_cc;
-        $khach_hang->noi_lam_cc = $request->noi_lam_cc;
-        $hoi_vien = new HoiVienModel();
-        $hoi_vien->id_khach_hang = $khach_hang->id;
-        $hoi_vien->diem_hoi_vien = 0;
-        $hoi_vien->id_loai_khach_hang = $loai_khach_hang->id;
-        $hoi_vien->save();
-        $khach_hang->save();
-        return redirect()->route('');
-    }
-    public function xlDKHoiVienTrucTiep(Request $request)
-    {
-        $loai_khach_hang = DMLoaiKhachHangModel::where('ten_loai_khach','=','Hội viên mới');
-        $khach_hang = KhachHangModel::find($request->id_khach_hang);
-        $khach_hang->cccd = $request->cccd;
-        $khach_hang->ngay_lam_cc = $request->ngay_lam_cc;
-        $khach_hang->noi_lam_cc = $request->noi_lam_cc;
-        $hoi_vien = new HoiVienModel();
-        $hoi_vien->id_khach_hang = $request->id_khach_hang;
-        $hoi_vien->diem_hoi_vien = 0;
-        $hoi_vien->id_loai_khach_hang = $loai_khach_hang->id;
-        $hoi_vien->save();
-        $khach_hang->save();
-        return redirect()->route('ql_hoi_vien');
     }
     public function viewChiTietTaiKhoan(Request $request)
     {
         $data = [];
+        $data['khach_hang'] = KhachHangModel::query()->select('*','ql_khachhang.id as khach_hang_id','dm_loaikhachhang.id as loai_id','ql_hoivien.id as hoi_vien_id')
+        ->leftJoin('dm_loaikhachhang','dm_loaikhachhang.id','=','ql_khachhang.id_loai_khach_hang')
+        ->leftJoin('ql_hoivien','ql_hoivien.id_khach_hang','=','ql_khachhang.id')
+        ->leftJoin('ql_taikhoan','ql_taikhoan.id_khach_hang','=','ql_khachhang.id')
+        ->where('tai_khoan',session('tai_khoan'))->first();
+        $data['muc'] = [50,150,300];
         return view('Giao_dien_khach.chi_tiet_tai_khoan', $data);
+    }
+
+    public function xlDKHoiVien(Request $request)
+    {
+        $loai_khach_hang = DMLoaiKhachHangModel::where('ten_loai_khach','=','Hội viên mới')->first();
+        $khach_hang = KhachHangModel::find($request->id_khach_hang);
+        $khach_hang->cccd = $request->cccd;
+        $khach_hang->ngay_lam_cc = $request->ngay_lam_cc;
+        $khach_hang->noi_lam_cc = $request->noi_lam_cc;
+        $khach_hang->id_loai_khach_hang = $loai_khach_hang->id;
+        $hoi_vien = new HoiVienModel();
+        $hoi_vien->id_khach_hang = $request->id_khach_hang;
+        $hoi_vien->diem_hoi_vien = 0;
+        $hoi_vien->save();
+        $khach_hang->save();
+        return redirect()->back();
+    }
+    public function xlCapNhatTaiKhoan(Request $request)
+    {
+        $khach_hang = KhachHangModel::find($request->id_khach_hang);
+        $khach_hang->ho_ten = $request->ho_ten;
+        $khach_hang->sdt = $request->sdt;
+        $khach_hang->email = $request->email;
+        $khach_hang->ngay_sinh = $request->ngay_sinh;
+        if(!empty($request->cccd)&&!empty($request->ngay_lam_cc)&&!empty($request->noi_lam_cc)){
+            $khach_hang->cccd = $request->cccd;
+            $khach_hang->ngay_lam_cc = $request->ngay_lam_cc;
+            $khach_hang->noi_lam_cc = $request->noi_lam_cc;
+        }
+        $khach_hang->save();
+        return redirect()->back();
     }
 }

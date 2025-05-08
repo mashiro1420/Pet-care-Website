@@ -14,6 +14,7 @@ use App\Models\KhachHangModel;
 use App\Models\TaiKhoanModel;
 use App\Models\DMGiongThuCungModel;
 use App\Models\DMKhuyenMaiModel;
+use App\Models\HoiVienModel;
 use Carbon\Carbon;
 use GuzzleHttp\Psr7\Query;
 use Illuminate\Http\Request;
@@ -291,7 +292,11 @@ class ChamSocController extends Controller
     {
         $cham_soc = ChamSocModel::find($request->id);
         $cham_soc->id_trang_thai = 4;
-
+        $hoi_vien = HoiVienModel::find($cham_soc->id_khach_hang);
+        if($hoi_vien){
+            $hoi_vien->diem_hoi_vien = $hoi_vien->diem_hoi_vien + 5;
+            $hoi_vien->save();
+        }
         $cham_soc->save();
         return redirect()->route('ql_chamsoc');
     }
