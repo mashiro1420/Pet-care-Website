@@ -90,6 +90,7 @@
                 <th scope="col">Căn cước công dân</th>
                 <th scope="col">Loại khách hàng</th>
                 <th scope="col">Ngày tạo</th>
+                <th scope="col">Chi tiết</th>
               </tr>
             </thead>
             <tbody>
@@ -105,6 +106,11 @@
                   <td>{{$khach_hang->cccd}}</td>
                   <td>{{$khach_hang->LoaiKhach->ten_loai_khach }}</td>
                   <td>{{$khach_hang->ngay_tao}}</td>
+                  <td>
+                    <a href="{{ route('chi_tiet_kh', ['id' => $khach_hang->id_khach_hang]) }}" class="btn btn-info btn-sm">
+                      <i class="bi bi-eye-fill"></i> Chi tiết
+                    </a>
+                  </td>
                 </tr>
                 @endforeach
                 @else

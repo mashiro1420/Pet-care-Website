@@ -67,7 +67,12 @@ class KhachHangController extends Controller
         if(empty($data['hoi_vien'])) return view('Giao_dien_khach.dang_ky_hoi_vien');
         else return view('Giao_dien_khach.khach_hoi_vien',$data);
     }
-
+    public function viewChiTietKhachHang(Request $request)
+    {
+        $data = []; 
+        $data['khach_hang'] = KhachHangModel::find($request->id);
+        return view('Quan_ly_khach_hang.chi_tiet_kh', $data);   
+    }
     public function xlDKHoiVien(Request $request)
     {
         $tai_khoan_hien_tai = TaiKhoanModel::find(session('tai_khoan'));

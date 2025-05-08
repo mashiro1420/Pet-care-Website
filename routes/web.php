@@ -154,3 +154,6 @@ Route::post('xl_gui_mail_xac_nhan_tc',[TrongCoiController::class, 'xlGuiMailXacN
 // KhachHang Routes
 Route::get('ql_kh',[KhachHangController::class, 'viewQuanLy'])->name('ql_kh');
 Route::get('chi_tiet_tk',[KhachHangController::class, 'viewChiTietTaiKhoan'])->name('chi_tiet_tk');
+Route::get('chi_tiet_kh',[KhachHangController::class, 'viewChiTietKhachHang'])->name('chi_tiet_kh');
+Route::post('xl_dky_hv_tructiep',[KhachHangController::class, 'xlDKHoiVienTrucTiep']);
+Route::post('xl_dky_hv', [KhachHangController::class, 'xlDKHoiVien']);
