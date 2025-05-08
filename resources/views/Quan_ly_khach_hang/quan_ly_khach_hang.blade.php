@@ -47,7 +47,7 @@
                 <input type="text" class="form-control" name="search_id" value="{{ !empty($search_id)?$search_id:"" }}" placeholder="Nhập số điện thoại">
               </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="form-group">
                 <label for="search_customer" class="form-label">Loại khách hàng</label>
                 <select class="form-select" name="search_customer">
@@ -56,6 +56,12 @@
                     <option value="{{ $loai_khach->id }}" {{ !empty($search_customer)&&$search_customer==$loai_khach->id?"selected":"" }}>{{ $loai_khach->ten_loai_khach }}</option>
                   @endforeach
                 </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="search_member" class="form-label">Hội viên</label><br>
+                <input type="checkbox" style="width: 20px; height: 20px; margin-left: 10px"  name="search_member" {{ !empty($search_member)?"checked":"" }} >
               </div>
             </div>
             <div class="col-12 text-end">
@@ -87,6 +93,7 @@
               </tr>
             </thead>
             <tbody>
+              @if(empty($search_member))
               @foreach ($khach_hangs as $khach_hang)
                 <?php $count++ ?>
                 <tr>
@@ -98,7 +105,23 @@
                   <td>{{$khach_hang->cccd}}</td>
                   <td>{{$khach_hang->LoaiKhach->ten_loai_khach }}</td>
                   <td>{{$khach_hang->ngay_tao}}</td>
-              @endforeach
+                </tr>
+                @endforeach
+                @else
+                @foreach ($hoi_viens as $hoi_vien)
+                <?php $count++ ?>
+                <tr>
+                  <td>{{$count}}</td>
+                  <td>{{$hoi_vien->KhachHang->ho_ten}}</td>
+                  <td>{{$hoi_vien->KhachHang->ngay_sinh}}</td>
+                  <td>{{$hoi_vien->KhachHang->sdt}}</td>
+                  <td>{{$hoi_vien->KhachHang->email }}</td>
+                  <td>{{$hoi_vien->KhachHang->cccd}}</td>
+                  <td>{{$hoi_vien->LoaiKhach->ten_loai_khach }}</td>
+                  <td>{{$hoi_vien->KhachHang->ngay_tao}}</td>
+                </tr>
+                @endforeach
+                @endIf
             </tbody>
           </table>
         </div>

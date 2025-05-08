@@ -34,6 +34,12 @@ class KhachHangController extends Controller
             $query = $query->where('id_loai_khach_hang',$request->search_customer);
             $data['search_customer'] = $request->search_customer;
         }
+        if($request->has('search_member')){
+            $data['hoi_viens'] = HoiVienModel::paginate(5);
+            $data['search_member'] = $request->search_member;
+            // $query = HoiVienModel::leftJoin('ql_khachhang','ql_khachhang.id','=','ql_hoivien.id_khach_hang')
+            // ->leftJoin('dm_loaikhachhang','dm_loaikhachhang.id','=','ql_hoivien.id_khachhang')
+        }
         $data['khach_hangs'] = $query->paginate(5);
         $data['loai_khachs'] = DMLoaiKhachHangModel::all();
         $data['count']=0;
