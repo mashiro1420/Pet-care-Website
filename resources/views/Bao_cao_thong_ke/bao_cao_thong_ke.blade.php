@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <style>
     :root {
       --primary-color: #4361ee;
@@ -172,6 +173,11 @@
         </div>
       </div>
     </div>
+    <div class="col-12 d-flex justify-content-end gap-2 mb-4">
+      <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalExport" {{ empty($khach_hang->hoi_vien_id)?"":"hidden" }}>
+        <i class="fa-solid fa-gears"></i>Xuất báo cáo
+      </button>
+    </div>
     <div class="row g-4">
       <div class="col-lg-4">
         <div class="chart-container">
@@ -263,7 +269,75 @@
       </div>
     </div>
   </div>
-
+ <!-- Modal export -->
+ <div class="modal fade" id="modalExport" tabindex="-1" aria-labelledby="modalExportLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalExportLabel">Xuất báo cáo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="{{ url('export_report') }}" method="POST">
+            @csrf
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="nam" class="form-label">Năm</label>
+                <select name="nam" class="form-control">
+                  <option value="" selected>--Chọn năm--</option>
+                  @for($i = 2024;$i <= date("Y");$i++ )
+                  <option value="{{$i}}">{{ $i }}</option>
+                  @endFor
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="thang" class="form-label">Tháng</label>
+                <select name="thang" class="form-control">
+                  <option value="" selected>--Chọn tháng--</option>
+                  @for($i = 1;$i <= 12;$i++ )
+                  <option value="{{$i}}">Tháng {{ $i }}</option>
+                  @endFor
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="tuan" class="form-label">Tuần</label>
+                <select name="tuan" class="form-control">
+                  <option value="" selected>--Chọn tuần--</option>
+                  @for($i = 1;$i <= 12;$i++ )
+                  <option value="{{$i}}">Tháng {{ $i }}</option>
+                  @endFor
+                </select>
+              </div>
+            </div>
+            <div class="mb-3">
+                <label for="cham_soc" class="form-label">Dữ liệu chăm sóc</label>
+                <input type="checkbox"  style="width: 20px; height: 20px; margin-left: 10px" name="cham_soc" checked>
+            </div>
+            <div class="mb-3">
+                <label for="trong_coi" class="form-label">Dữ liệu trông coi</label>
+                <input type="checkbox"  style="width: 20px; height: 20px; margin-left: 10px" name="trong_coi" checked>
+            </div>
+            <div class="mb-3">
+                <label for="danh_gia" class="form-label">Dữ liệu đánh giá</label>
+                <input type="checkbox"  style="width: 20px; height: 20px; margin-left: 10px" name="danh_gia" checked>
+            </div>
+            <div class="mb-3">
+                <label for="bai_dang" class="form-label">Dữ liệu bài đăng</label>
+                <input type="checkbox"  style="width: 20px; height: 20px; margin-left: 10px" name="bai_dang" checked>
+            </div>
+            <div class="mb-3">
+                <label for="doanh_thu" class="form-label">Dữ liệu doanh thu</label>
+                <input type="checkbox"  style="width: 20px; height: 20px; margin-left: 10px" name="doanh_thu" checked>
+            </div>
+            <div class="d-flex justify-content-between">
+              <button type="submit" class="btn btn-primary">Export</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   <footer class="py-4 bg-light mt-5">
     <div class="container text-center">
       <p class="mb-0">© 2025 Hệ thống quản lý dịch vụ thú cưng. All rights reserved.</p>
@@ -540,6 +614,12 @@
       createLineChart('postsPerMonthChart', months, bai_dang_nam, 'Bài đăng', chartColors.posts);
       createLineChart('revenuePerWeekChart', days, doanh_thu_tuan, 'Doanh thu (nghìn VND)', chartColors.revenue);
       createLineChart('revenuePerMonthChart', months, doanh_thu_nam, 'Doanh thu (nghìn VND)', chartColors.revenue);
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
     });
   </script>
 </body>

@@ -162,3 +162,4 @@ Route::post('xl_dky_hv', [KhachHangController::class, 'xlDKHoiVien']);
 Route::post('cap_nhat_tai_khoan', [KhachHangController::class, 'xlCapNhatTaiKhoan']);
 //BaoCao Routes
 Route::get('bao_cao',[BaoCaoController::class, 'viewBaoCao'])->name('bao_cao');
+Route::post('export_report',[BaoCaoController::class, 'export']);

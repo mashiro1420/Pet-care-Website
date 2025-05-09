@@ -96,9 +96,7 @@
             <div class="col-md-12">
               <div class="mb-3">
                 <label for="ghi_chu" class="form-label">Ghi chú</label>
-                <textarea class="form-control" name="ghi_chu" cols="30" rows="10" readonly>
-                  {{$cham_soc->ghi_chu}}
-                </textarea>
+                <textarea class="form-control" name="ghi_chu" cols="30" rows="10" readonly>{{$cham_soc->ghi_chu}}</textarea>
               </div>
             </div>
           </div>
@@ -107,7 +105,7 @@
               $selected = $dich_vu_them;
             @endphp
               <label for="dich_vu_them">Chọn dịch vụ</label>
-              <select class="js-example-basic-multiple form-control" name="dich_vu_them[]" id="dich_vu_them" multiple='multiple' {{ $cham_soc->id_trang_thai==1||$cham_soc->id_trang_thai==2?'required':'disabled' }}>
+              <select class="js-example-basic-multiple form-control" name="dich_vu_them[]" id="dich_vu_them" multiple='multiple' {{ $cham_soc->id_trang_thai==1||$cham_soc->id_trang_thai==2?'required':'readonly' }}>
                 @foreach ($dich_vus as $dich_vu)
                   <option value="{{ $dich_vu->id }}" {{ in_array($dich_vu->id, $selected) ? 'selected' : '' }}>
                     {{ $dich_vu->ten_dich_vu }}
