@@ -289,6 +289,8 @@ class TrongCoiController extends Controller
     {
         $trong_coi = TrongCoiModel::find($request->id);
         $hoi_vien = HoiVienModel::find($trong_coi->id_khach_hang);
+        if($request->danh_gia) $trong_coi->danh_gia = $request->danh_gia;
+        else $trong_coi->danh_gia = 5;
         if($hoi_vien){
             $hoi_vien->diem_hoi_vien = $hoi_vien->diem_hoi_vien + 10;
             $hoi_vien->save();

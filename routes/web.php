@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BaoCaoController;
 use App\Http\Controllers\DangNhapController;
 use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\TaiKhoanController;
@@ -159,3 +160,5 @@ Route::get('chi_tiet_tk',[KhachHangController::class, 'viewChiTietTaiKhoan'])->n
 Route::get('chi_tiet_kh',[KhachHangController::class, 'viewChiTietKhachHang'])->name('chi_tiet_kh');
 Route::post('xl_dky_hv', [KhachHangController::class, 'xlDKHoiVien']);
 Route::post('cap_nhat_tai_khoan', [KhachHangController::class, 'xlCapNhatTaiKhoan']);
+//BaoCao Routes
+Route::get('bao_cao',[BaoCaoController::class, 'viewBaoCao'])->name('bao_cao');

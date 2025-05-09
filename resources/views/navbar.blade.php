@@ -40,6 +40,9 @@
             <li class="nav-item">
               <a class="nav-link px-3" href="{{ route('ql_trongcoi') }}">Quản lý trông coi</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link px-3" href="{{ route('bao_cao') }}">Thống kê</a>
+            </li>
           </ul>
         </div>
         <a class="btn btn-outline-dark ms-3" href="{{ route('doi_mk',['id'=>session('tai_khoan')]) }}">

@@ -292,6 +292,8 @@ class ChamSocController extends Controller
     {
         $cham_soc = ChamSocModel::find($request->id);
         $cham_soc->id_trang_thai = 4;
+        if($request->danh_gia) $cham_soc->danh_gia = $request->danh_gia;
+        else $cham_soc->danh_gia = 5;
         $hoi_vien = HoiVienModel::find($cham_soc->id_khach_hang);
         if($hoi_vien){
             $hoi_vien->diem_hoi_vien = $hoi_vien->diem_hoi_vien + 5;
