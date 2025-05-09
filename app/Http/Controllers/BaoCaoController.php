@@ -33,7 +33,7 @@ class BaoCaoController extends Controller
         $cuoi_thang = Carbon::now()->endOfMonth();
         $dau_nam = Carbon::create($nam_hien_tai, 1, 1)->startOfDay();
         $cuoi_nam = Carbon::create($nam_hien_tai, 12, 31)->endOfDay();
-        $cham_socs = ChamSocModel::join('ql_thanhtoanchamsoc','ql_thanhtoanchamsoc.id_cham_soc','=','ql_chamsoc.id')->get();
+        $cham_socs = ChamSocModel::join('ql_thanhtoanchamsoc','ql_thanhtoanchamsoc.id_cham_soc','=','ql_chamsoc.id')->where('id_trang_thai',4)->get();
         foreach ($cham_socs as $cham_soc){
             $ngay = Carbon::create($cham_soc->ngay);
             $trong_nam = $ngay->betweenIncluded($dau_nam, $cuoi_nam);
@@ -53,7 +53,7 @@ class BaoCaoController extends Controller
             }
             if($trong_thang) $data['danh_gia_thang'][$cham_soc->danh_gia-1]+=1;
         }
-        $trong_cois = TrongCoiModel::join('ql_thanhtoantrongcoi','ql_thanhtoantrongcoi.id_trong_coi','=','ql_trongcoi.id')->get();
+        $trong_cois = TrongCoiModel::join('ql_thanhtoantrongcoi','ql_thanhtoantrongcoi.id_trong_coi','=','ql_trongcoi.id')->where('id_trang_thai',4)->get();
         foreach ($trong_cois as $trong_coi){
             $ngay = Carbon::create($trong_coi->den_ngay);
             $trong_nam = $ngay->betweenIncluded($dau_nam, $cuoi_nam);
@@ -106,7 +106,7 @@ class BaoCaoController extends Controller
         // $data['doanh_thu_tuan'] = [0,0,0,0,0,0,0];
         $dau_nam = Carbon::create($request->nam, 1, 1)->startOfDay();
         $cuoi_nam = Carbon::create($request->nam, 12, 31)->endOfDay();
-        $cham_socs = ChamSocModel::join('ql_thanhtoanchamsoc','ql_thanhtoanchamsoc.id_cham_soc','=','ql_chamsoc.id')->get();
+        $cham_socs = ChamSocModel::join('ql_thanhtoanchamsoc','ql_thanhtoanchamsoc.id_cham_soc','=','ql_chamsoc.id')->where('id_trang_thai',4)->get();
         foreach ($cham_socs as $cham_soc){
             $ngay = Carbon::create($cham_soc->ngay);
             $trong_nam = $ngay->betweenIncluded($dau_nam, $cuoi_nam);
@@ -124,7 +124,7 @@ class BaoCaoController extends Controller
             // }
             // if($trong_thang) $data['danh_gia_thang'][$cham_soc->danh_gia-1]+=1;
         }
-        $trong_cois = TrongCoiModel::join('ql_thanhtoantrongcoi','ql_thanhtoantrongcoi.id_trong_coi','=','ql_trongcoi.id')->get();
+        $trong_cois = TrongCoiModel::join('ql_thanhtoantrongcoi','ql_thanhtoantrongcoi.id_trong_coi','=','ql_trongcoi.id')->where('id_trang_thai',4)->get();
         foreach ($trong_cois as $trong_coi){
             $ngay = Carbon::create($trong_coi->den_ngay);
             $trong_nam = $ngay->betweenIncluded($dau_nam, $cuoi_nam);
