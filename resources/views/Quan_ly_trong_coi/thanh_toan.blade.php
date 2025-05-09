@@ -128,6 +128,7 @@
         <div class="row g-3">
           <div class="col-md-6">
             <div class="form-group">
+              <input type="hidden" name="search_danhgia" id="search_danhgia_value" value="{{ !empty($search_danhgia)?$search_danhgia:"" }}">
               <label for="search_danhgia" class="form-label">Đánh giá</label>
               <div class="dropdown star-rating-dropdown">
                 <button class="form-select dropdown-toggle d-flex align-items-center justify-content-between" type="button" id="starRatingDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -201,6 +202,30 @@
   <script>
     $(document).ready(function() {
         $('.js-example-basic-multiple').select2();
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const dropdownItems = document.querySelectorAll('.star-rating-dropdown .dropdown-item');
+      const selectedRating = document.getElementById('selectedRating');
+      const hiddenInput = document.getElementById('search_danhgia_value');
+      
+      dropdownItems.forEach(item => {
+        item.addEventListener('click', function() {
+          const value = this.getAttribute('data-value');
+          hiddenInput.value = value;
+          
+          // Update the button content with the selected stars
+          if (value === '0') {
+            selectedRating.innerHTML = 'Tất cả';
+          } else {
+            // Clone the stars from the selected item
+            selectedRating.innerHTML = '';
+            const stars = this.cloneNode(true).innerHTML;
+            selectedRating.innerHTML = stars;
+          }
+        });
+      });
     });
   </script>
 </body>
