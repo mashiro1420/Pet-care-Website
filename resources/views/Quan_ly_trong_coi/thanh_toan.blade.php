@@ -127,16 +127,50 @@
         @csrf
         <div class="row g-3">
           <div class="col-md-6">
-            <div class="mb-3">
-              <label for="danh_gia" class="form-label">Đánh giá</label>
-              <div class="form-control bg-light">
-                @for ($i = 1; $i <= 5; $i++)
-                  @if ($i <= $trong_coi->danh_gia)
+            <div class="form-group">
+              <label for="search_danhgia" class="form-label">Đánh giá</label>
+              <div class="dropdown star-rating-dropdown">
+                <button class="form-select dropdown-toggle d-flex align-items-center justify-content-between" type="button" id="starRatingDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span id="selectedRating">Chọn đánh giá</span>
+                </button>
+                <ul class="dropdown-menu w-100" aria-labelledby="starRatingDropdown">
+                  <li><a class="dropdown-item" data-value="0">Tất cả</a></li>
+                  <li><a class="dropdown-item" data-value="5">
                     <i class="bi bi-star-fill text-warning"></i>
-                  @else
-                    <i class="bi bi-star text-secondary"></i>
-                  @endif
-                @endfor
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                  </a></li>
+                  <li><a class="dropdown-item" data-value="4">
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-secondary"></i>
+                  </a></li>
+                  <li><a class="dropdown-item" data-value="3">
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-secondary"></i>
+                    <i class="bi bi-star-fill text-secondary"></i>
+                  </a></li>
+                  <li><a class="dropdown-item" data-value="2">
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-secondary"></i>
+                    <i class="bi bi-star-fill text-secondary"></i>
+                    <i class="bi bi-star-fill text-secondary"></i>
+                  </a></li>
+                  <li><a class="dropdown-item" data-value="1">
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-secondary"></i>
+                    <i class="bi bi-star-fill text-secondary"></i>
+                    <i class="bi bi-star-fill text-secondary"></i>
+                    <i class="bi bi-star-fill text-secondary"></i>
+                  </a></li>
+                </ul>
               </div>
             </div>
           </div>

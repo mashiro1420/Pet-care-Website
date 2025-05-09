@@ -52,88 +52,76 @@
   </section>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // document.addEventListener('DOMContentLoaded', function () {
-    //   const form = document.querySelector('form');
-    //   const tu_ngay = document.getElementById('tu_ngay');
-    //   const den_ngay = document.getElementById('den_ngay');
-
-    //   function getTodayString() {
-    //     const now = new Date();
-    //     const yyyy = now.getFullYear();
-    //     const mm = String(now.getMonth() + 1).padStart(2, '0');
-    //     const dd = String(now.getDate()).padStart(2, '0');
-    //     return `${yyyy}-${mm}-${dd}`;
-    //   }
-
-    //   // Thiết lập ngày tối thiểu là hôm nay
-    //   const today_str = getTodayString();
-    //   tu_ngay.setAttribute('min', today_str);
-    //   den_ngay.setAttribute('min', today_str);
-
-    //   function isFormValid() {
-    //     const now = new Date();
-    //     const tu_ngay_value = new Date(tu_ngay.value);
-    //     const den_ngay_value = new Date(den_ngay.value);
-
-    //     if (!tu_ngay.value || !den_ngay.value) {
-    //       alert('Vui lòng chọn đầy đủ ngày bắt đầu và ngày kết thúc.');
-    //       return false;
-    //     }
-
-    //     if (tu_ngay_value > den_ngay_value) {
-    //       alert('Từ ngày không được lớn hơn đến ngày.');
-    //       return false;
-    //     }
-
-    //     const today = new Date();
-    //     today.setHours(0, 0, 0, 0);
-    //     if (tu_ngay_value < today || den_ngay_value < today) {
-    //       alert('Ngày trông coi không được là ngày trong quá khứ.');
-    //       return false;
-    //     }
-
-    //     // Nếu từ ngày là hôm nay → giờ nhận phải sau thời điểm hiện tại
-    //     if (tu_ngay_value.toDateString() === now.toDateString()) {
-    //       const [nhan_hour, nhan_minute] = gio_nhan.value.split(':');
-    //       const nhanTime = new Date(tu_ngay_value);
-    //       nhanTime.setHours(parseInt(nhan_hour), parseInt(nhan_minute), 0, 0);
-
-    //       if (nhanTime <= now) {
-    //         alert('Giờ nhận không hợp lệ vì nhỏ hơn thời gian hiện tại.');
-    //         return false;
-    //       }
-    //     }
-
-    //     // Nếu từ ngày và đến ngày là cùng một ngày → giờ trả phải sau giờ nhận
-    //     if (tu_ngay.value === den_ngay.value) {
-    //       const [nhan_hour, nhan_minute] = gio_nhan.value.split(':');
-
-    //       const nhan = new Date();
-    //       nhan.setHours(parseInt(nhan_hour), parseInt(nhan_minute), 0, 0);
-    //       const tra = new Date();
-    //       tra.setHours(parseInt(tra_hour), parseInt(tra_minute), 0, 0);
-
-    //       if (tra <= nhan) {
-    //         alert('Giờ trả phải lớn hơn giờ nhận nếu trong cùng một ngày.');
-    //         return false;
-    //       }
-    //     }
-
-    //     return true;
-    //   }
-
-    //   // Ngăn submit nếu dữ liệu không hợp lệ
-    //   form.addEventListener('submit', function (e) {
-    //     if (!isFormValid()) {
-    //       e.preventDefault(); // Ngăn gửi form
-    //     }
-    //   });
-
-    //   // Kiểm tra mỗi khi người dùng thay đổi các trường
-    //   [tu_ngay, den_ngay, gio_nhan].forEach(el => {
-    //     el.addEventListener('change', isFormValid);
-    //   });
-    // });
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.querySelector('form');
+      const tu_ngay = document.getElementById('tu_ngay');
+      const den_ngay = document.getElementById('den_ngay');
+      function getTodayString() {
+        const now = new Date();
+        const yyyy = now.getFullYear();
+        const mm = String(now.getMonth() + 1).padStart(2, '0');
+        const dd = String(now.getDate()).padStart(2, '0');
+        return `${yyyy}-${mm}-${dd}`;
+      }
+      function formatDate(date) {
+        const yyyy = date.getFullYear();
+        const mm = String(date.getMonth() + 1).padStart(2, '0');
+        const dd = String(date.getDate()).padStart(2, '0');
+        return `${yyyy}-${mm}-${dd}`;
+      }
+      // Thiết lập ngày tối thiểu là hôm nay
+      const today_str = getTodayString();
+      tu_ngay.setAttribute('min', today_str);
+      den_ngay.setAttribute('min', today_str);
+      // Cập nhật min của đến ngày mỗi khi chọn từ ngày
+      tu_ngay.addEventListener('change', function () {
+        if (tu_ngay.value) {
+          const tu_ngay_date = new Date(tu_ngay.value);
+          tu_ngay_date.setDate(tu_ngay_date.getDate() + 1); // Ngày hôm sau
+          const new_min = formatDate(tu_ngay_date);
+          den_ngay.setAttribute('min', new_min);
+          // Nếu đến ngày hiện tại không hợp lệ thì xóa giá trị
+          if (new Date(den_ngay.value) < tu_ngay_date) {
+            den_ngay.value = '';
+          }
+        }
+      });
+      // Cảnh báo nếu người dùng chọn đến ngày trước khi chọn từ ngày
+      den_ngay.addEventListener('mousedown', function (e) {
+        if (!tu_ngay.value) {
+          alert('Vui lòng chọn ngày bắt đầu trước.');
+          e.preventDefault();
+        }
+      });
+      function isFormValid() {
+        const tu_ngay_value = new Date(tu_ngay.value);
+        const den_ngay_value = new Date(den_ngay.value);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        if (!tu_ngay.value || !den_ngay.value) {
+          alert('Vui lòng chọn đầy đủ ngày bắt đầu và ngày kết thúc.');
+          return false;
+        }
+        if (tu_ngay_value > den_ngay_value) {
+          alert('Từ ngày không được lớn hơn đến ngày.');
+          return false;
+        }
+        if (tu_ngay_value < today || den_ngay_value < today) {
+          alert('Ngày trông coi không được là ngày trong quá khứ.');
+          return false;
+        }
+        if (den_ngay_value <= tu_ngay_value) {
+          alert('Đến ngày phải sau ngày bắt đầu ít nhất 1 ngày.');
+          return false;
+        }
+        return true;
+      }
+      form.addEventListener('submit', function (e) {
+        if (!isFormValid()) {
+          e.preventDefault();
+        }
+      });
+    });
   </script>
 </body>
 </html>
