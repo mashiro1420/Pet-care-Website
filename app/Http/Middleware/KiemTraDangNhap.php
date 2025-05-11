@@ -13,23 +13,13 @@ class KiemTraDangNhap
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next, ...$quyens): Response
     {
-        if (!$request->session()->has('tai_khoan')) {
-            return redirect()->route('dang_nhap')->with('error', 'Cần phải đăng nhập mới có thể truy cập.');
-        }
-        $quyen = session('quyen');
-        if ($quyen == 'Admin') {
+        if(empty(session('tai_khoan'))) return redirect()->route('dang_nhap')->with('bao_loi', 'Cần đăng nhập để truy cập trang này.');
+        $quyen_user = session('quyen');
+        if (in_array($quyen_user,$quyens)) {
             return $next($request);
         }
-        $trang_ql = ['ql_kh'];
-        if (($quyen == 'Quản lý'||$quyen == 'Nhân viên') && !in_array($request->path(), $trang_ql)) {
-            return redirect()->route('ql_kh')->with('error', 'Không có quyền truy cập.');
-        }
-        $trang_ql = [];
-        if ($quyen == 'Khách hàng' && !in_array($request->path(), $trang_ql)) {
-            return redirect()->route('dang_nhap')->with('error', 'Không có quyền truy cập.');
-        }
-        return $next($request);
+        return redirect()->back()->with('bao_loi', 'Không có quyền truy cập vào trang này.');
     }
 }

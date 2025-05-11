@@ -46,14 +46,14 @@ class DangNhapController extends Controller
 				} else {
 						$request->session()->put('bao_loi', '');
 						$request->session()->put('tai_khoan', $tai_khoan);
-						$request->session()->put('quyen', $nguoi_dung->Quyen->ten_quyen);
+						$request->session()->put('quyen', $nguoi_dung->Quyen->id);
 				}
 		}
 		if (session('bao_loi') == '') {
-			if(session('quyen') == 'Admin') return redirect()->route('ql_tk');
-			elseif(session('quyen') == 'Quản lý')return redirect()->route('ql_chamsoc');
+			if(session('quyen') == 1) return redirect()->route('ql_tk');
+			elseif(session('quyen') == 5)return redirect()->route('bao_cao');
+			elseif(session('quyen') == 3)return redirect()->route('ql_chamsoc');
 			else return redirect()->route('khach_hang_lichchamsoc');
-			
 		} else {
 				return redirect()->route('dang_nhap');
 		}

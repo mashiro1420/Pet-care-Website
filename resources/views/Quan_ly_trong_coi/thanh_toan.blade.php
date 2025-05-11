@@ -128,7 +128,7 @@
         <div class="row g-3">
           <div class="col-md-6">
             <div class="form-group">
-              <input type="hidden" name="search_danhgia" id="search_danhgia_value" value="{{ !empty($search_danhgia)?$search_danhgia:"" }}">
+              <input type="hidden" name="danh_gia" id="search_danhgia_value" value="{{ !empty($search_danhgia)?$search_danhgia:"" }}">
               <label for="search_danhgia" class="form-label">Đánh giá</label>
               <div class="dropdown star-rating-dropdown">
                 <button class="form-select dropdown-toggle d-flex align-items-center justify-content-between" type="button" id="starRatingDropdown" data-bs-toggle="dropdown" aria-expanded="false">
