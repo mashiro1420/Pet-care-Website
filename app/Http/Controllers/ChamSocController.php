@@ -202,7 +202,7 @@ class ChamSocController extends Controller
             'ghi_chu' => $request->ghi_chu,
             'dich_vu' => 'CS'
 		];
-        // $this->xlGuiMailXacNhan($thong_tin);
+        $this->xlGuiMailXacNhan($thong_tin);
         return redirect()->route('khach_hang_lichchamsoc');
     }
     public function xlSuaLich(Request $request)
@@ -224,7 +224,7 @@ class ChamSocController extends Controller
             'ghi_chu' => $request->ghi_chu,
             'dich_vu' => 'CS'
 		];
-        // $this->xlGuiMailXacNhan($thong_tin);
+        $this->xlGuiMailXacNhan($thong_tin);
         return redirect()->route('khach_hang_lichchamsoc');
     }
     public function xlXacNhan(Request $request)
@@ -271,11 +271,10 @@ class ChamSocController extends Controller
             'thoi_gian' => $dat_lich->thoi_gian,
             'trang_thai' => DMTrangThaiModel::find(3)->ten_trang_thai,
             'ghi_chu' => $dat_lich->ghi_chu,
-            'gia' => $gia,
             'dich_vu' => 'CS'
 		];
         $dat_lich->save();
-        // $this->xlGuiMailXacNhan($thong_tin);
+        $this->xlGuiMailXacNhan($thong_tin);
         return redirect()->route('chi_tiet_admin_cs', ['id' => $request->id]);
     }
     public function xlApDungKM(Request $request)
@@ -292,14 +291,29 @@ class ChamSocController extends Controller
     {
         $cham_soc = ChamSocModel::find($request->id);
         $cham_soc->id_trang_thai = 4;
+        $gia = CSThanhToanModel::where('id_cham_soc',$request->id)->first();
         if($request->danh_gia) $cham_soc->danh_gia = $request->danh_gia;
         else $cham_soc->danh_gia = 5;
-        $hoi_vien = HoiVienModel::find($cham_soc->id_khach_hang);
-        if($hoi_vien){
+        $hoi_vien = HoiVienModel::where('id_khach_hang',$cham_soc->id_khach_hang)->first();
+        // dd($hoi_vien);
+        if(!empty($hoi_vien)){
             $hoi_vien->diem_hoi_vien = $hoi_vien->diem_hoi_vien + 5;
             $hoi_vien->save();
         }
         $cham_soc->save();
+        $thong_tin = [
+            'loai' => 3,
+			'email' => $cham_soc->KhachHang->email,
+			'ho_ten' => $cham_soc->KhachHang->ten_khach_hang,
+            'sdt' => $cham_soc->KhachHang->sdt,
+            'ngay' => $cham_soc->ngay,
+            'thoi_gian' => $cham_soc->thoi_gian,
+            'trang_thai' => DMTrangThaiModel::find(3)->ten_trang_thai,
+            'ghi_chu' => $cham_soc->ghi_chu,
+            'gia' => $gia->tong_tien,
+            'dich_vu' => 'CS'
+		];
+        $this->xlGuiMailXacNhan($thong_tin);
         return redirect()->route('ql_chamsoc');
     }
     public function xlHuy(Request $request)
@@ -314,7 +328,7 @@ class ChamSocController extends Controller
             'sdt' => $dat_lich->KhachHang->sdt,
             'dich_vu' => 'CS'
 		];
-        // $this->xlGuiMailXacNhan($thong_tin);
+        $this->xlGuiMailXacNhan($thong_tin);
         return redirect()->route('khach_hang_lichchamsoc');
     }
     protected function xlGuiMailXacNhan(array $thong_tin)

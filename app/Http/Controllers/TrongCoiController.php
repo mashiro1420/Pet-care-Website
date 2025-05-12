@@ -196,7 +196,7 @@ class TrongCoiController extends Controller
             'dich_vu_them' => $request->dich_vu_them,
             'dich_vu' => 'TC'
 		];
-        // $this->xlGuiMailXacNhan($thong_tin);
+        $this->xlGuiMailXacNhan($thong_tin);
         return redirect()->route('khach_hang_lichtrongcoi');
     }
     public function xlSuaLich(Request $request)
@@ -218,7 +218,7 @@ class TrongCoiController extends Controller
             'dich_vu_them' => $request->dich_vu_them,
             'dich_vu' => 'TC'
 		];
-        // $this->xlGuiMailXacNhan($thong_tin);
+        $this->xlGuiMailXacNhan($thong_tin);
         return redirect()->route('khach_hang_lichtrongcoi');
     }
     public function xlXacNhan(Request $request)
@@ -272,7 +272,7 @@ class TrongCoiController extends Controller
             'dich_vu_them' => $request->dich_vu_them,
             'dich_vu' => 'TC'
 		];
-        // $this->xlGuiMailXacNhan($thong_tin);
+        $this->xlGuiMailXacNhan($thong_tin);
         return redirect()->route('chi_tiet_admin_tc', ['id' => $request->id]);
     }
     public function xlApDungKM(Request $request)
@@ -288,29 +288,31 @@ class TrongCoiController extends Controller
     public function xlThanhToan(Request $request)
     {
         $trong_coi = TrongCoiModel::find($request->id);
-        $hoi_vien = HoiVienModel::find($trong_coi->id_khach_hang);
+        $hoi_vien = HoiVienModel::where('id_khach_hang',$trong_coi->id_khach_hang)->first();
+        $gia = TCThanhToanModel::where('id_trong_coi',$request->id)->first();
         if($request->danh_gia) $trong_coi->danh_gia = $request->danh_gia;
         else $trong_coi->danh_gia = 5;
-        if($hoi_vien){
+        if(!empty($hoi_vien)){
             $hoi_vien->diem_hoi_vien = $hoi_vien->diem_hoi_vien + 10;
             $hoi_vien->save();
         }
         $trong_coi->id_trang_thai = 4;
         $trong_coi->save();
-        // $thong_tin = [
-        //     'loai' => 3,
-		// 	'email' => $dat_lich->KhachHang->email,
-		// 	'ho_ten' => $dat_lich->KhachHang->ten_khach_hang,
-        //     'sdt' => $dat_lich->KhachHang->sdt,
-        //     'tu_ngay' => $request->tu_ngay,
-        //     'den_ngay' => $request->den_ngay,
-        //     'gio_nhan' => $request->gio_nhan,
-        //     'gio_tra' => $request->gio_tra,
-        //     'ghi_chu' => $request->ghi_chu,
-        //     'dich_vu_them' => $request->dich_vu_them,
-        //     'dich_vu' => 'TC'
-		// ];
-        // $this->xlGuiMailXacNhan($thong_tin);
+        $thong_tin = [
+            'loai' => 4,
+			'email' => $trong_coi->KhachHang->email,
+			'ho_ten' => $trong_coi->KhachHang->ten_khach_hang,
+            'sdt' => $trong_coi->KhachHang->sdt,
+            'tu_ngay' => $request->tu_ngay,
+            'den_ngay' => $request->den_ngay,
+            'gio_nhan' => $request->gio_nhan,
+            'gio_tra' => $request->gio_tra,
+            'ghi_chu' => $request->ghi_chu,
+            'dich_vu_them' => $request->dich_vu_them,
+            'gia' => $gia->tong_tien,
+            'dich_vu' => 'TC'
+		];
+        $this->xlGuiMailXacNhan($thong_tin);
         return redirect()->route('ql_trongcoi');
     }
     public function xlHuy(Request $request)
@@ -325,7 +327,7 @@ class TrongCoiController extends Controller
             'sdt' => $dat_lich->KhachHang->sdt,
             'dich_vu' => 'TC'
 		];
-        // $this->xlGuiMailXacNhan($thong_tin);
+        $this->xlGuiMailXacNhan($thong_tin);
         return redirect()->route('khach_hang_lichtrongcoi');
     }
     protected function xlGuiMailXacNhan(array $thong_tin)
