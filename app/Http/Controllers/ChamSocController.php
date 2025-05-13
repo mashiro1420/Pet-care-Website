@@ -76,13 +76,9 @@ class ChamSocController extends Controller
             ->leftJoin('dm_trangthai', 'dm_trangthai.id', '=', 'ql_chamsoc.id_trang_thai')
             ->leftJoin('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_chamsoc.id_giong')
             ->leftJoin('ql_taikhoan', 'ql_taikhoan.tai_khoan', '=', 'ql_chamsoc.id_nhan_vien')
-            ->leftJoin('ql_thanhtoanchamsoc','ql_chamsoc.id','=','ql_thanhtoanchamsoc.id_cham_soc');
+            ->leftJoin('ql_thanhtoanchamsoc','ql_chamsoc.id','=','ql_thanhtoanchamsoc.id_cham_soc')
+            ->where('email', session('tai_khoan'));
         $data['cham_socs'] = $query->orderBy('ngay','desc')->paginate(5);
-        $data['trang_thais'] = DMTrangThaiModel::all();
-        $data['giong_thu_cungs'] = DMGiongThuCungModel::all();
-        $data['tai_khoans'] = TaiKhoanModel::all();
-        $data['khach_hangs'] = KhachHangModel::all();
-        $data['dich_vus'] = CSDichVuThemModel::all();
         $data['count'] = 0;
         return view('Giao_dien_khach.Dat_lich_cham_soc.khach_hang_lich_cham_soc', $data);
     }

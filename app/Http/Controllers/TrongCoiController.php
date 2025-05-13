@@ -74,13 +74,9 @@ class TrongCoiController extends Controller
             ->leftJoin('ql_khachhang', 'ql_khachhang.id', '=', 'ql_trongcoi.id_khach_hang')
             ->leftJoin('dm_trangthai', 'dm_trangthai.id', '=', 'ql_trongcoi.id_trang_thai')
             ->leftJoin('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_trongcoi.id_giong')
-            ->leftJoin('ql_thanhtoantrongcoi','ql_trongcoi.id','=','ql_thanhtoantrongcoi.id_trong_coi');
+            ->leftJoin('ql_thanhtoantrongcoi','ql_trongcoi.id','=','ql_thanhtoantrongcoi.id_trong_coi')
+            ->where('email', session('tai_khoan'));
         $data['trong_cois'] = $query->paginate(5);
-        $data['trang_thais'] = DMTrangThaiModel::all();
-        $data['giong_thu_cungs'] = DMGiongThuCungModel::all();
-        $data['tai_khoans'] = TaiKhoanModel::all();
-        $data['khach_hangs'] = KhachHangModel::all();
-        $data['dich_vus'] = TCDichVuThemModel::all();
         return view('Giao_dien_khach.Dat_lich_trong_coi.khach_hang_lich_trong_coi', $data);
     }
     public function viewDatLich(Request $request)
