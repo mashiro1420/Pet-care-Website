@@ -298,7 +298,7 @@ class ChamSocController extends Controller
         }
         $cham_soc->save();
         $thong_tin = [
-            'loai' => 3,
+            'loai' => 4,
 			'email' => $cham_soc->KhachHang->email,
 			'ho_ten' => $cham_soc->KhachHang->ten_khach_hang,
             'sdt' => $cham_soc->KhachHang->sdt,
@@ -318,7 +318,7 @@ class ChamSocController extends Controller
         $dat_lich->id_trang_thai = 5;
         $dat_lich->save();
         $thong_tin = [
-            'loai' => 4,
+            'loai' => 5,
 			'email' => $dat_lich->KhachHang->email,
 			'ho_ten' => $dat_lich->KhachHang->ten_khach_hang,
             'sdt' => $dat_lich->KhachHang->sdt,

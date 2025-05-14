@@ -255,20 +255,6 @@ class TrongCoiController extends Controller
         $thanh_toan->id_trong_coi = $request->id;
         $thanh_toan->tong_tien = $gia;
         $thanh_toan->save();
-        $thong_tin = [
-            'loai' => 3,
-			'email' => $dat_lich->KhachHang->email,
-			'ho_ten' => $dat_lich->KhachHang->ten_khach_hang,
-            'sdt' => $dat_lich->KhachHang->sdt,
-            'tu_ngay' => $request->tu_ngay,
-            'den_ngay' => $request->den_ngay,
-            'gio_nhan' => $request->gio_nhan,
-            'gio_tra' => $request->gio_tra,
-            'ghi_chu' => $request->ghi_chu,
-            'dich_vu_them' => $request->dich_vu_them,
-            'dich_vu' => 'TC'
-		];
-        $this->xlGuiMailXacNhan($thong_tin);
         return redirect()->route('chi_tiet_admin_tc', ['id' => $request->id]);
     }
     public function xlApDungKM(Request $request)
@@ -317,7 +303,7 @@ class TrongCoiController extends Controller
         $dat_lich->id_trang_thai = 5;
         $dat_lich->save();
         $thong_tin = [
-            'loai' => 4,
+            'loai' => 5,
 			'email' => $dat_lich->KhachHang->email,
 			'ho_ten' => $dat_lich->KhachHang->ten_khach_hang,
             'sdt' => $dat_lich->KhachHang->sdt,

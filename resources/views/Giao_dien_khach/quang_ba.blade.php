@@ -110,7 +110,6 @@
               <h4 class="card-title mb-3">Tắm và vệ sinh</h4>
               <p class="card-text">Dịch vụ tắm, cắt tỉa lông và vệ sinh toàn diện cho thú cưng của bạn, giúp loại bỏ mùi
                 hôi và giữ cho bộ lông luôn sạch đẹp.</p>
-              <a href="#booking" class="btn btn-outline-primary mt-3">Đặt lịch</a>
             </div>
           </div>
         </div>
@@ -125,7 +124,6 @@
               <h4 class="card-title mb-3">Chăm sóc y tế</h4>
               <p class="card-text">Đội ngũ bác sĩ thú y giàu kinh nghiệm cung cấp dịch vụ kiểm tra sức khỏe, tiêm phòng
                 và điều trị bệnh cho thú cưng.</p>
-              <a href="#booking" class="btn btn-outline-primary mt-3">Đặt lịch</a>
             </div>
           </div>
         </div>
@@ -140,7 +138,6 @@
               <h4 class="card-title mb-3">Huấn luyện thú cưng</h4>
               <p class="card-text">Chương trình huấn luyện chuyên nghiệp giúp thú cưng của bạn phát triển hành vi tốt và
                 kỹ năng tuân lệnh cơ bản.</p>
-              <a href="#booking" class="btn btn-outline-primary mt-3">Đặt lịch</a>
             </div>
           </div>
         </div>
@@ -156,7 +153,6 @@
               <h4 class="card-title mb-3">Trông giữ thú cưng</h4>
               <p class="card-text">Dịch vụ trông giữ thú cưng chuyên nghiệp khi bạn đi công tác hoặc nghỉ dưỡng, đảm bảo
                 thú cưng được chăm sóc chu đáo.</p>
-              <a href="#booking" class="btn btn-outline-primary mt-3">Đặt lịch</a>
             </div>
           </div>
         </div>
@@ -171,7 +167,6 @@
               <h4 class="card-title mb-3">Spa và Mát-xa</h4>
               <p class="card-text">Trải nghiệm spa cao cấp dành cho thú cưng với các dịch vụ mát-xa, điều trị da và
                 dưỡng lông giúp thú cưng thư giãn.</p>
-              <a href="#booking" class="btn btn-outline-primary mt-3">Đặt lịch</a>
             </div>
           </div>
         </div>
@@ -186,7 +181,6 @@
               <h4 class="card-title mb-3">Taxi thú cưng</h4>
               <p class="card-text">Dịch vụ đưa đón thú cưng tận nhà, đảm bảo sự an toàn và thoải mái trong suốt quá
                 trình di chuyển.</p>
-              <a href="#booking" class="btn btn-outline-primary mt-3">Đặt lịch</a>
             </div>
           </div>
         </div>
