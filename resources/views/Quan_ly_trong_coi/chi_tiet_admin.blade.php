@@ -128,7 +128,7 @@
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="tong_tien" class="form-label">Tổng tiền</label>
-                <input type="text" class="form-control" name="tong_tien" value="{{$trong_coi->tong_tien}}" readonly>
+                <input type="text" class="form-control" name="tong_tien" value="{{number_format($trong_coi->tong_tien)}} VNĐ" readonly>
               </div>
             </div>
           </div>

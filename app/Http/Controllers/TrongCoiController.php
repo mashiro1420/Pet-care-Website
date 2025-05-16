@@ -91,11 +91,21 @@ class TrongCoiController extends Controller
     public function viewChiTietAdmin(Request $request)
     {
         $data = [];
-        $data['trong_coi'] = TrongCoiModel::query()->select('*', 'ql_trongcoi.id as tc_id')
-        ->leftJoin('ql_khachhang', 'ql_khachhang.id', '=', 'ql_trongcoi.id_khach_hang')
-        ->leftJoin('dm_trangthai', 'dm_trangthai.id', '=', 'ql_trongcoi.id_trang_thai')
-        ->leftJoin('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_trongcoi.id_giong')
-        ->find($request->id);
+        $data['trong_coi'] = TrongCoiModel::query()
+            ->select(
+                'ql_trongcoi.*',
+                'ql_trongcoi.id as tc_id',
+                'dm_trangthai.ten_trang_thai as ten_trang_thai',
+                'dm_giongthucung.ten_giong_thu_cung',
+                'ql_khachhang.ho_ten as ten_khach_hang',
+                'ql_thanhtoantrongcoi.tong_tien'
+            )
+            ->leftJoin('ql_khachhang', 'ql_khachhang.id', '=', 'ql_trongcoi.id_khach_hang')
+            ->leftJoin('dm_trangthai', 'dm_trangthai.id', '=', 'ql_trongcoi.id_trang_thai')
+            ->leftJoin('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_trongcoi.id_giong')
+            ->leftJoin('ql_thanhtoantrongcoi', 'ql_thanhtoantrongcoi.id_trong_coi', '=', 'ql_trongcoi.id')
+            ->where('ql_trongcoi.id', $request->id)
+            ->first();
         $dich_vu_them = TCDichVuThemModel::where('id_trong_coi', $request->id)->get();
         $dich_vu_mac_dinh = TCDichVuModel::all();
         $data['dich_vu_them'] = [];
@@ -115,11 +125,21 @@ class TrongCoiController extends Controller
     public function viewChiTietUser(Request $request)
     {
         $data = []; 
-        $data['trong_coi'] = TrongCoiModel::query()->select('*', 'ql_trongcoi.id as tc_id')
-        ->leftJoin('ql_khachhang', 'ql_khachhang.id', '=', 'ql_trongcoi.id_khach_hang')
-        ->leftJoin('dm_trangthai', 'dm_trangthai.id', '=', 'ql_trongcoi.id_trang_thai')
-        ->leftJoin('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_trongcoi.id_giong')
-        ->find($request->id);
+        $data['trong_coi'] = TrongCoiModel::query()
+            ->select(
+                'ql_trongcoi.*',
+                'ql_trongcoi.id as tc_id',
+                'dm_trangthai.ten_trang_thai as ten_trang_thai',
+                'dm_giongthucung.ten_giong_thu_cung',
+                'ql_khachhang.ho_ten as ten_khach_hang',
+                'ql_thanhtoantrongcoi.tong_tien'
+            )
+            ->leftJoin('ql_khachhang', 'ql_khachhang.id', '=', 'ql_trongcoi.id_khach_hang')
+            ->leftJoin('dm_trangthai', 'dm_trangthai.id', '=', 'ql_trongcoi.id_trang_thai')
+            ->leftJoin('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_trongcoi.id_giong')
+            ->leftJoin('ql_thanhtoantrongcoi', 'ql_thanhtoantrongcoi.id_trong_coi', '=', 'ql_trongcoi.id')
+            ->where('ql_trongcoi.id', $request->id)
+            ->first();
         $dich_vu_them = TCDichVuThemModel::where('id_trong_coi', $request->id)->get();
         $data['dich_vu_them'] = [];
         foreach ($dich_vu_them as $item) {

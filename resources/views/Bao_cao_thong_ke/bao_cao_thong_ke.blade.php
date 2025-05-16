@@ -179,7 +179,7 @@
       </button>
     </div>
     <div class="row g-4">
-      <div class="col-lg-4">
+      <div class="col-lg-6">
         <div class="chart-container">
           <h2><i class="bi bi-calendar-check me-2"></i>Lịch chăm sóc thú cưng theo ngày</h2>
           <div style="height: 300px; position: relative;">
@@ -187,7 +187,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-8">
+      <div class="col-lg-6">
         <div class="chart-container">
           <h2><i class="bi bi-calendar-month me-2"></i>Lịch chăm sóc thú cưng theo tháng</h2>
           <div style="height: 300px; position: relative;">
@@ -195,7 +195,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-6">
         <div class="chart-container">
           <h2><i class="bi bi-house-heart me-2"></i>Lịch trông coi thú cưng theo ngày</h2>
           <div style="height: 300px; position: relative;">
@@ -203,7 +203,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-8">
+      <div class="col-lg-6">
         <div class="chart-container">
           <h2><i class="bi bi-calendar-range me-2"></i>Lịch trông coi thú cưng theo tháng</h2>
           <div style="height: 300px; position: relative;">
@@ -235,7 +235,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-6">
         <div class="chart-container">
           <h2><i class="bi bi-journal-text me-2"></i>Số lượng bài đăng theo ngày</h2>
           <div style="height: 300px; position: relative;">
@@ -243,7 +243,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-8">
+      <div class="col-lg-6">
         <div class="chart-container">
           <h2><i class="bi bi-file-earmark-post me-2"></i>Số lượng bài đăng theo tháng</h2>
           <div style="height: 300px; position: relative;">
@@ -251,7 +251,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-6">
         <div class="chart-container">
           <h2><i class="bi bi-graph-up-arrow me-2"></i>Doanh thu theo ngày</h2>
           <div style="height: 300px; position: relative;">
@@ -259,7 +259,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-8">
+      <div class="col-lg-6">
         <div class="chart-container">
           <h2><i class="bi bi-cash-coin me-2"></i>Doanh thu theo tháng</h2>
           <div style="height: 300px; position: relative;">

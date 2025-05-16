@@ -40,13 +40,23 @@
           </thead>
           <tbody>
             @foreach ($cham_socs as $cham_soc)
+            @php
+              $statusClass = match($cham_soc->ten_trang_thai) {
+                'Đã thanh toán' => 'badge-completed',
+                'Đã hủy' => 'badge-cancelled',
+                'Đang xử lý' => 'badge-pending',
+                default => 'badge-default'
+              };
+            @endphp
             <?php $count++ ?>
               <tr>
                 <td>{{ $count }}</td>
                 <td>{{ $cham_soc->ngay }}</td>
                 <td>{{ $cham_soc->thoi_gian }}</td>
                 <td>{{ $cham_soc->ten_giong_thu_cung }}</td>
-                <td><span class="badge badge-confirmed">{{ $cham_soc->ten_trang_thai }}</span></td>
+                <td>
+                  <span class="badge {{ $statusClass }}">{{ $cham_soc->ten_trang_thai }}</span>
+                </td>
                 <td>{{ $cham_soc->tai_khoan }}</td>
                 <td>
                   <div class="rating">
@@ -59,7 +69,7 @@
                     @endfor
                   </div>
                 </td>
-                <td>{{ number_format($cham_soc->tong_tien, 0, ',', '.') }} đ</td>
+                <td>{{ number_format($cham_soc->tong_tien, 0, ',', '.') }} VNĐ</td>
                 <td>
                   <a href="{{ route('chi_tiet_user_cs', ['id' => $cham_soc->id]) }}" class="btn btn-info btn-sm">
                     <i class="bi bi-eye"></i>

@@ -124,12 +124,12 @@
           <div class="col-md-6">
             <div class="mb-3">
               <label for="tong_tien" class="form-label">Tổng tiền</label>
-              <input type="text" class="form-control" name="tong_tien" value="{{$trong_coi->tong_tien}}" readonly>
+              <input type="text" class="form-control" name="tong_tien" value="{{number_format($trong_coi->tong_tien)}} VNĐ" readonly>
             </div>
           </div>
         </div>
         <div class="col-12 d-flex justify-content-end gap-2 mt-4">
-          <a href="{{route('khach_hang_lichchamsoc')}}" type="reset" class="btn btn-outline-secondary">
+          <a href="{{route('khach_hang_lichtrongcoi')}}" type="reset" class="btn btn-outline-secondary">
             <i class="bi bi-arrow-repeat me-1"></i>Quay lại
           </a>
         </div>

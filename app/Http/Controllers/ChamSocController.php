@@ -93,12 +93,22 @@ class ChamSocController extends Controller
     public function viewChiTietAdmin(Request $request)
     {
         $data = [];
-        $data['cham_soc'] = ChamSocModel::query()->select('*', 'ql_chamsoc.id as cs_id')
-        ->leftJoin('ql_khachhang', 'ql_khachhang.id', '=', 'ql_chamsoc.id_khach_hang')
-        ->leftJoin('dm_trangthai', 'dm_trangthai.id', '=', 'ql_chamsoc.id_trang_thai')
-        ->leftJoin('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_chamsoc.id_giong')
-        ->leftJoin('ql_taikhoan', 'ql_taikhoan.tai_khoan', '=', 'ql_chamsoc.id_nhan_vien')
-        ->find($request->id);
+        $data['cham_soc'] = ChamSocModel::query()->select(
+            'ql_chamsoc.*',
+            'ql_chamsoc.id as cs_id',
+            'dm_trangthai.ten_trang_thai as ten_trang_thai',
+            'dm_giongthucung.ten_giong_thu_cung',
+            'ql_khachhang.ho_ten as ten_khach_hang',
+            'ql_taikhoan.ten_nhan_vien',
+            'ql_thanhtoanchamsoc.tong_tien'
+        )
+            ->leftJoin('ql_khachhang', 'ql_khachhang.id', '=', 'ql_chamsoc.id_khach_hang')
+            ->leftJoin('dm_trangthai', 'dm_trangthai.id', '=', 'ql_chamsoc.id_trang_thai')
+            ->leftJoin('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_chamsoc.id_giong')
+            ->leftJoin('ql_taikhoan', 'ql_taikhoan.tai_khoan', '=', 'ql_chamsoc.id_nhan_vien')
+            ->leftJoin('ql_thanhtoanchamsoc', 'ql_thanhtoanchamsoc.id_cham_soc', '=', 'ql_chamsoc.id')
+            ->where('ql_chamsoc.id', $request->id)
+            ->first();
         $dich_vu_them = CSDichVuThemModel::where('id_cham_soc', $request->id)->get();
         $dich_vu_mac_dinh = CSDichVuModel::all();
         $data['dich_vu_them'] = [];
@@ -118,12 +128,22 @@ class ChamSocController extends Controller
     public function viewChiTietUser(Request $request)
     {
         $data = []; 
-        $data['cham_soc'] = ChamSocModel::query()->select('*', 'ql_chamsoc.id as cs_id')
-        ->leftJoin('ql_khachhang', 'ql_khachhang.id', '=', 'ql_chamsoc.id_khach_hang')
-        ->leftJoin('dm_trangthai', 'dm_trangthai.id', '=', 'ql_chamsoc.id_trang_thai')
-        ->leftJoin('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_chamsoc.id_giong')
-        ->leftJoin('ql_taikhoan', 'ql_taikhoan.tai_khoan', '=', 'ql_chamsoc.id_nhan_vien')
-        ->find($request->id);
+        $data['cham_soc'] = ChamSocModel::query()->select(
+            'ql_chamsoc.*',
+            'ql_chamsoc.id as cs_id',
+            'dm_trangthai.ten_trang_thai as ten_trang_thai',
+            'dm_giongthucung.ten_giong_thu_cung',
+            'ql_khachhang.ho_ten as ten_khach_hang',
+            'ql_taikhoan.ten_nhan_vien',
+            'ql_thanhtoanchamsoc.tong_tien'
+        )
+            ->leftJoin('ql_khachhang', 'ql_khachhang.id', '=', 'ql_chamsoc.id_khach_hang')
+            ->leftJoin('dm_trangthai', 'dm_trangthai.id', '=', 'ql_chamsoc.id_trang_thai')
+            ->leftJoin('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_chamsoc.id_giong')
+            ->leftJoin('ql_taikhoan', 'ql_taikhoan.tai_khoan', '=', 'ql_chamsoc.id_nhan_vien')
+            ->leftJoin('ql_thanhtoanchamsoc', 'ql_thanhtoanchamsoc.id_cham_soc', '=', 'ql_chamsoc.id')
+            ->where('ql_chamsoc.id', $request->id)
+            ->first();
         $dich_vu_them = CSDichVuThemModel::where('id_cham_soc', $request->id)->get();
         $data['dich_vu_them'] = [];
         foreach ($dich_vu_them as $item) {

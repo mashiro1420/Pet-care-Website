@@ -35,7 +35,7 @@
                 <tr>
                   <td>{{$gia->id}}</td>
                   <td>{{$gia->ten_dich_vu}}</td>
-                  <td>{{$gia->don_gia}}</td>
+                  <td>{{number_format($gia->don_gia)}} VNĐ</td>
                   <td class="text-center">
                     <a class="btn btn-sm btn-primary btn-action me-1" href="{{ route('sua_dmdichvu',['id'=>$gia->id_dich_vu]) }}">
                       <i class="bi bi-pencil-square"></i>

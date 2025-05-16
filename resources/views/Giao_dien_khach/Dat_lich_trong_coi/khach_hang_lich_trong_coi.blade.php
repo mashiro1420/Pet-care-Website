@@ -40,13 +40,21 @@
           </thead>
           <tbody>
             @foreach ($trong_cois as $trong_coi)
+            @php
+              $statusClass = match($trong_coi->ten_trang_thai) {
+                  'Đã thanh toán' => 'badge-completed',
+                  'Đã hủy' => 'badge-cancelled',
+                  'Đang xử lý' => 'badge-pending',
+                  default => 'badge-default'
+                };
+            @endphp
               <tr>
                 <td>{{ $trong_coi->id }}</td>
-                <td>{{ $trong_coi->tu_ngay }} ~ {{ $trong_coi->den_ngay }}</td>
+                <td width="15%">{{ $trong_coi->tu_ngay }} ~ {{ $trong_coi->den_ngay }}</td>
                 <td>{{ $trong_coi->gio_nhan }}</td>
                 <td>{{ $trong_coi->gio_tra }}</td>
                 <td>{{ $trong_coi->ten_giong_thu_cung }}</td>
-                <td><span class="badge badge-confirmed">{{ $trong_coi->ten_trang_thai }}</span></td>
+                <td><span class="badge {{ $statusClass }}">{{ $trong_coi->ten_trang_thai }}</span></td>
                 <td>
                   <div class="rating">
                     @for ($i = 0; $i < 5; $i++)
@@ -58,7 +66,7 @@
                     @endfor
                   </div>
                 </td>
-                <td>{{ number_format($trong_coi->tong_tien, 0, ',', '.') }} đ</td>
+                <td>{{ number_format($trong_coi->tong_tien, 0, ',', '.') }} VNĐ</td>
                 <td>
                   <a href="{{ route('chi_tiet_user_tc', ['id' => $trong_coi->id]) }}" class="btn btn-info btn-sm">
                     <i class="bi bi-eye"></i>
