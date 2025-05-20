@@ -13,8 +13,7 @@ class DangNhapController extends Controller
     public function viewDangNhap()
 	{
 			$data=[];
-			$data['bao_loi'] = session('bao_loi');
-			session()->put('bao_loi', '');
+
 			return view('Dang_nhap.dang_nhap',$data);//
 	}
     public function viewDangKy()
