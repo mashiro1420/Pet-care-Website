@@ -55,7 +55,7 @@ class DangNhapController extends Controller
 			elseif(session('quyen') == 3)return redirect()->route('ql_chamsoc');
 			else return redirect()->route('khach_hang_lichchamsoc');
 		} else {
-				return redirect()->route('dang_nhap');
+			return redirect()->route('dang_nhap');
 		}
 	}
     public function logout(){

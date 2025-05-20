@@ -328,9 +328,6 @@
                 <li><i class="bi bi-x-circle-fill text-danger"></i>Không bao gồm dịch vụ y tế</li>
               </ul>
             </div>
-            <div class="card-footer text-center">
-              <a href="#booking" class="btn btn-primary">Đặt lịch</a>
-            </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 mb-4">
@@ -345,9 +342,6 @@
                 <li><i class="bi bi-check-circle-fill"></i>Cắt tỉa lông nâng cao</li>
                 <li><i class="bi bi-check-circle-fill"></i>Dịch vụ y tế cơ bản</li>
               </ul>
-            </div>
-            <div class="card-footer text-center">
-              <a href="#booking" class="btn btn-primary">Đặt lịch</a>
             </div>
           </div>
         </div>
@@ -364,10 +358,7 @@
                 <li><i class="bi bi-check-circle-fill"></i>Dịch vụ y tế nâng cao</li>
                 <li><i class="bi bi-check-circle-fill"></i>Huấn luyện thú cưng</li>
               </ul>
-            </div>
-            <div class="card-footer text-center">
-              <a href="#booking" class="btn btn-primary">Đặt lịch</a>
-            </div>
+            </div>  
           </div>  
         </div>
       </div>
@@ -416,21 +407,7 @@
       <h2 class="section-title">Liên hệ với chúng tôi</h2>
       <div class="row">
         <div class="col-lg-6 mb-4">
-          <form action="#" method="post">
-            <div class="mb-3">
-              <label for="name" class="form-label">Họ và tên</label>
-              <input type="text" class="form-control" id="name" name="name" placeholder="Nhập họ và tên của bạn" required>
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" name="email" placeholder="Nhập email của bạn" required>
-            </div>
-            <div class="mb-3">
-              <label for="message" class="form-label">Tin nhắn</label>
-              <textarea class="form-control" id="message" name="message" rows="5" placeholder="Nhập tin nhắn của bạn" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Gửi tin nhắn</button>
-          </form>
+          <img src="./imgs/footer1.webp" alt="Gallery Image 2" class="img-fluid rounded-3">
         </div>
         <div class="col-lg-6">
           <div class="contact-info">

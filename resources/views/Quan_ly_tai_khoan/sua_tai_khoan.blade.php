@@ -100,5 +100,5 @@
     });
   </script>
 </body>
-
+@include('error_notification')
 </html>
