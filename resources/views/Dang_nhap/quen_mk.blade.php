@@ -23,6 +23,7 @@
           <input type="text" class="form-control" id="email" name="email" placeholder="Nhập email" required>
         </div>
         <button type="submit" class="btn btn-warning w-100 mt-3">Gửi email xác nhận</button>
+        <a href="{{url('dang_nhap')}}" class="btn btn-outline-secondary w-100 mt-3">Quay lại</a>
       </form>
     </div>
   </div>

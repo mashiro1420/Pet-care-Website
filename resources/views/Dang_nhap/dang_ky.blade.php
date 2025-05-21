@@ -51,6 +51,7 @@
           <a href="{{ route('dang_nhap') }}" class="text-decoration-none">Đăng nhập</a>
         </div>
         <button type="submit" class="btn btn-warning w-100 mt-3">Đăng ký</button>
+        <a href="{{url()->previous()}}" class="btn btn-outline-secondary w-100 mt-3">Quay lại</a>
       </form>
     </div>
   </div>

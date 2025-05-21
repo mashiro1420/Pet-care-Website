@@ -42,6 +42,7 @@
             required>
         </div>
         <button type="submit" class="btn btn-warning w-100 mt-3">Đổi mật khẩu</button>
+        <a href="{{url()->previous()}}" class="btn btn-outline-secondary w-100 mt-3">Quay lại</a>
       </form>
     </div>
   </div>

@@ -68,9 +68,6 @@
             </div>
 
             <div class="col-12 d-flex justify-content-end gap-2 mt-4">
-              <button type="reset" class="btn btn-outline-secondary">
-                <i class="bi bi-arrow-repeat me-1"></i>Đặt lại
-              </button>
               <button type="submit" class="btn btn-warning">
                 <i class="bi bi-plus-circle me-1"></i>Sửa tài khoản
               </button>
