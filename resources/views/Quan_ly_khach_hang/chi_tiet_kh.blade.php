@@ -52,7 +52,7 @@
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="trang_thai" class="form-label">Email</label>
-                <input type="date" class="form-control" name="ngay" value="{{$khach_hang->email}}" readonly>
+                <input type="text" class="form-control" name="ngay" value="{{$khach_hang->email}}" readonly>
               </div>
             </div>
           </div>
