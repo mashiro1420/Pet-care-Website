@@ -316,6 +316,9 @@ class ChamSocController extends Controller
             $hoi_vien->diem_hoi_vien = $hoi_vien->diem_hoi_vien + 5;
             $hoi_vien->save();
         }
+        $khach_hang = KhachHangModel::find($cham_soc->id_khach_hang);
+        $khach_hang->so_lan_cham_soc = $khach_hang->so_lan_cham_soc+1;
+        $khach_hang->save();
         $cham_soc->save();
         $thong_tin = [
             'loai' => 4,

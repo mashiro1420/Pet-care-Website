@@ -298,6 +298,9 @@ class TrongCoiController extends Controller
             $hoi_vien->diem_hoi_vien = $hoi_vien->diem_hoi_vien + 10;
             $hoi_vien->save();
         }
+        $khach_hang = KhachHangModel::find($trong_coi->id_khach_hang);
+        $khach_hang->so_lan_trong_coi = $khach_hang->so_lan_trong_coi+1;
+        $khach_hang->save();
         $trong_coi->id_trang_thai = 4;
         $trong_coi->save();
         $thong_tin = [
