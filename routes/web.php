@@ -55,7 +55,6 @@ Route::middleware(['kiem.tra:2'])->group(function (){
     Route::get('xl_huy_tc',[TrongCoiController::class, 'xlHuy'])->name('xl_huy_tc');
     // Route::post('xl_gui_mail_xac_nhan_tc',[TrongCoiController::class, 'xlGuiMailXacNhan']);
     Route::post('cap_nhat_tai_khoan', [KhachHangController::class, 'xlCapNhatTaiKhoan']);
-    Route::get('chi_tiet_kh',[KhachHangController::class, 'viewChiTietKhachHang'])->name('chi_tiet_kh');
     Route::get('chi_tiet_tk',[KhachHangController::class, 'viewChiTietTaiKhoan'])->name('chi_tiet_tk');
     Route::get('baidang_user',[BaiDangController::class, 'viewUser'])->name('baidang_user');
     Route::get('chi_tiet_baidang',[BaiDangController::class, 'viewBaiDangUser'])->name('chi_tiet_baidang');
@@ -91,6 +90,7 @@ Route::middleware(['kiem.tra:1,3,5'])->group(function (){
     Route::get('xl_dang_lai',[BaiDangController::class, 'xlDangLai'])->name('dang_lai');
     Route::get('xoa_baidang',[BaiDangController::class, 'xlXoa'])->name('xoa_baidang');
     Route::get('ql_kh',[KhachHangController::class, 'viewQuanLy'])->name('ql_kh');
+    Route::get('chi_tiet_kh',[KhachHangController::class, 'viewChiTietKhachHang'])->name('chi_tiet_kh');
     
 });
 Route::middleware(['kiem.tra:1,5'])->group(function (){
