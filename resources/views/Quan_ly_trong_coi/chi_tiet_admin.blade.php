@@ -32,7 +32,7 @@
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="ho_ten" class="form-label">Khách hàng</label>
-                <input type="text" class="form-control" name="ho_ten" value="{{$trong_coi->ho_ten}}" readonly>
+                <input type="text" class="form-control" name="ho_ten" value="{{$trong_coi->ten_khach_hang}}" readonly>
               </div>
             </div>
             <div class="col-md-6">
