@@ -117,7 +117,7 @@
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="khuyen_mai" class="form-label">Khuyến mãi đã sử dụng</label>
-                <input type="text" class="form-control" name="khuyen_mai" value="{{$cham_soc->khuyen_mai}}" readonly>
+                <input type="text" class="form-control" name="khuyen_mai" value="{{$cham_soc->ten_khuyen_mai}}" readonly>
               </div>
             </div>
             <div class="col-md-6">
@@ -128,9 +128,9 @@
             </div>
           </div>
           <div class="col-12 d-flex justify-content-end gap-2 mt-4">
-            <button type="reset" class="btn btn-outline-secondary">
+            <a  href="{{url('ql_chamsoc')}}" class="btn btn-outline-secondary">
               <i class="bi bi-arrow-repeat me-1"></i>Quay lại
-            </button>
+            </a>
             <button type="submit" class="btn btn-warning" {{$cham_soc->id_trang_thai!=1?'disabled':''}}>
               <i class="fa-solid fa-gears"></i>Xác nhận
             </button>

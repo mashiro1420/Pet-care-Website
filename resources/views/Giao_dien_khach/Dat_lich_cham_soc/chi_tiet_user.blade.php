@@ -117,7 +117,7 @@
           <div class="col-md-6">
             <div class="mb-3">
               <label for="khuyen_mai" class="form-label">Khuyến mãi đã sử dụng</label>
-              <input type="text" class="form-control" name="khuyen_mai" value="{{$cham_soc->khuyen_mai}}" readonly>
+              <input type="text" class="form-control" name="khuyen_mai" value="{{$cham_soc->ten_khuyen_mai}}" readonly>
             </div>
           </div>
           <div class="col-md-6">

@@ -45,6 +45,7 @@
                 'Đã thanh toán' => 'badge-completed',
                 'Đã hủy' => 'badge-cancelled',
                 'Đang xử lý' => 'badge-pending',
+                'Đã hoàn thành' => 'badge-success',
                 default => 'badge-default'
               };
             @endphp

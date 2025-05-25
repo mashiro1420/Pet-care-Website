@@ -194,13 +194,16 @@ s body {
     font-weight: 600;
     border-radius: 30px;
   }
-
+  .badge-default{
+    background-color: #464444;
+    color: #f5f4f4;
+  }
   .badge-pending {
     background-color: #FFD166;
     color: #333;
   }
 
-  .badge-confirmed {
+  .badge-success {
     background-color: #06D6A0;
     color: white;
   }

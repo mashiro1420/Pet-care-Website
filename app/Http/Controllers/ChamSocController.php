@@ -100,13 +100,15 @@ class ChamSocController extends Controller
             'dm_giongthucung.ten_giong_thu_cung',
             'ql_khachhang.ho_ten as ten_khach_hang',
             'ql_taikhoan.ten_nhan_vien',
-            'ql_thanhtoanchamsoc.tong_tien'
+            'ql_thanhtoanchamsoc.tong_tien',
+            'dm_khuyenmai.ten_khuyen_mai',
         )
             ->leftJoin('ql_khachhang', 'ql_khachhang.id', '=', 'ql_chamsoc.id_khach_hang')
             ->leftJoin('dm_trangthai', 'dm_trangthai.id', '=', 'ql_chamsoc.id_trang_thai')
             ->leftJoin('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_chamsoc.id_giong')
             ->leftJoin('ql_taikhoan', 'ql_taikhoan.tai_khoan', '=', 'ql_chamsoc.id_nhan_vien')
             ->leftJoin('ql_thanhtoanchamsoc', 'ql_thanhtoanchamsoc.id_cham_soc', '=', 'ql_chamsoc.id')
+            ->leftJoin('dm_khuyenmai', 'ql_thanhtoanchamsoc.id_khuyen_mai', '=', 'dm_khuyenmai.id')
             ->where('ql_chamsoc.id', $request->id)
             ->first();
         $dich_vu_them = CSDichVuThemModel::where('id_cham_soc', $request->id)->get();
@@ -135,13 +137,15 @@ class ChamSocController extends Controller
             'dm_giongthucung.ten_giong_thu_cung',
             'ql_khachhang.ho_ten as ten_khach_hang',
             'ql_taikhoan.ten_nhan_vien',
-            'ql_thanhtoanchamsoc.tong_tien'
+            'ql_thanhtoanchamsoc.tong_tien',
+            'dm_khuyenmai.ten_khuyen_mai',
         )
             ->leftJoin('ql_khachhang', 'ql_khachhang.id', '=', 'ql_chamsoc.id_khach_hang')
             ->leftJoin('dm_trangthai', 'dm_trangthai.id', '=', 'ql_chamsoc.id_trang_thai')
             ->leftJoin('dm_giongthucung', 'dm_giongthucung.id', '=', 'ql_chamsoc.id_giong')
             ->leftJoin('ql_taikhoan', 'ql_taikhoan.tai_khoan', '=', 'ql_chamsoc.id_nhan_vien')
             ->leftJoin('ql_thanhtoanchamsoc', 'ql_thanhtoanchamsoc.id_cham_soc', '=', 'ql_chamsoc.id')
+            ->leftJoin('dm_khuyenmai', 'ql_thanhtoanchamsoc.id_khuyen_mai', '=', 'dm_khuyenmai.id')
             ->where('ql_chamsoc.id', $request->id)
             ->first();
         $dich_vu_them = CSDichVuThemModel::where('id_cham_soc', $request->id)->get();
