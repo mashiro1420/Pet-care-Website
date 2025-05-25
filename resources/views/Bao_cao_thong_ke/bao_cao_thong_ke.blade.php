@@ -303,8 +303,8 @@
                 <label for="tuan" class="form-label">Tuần</label>
                 <select name="tuan" class="form-control">
                   <option value="" selected>--Chọn tuần--</option>
-                  @for($i = 1;$i <= 12;$i++ )
-                  <option value="{{$i}}">Tháng {{ $i }}</option>
+                  @for($i = 1;$i <= 4;$i++ )
+                  <option value="{{$i}}">Tuần {{ $i }}</option>
                   @endFor
                 </select>
               </div>
