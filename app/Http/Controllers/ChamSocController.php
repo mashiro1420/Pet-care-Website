@@ -215,7 +215,7 @@ class ChamSocController extends Controller
         $thong_tin = [
             'loai' => 1,
 			'email' => $khach->email,
-			'ho_ten' => $khach->ten_khach_hang,
+			'ho_ten' => $khach->ho_ten,
             'sdt' => $khach->sdt,
             'ngay' => $request->ngay,
             'thoi_gian' => $request->thoi_gian,
@@ -237,7 +237,7 @@ class ChamSocController extends Controller
         $thong_tin = [
             'loai' => 2,
 			'email' => $dat_lich->KhachHang->email,
-			'ho_ten' => $dat_lich->KhachHang->ten_khach_hang,
+			'ho_ten' => $dat_lich->KhachHang->ho_ten,
             'sdt' => $dat_lich->KhachHang->sdt,
             'ngay' => $request->ngay,
             'thoi_gian' => $request->thoi_gian,
@@ -281,11 +281,10 @@ class ChamSocController extends Controller
         $thanh_toan = new CSThanhToanModel();
         $thanh_toan->id_cham_soc = $request->id;
         $thanh_toan->tong_tien = $gia;
-        $thanh_toan->save();
         $thong_tin = [
             'loai' => 3,
 			'email' => $dat_lich->KhachHang->email,
-			'ho_ten' => $dat_lich->KhachHang->ten_khach_hang,
+			'ho_ten' => $dat_lich->KhachHang->ho_ten,
             'sdt' => $dat_lich->KhachHang->sdt,
             'ngay' => $dat_lich->ngay,
             'thoi_gian' => $dat_lich->thoi_gian,
@@ -293,6 +292,7 @@ class ChamSocController extends Controller
             'ghi_chu' => $dat_lich->ghi_chu,
             'dich_vu' => 'CS'
 		];
+        $thanh_toan->save();
         $dat_lich->save();
         $this->xlGuiMailXacNhan($thong_tin);
         return redirect()->route('chi_tiet_admin_cs', ['id' => $request->id]);
@@ -327,7 +327,7 @@ class ChamSocController extends Controller
         $thong_tin = [
             'loai' => 4,
 			'email' => $cham_soc->KhachHang->email,
-			'ho_ten' => $cham_soc->KhachHang->ten_khach_hang,
+			'ho_ten' => $cham_soc->KhachHang->ho_ten,
             'sdt' => $cham_soc->KhachHang->sdt,
             'ngay' => $cham_soc->ngay,
             'thoi_gian' => $cham_soc->thoi_gian,
@@ -347,7 +347,7 @@ class ChamSocController extends Controller
         $thong_tin = [
             'loai' => 5,
 			'email' => $dat_lich->KhachHang->email,
-			'ho_ten' => $dat_lich->KhachHang->ten_khach_hang,
+			'ho_ten' => $dat_lich->KhachHang->ho_ten,
             'sdt' => $dat_lich->KhachHang->sdt,
             'dich_vu' => 'CS'
 		];
@@ -356,10 +356,11 @@ class ChamSocController extends Controller
     }
     protected function xlGuiMailXacNhan(array $thong_tin)
     {
-		$result = Mail::to($thong_tin['email'])->send(new XacNhanDatLichMail($thong_tin));
-        if($result){
-			session()->flash('bao_loi','Gửi thành công');
-			}
-		else session()->flash('bao_loi','Gửi không thành công');
+        dd($thong_tin);
+		// $result = Mail::to($thong_tin['email'])->send(new XacNhanDatLichMail($thong_tin));
+        // if($result){
+		// 	session()->flash('bao_loi','Gửi thành công');
+		// 	}
+		// else session()->flash('bao_loi','Gửi không thành công');
     }
 }

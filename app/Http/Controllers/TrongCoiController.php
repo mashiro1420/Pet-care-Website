@@ -208,7 +208,7 @@ class TrongCoiController extends Controller
         $thong_tin = [
             'loai' => 1,
 			'email' => $khach->email,
-			'ho_ten' => $khach->ten_khach_hang,
+			'ho_ten' => $khach->ho_ten,
             'sdt' => $khach->sdt,
             'tu_ngay' => $request->tu_ngay,
             'den_ngay' => $request->den_ngay,
@@ -230,7 +230,7 @@ class TrongCoiController extends Controller
         $thong_tin = [
             'loai' => 2,
 			'email' => $dat_lich->KhachHang->email,
-			'ho_ten' => $dat_lich->KhachHang->ten_khach_hang,
+			'ho_ten' => $dat_lich->KhachHang->ho_ten,
             'sdt' => $dat_lich->KhachHang->sdt,
             'tu_ngay' => $request->tu_ngay,
             'den_ngay' => $request->den_ngay,
@@ -294,6 +294,12 @@ class TrongCoiController extends Controller
     public function xlThanhToan(Request $request)
     {
         $trong_coi = TrongCoiModel::find($request->id);
+        $dich_vus  = TCDichVuThemModel::where('id_trong_coi',$request->id)->get();
+        $dich_vu_them =[];
+        foreach ($dich_vus as $dich_vu){
+            $ten_dich_vu = DMDichVuModel::find($dich_vu->id_dich_vu);
+            $dich_vu_them[]=$ten_dich_vu->ten_dich_vu;
+        }
         $hoi_vien = HoiVienModel::where('id_khach_hang',$trong_coi->id_khach_hang)->first();
         $gia = TCThanhToanModel::where('id_trong_coi',$request->id)->first();
         if($request->danh_gia) $trong_coi->danh_gia = $request->danh_gia;
@@ -310,14 +316,14 @@ class TrongCoiController extends Controller
         $thong_tin = [
             'loai' => 4,
 			'email' => $trong_coi->KhachHang->email,
-			'ho_ten' => $trong_coi->KhachHang->ten_khach_hang,
+			'ho_ten' => $trong_coi->KhachHang->ho_ten,
             'sdt' => $trong_coi->KhachHang->sdt,
-            'tu_ngay' => $request->tu_ngay,
-            'den_ngay' => $request->den_ngay,
-            'gio_nhan' => $request->gio_nhan,
-            'gio_tra' => $request->gio_tra,
-            'ghi_chu' => $request->ghi_chu,
-            'dich_vu_them' => $request->dich_vu_them,
+            'tu_ngay' => $trong_coi->tu_ngay,
+            'den_ngay' => $trong_coi->den_ngay,
+            'gio_nhan' => $trong_coi->gio_nhan,
+            'gio_tra' => $trong_coi->gio_tra,
+            'ghi_chu' => $trong_coi->ghi_chu,
+            'dich_vu_them' => implode(', ',$dich_vu_them),
             'gia' => $gia->tong_tien,
             'dich_vu' => 'TC'
 		];
@@ -332,7 +338,7 @@ class TrongCoiController extends Controller
         $thong_tin = [
             'loai' => 5,
 			'email' => $dat_lich->KhachHang->email,
-			'ho_ten' => $dat_lich->KhachHang->ten_khach_hang,
+			'ho_ten' => $dat_lich->KhachHang->ho_ten,
             'sdt' => $dat_lich->KhachHang->sdt,
             'dich_vu' => 'TC'
 		];
@@ -341,10 +347,11 @@ class TrongCoiController extends Controller
     }
     protected function xlGuiMailXacNhan(array $thong_tin)
     {
-		$result = Mail::to($thong_tin['email'])->send(new XacNhanDatLichMail($thong_tin));
-        if($result){
-			session()->flash('bao_loi','Gửi thành công');
-			}
-		else session()->flash('bao_loi','Gửi không thành công');
+        dd($thong_tin);
+		// $result = Mail::to($thong_tin['email'])->send(new XacNhanDatLichMail($thong_tin));
+        // if($result){
+		// 	session()->flash('bao_loi','Gửi thành công');
+		// 	}
+		// else session()->flash('bao_loi','Gửi không thành công');
     }
 }
