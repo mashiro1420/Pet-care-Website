@@ -290,24 +290,6 @@
                   @endFor
                 </select>
               </div>
-              <div class="col-md-4 mb-3">
-                <label for="thang" class="form-label">Tháng</label>
-                <select name="thang" class="form-control">
-                  <option value="" selected>--Chọn tháng--</option>
-                  @for($i = 1;$i <= 12;$i++ )
-                  <option value="{{$i}}">Tháng {{ $i }}</option>
-                  @endFor
-                </select>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="tuan" class="form-label">Tuần</label>
-                <select name="tuan" class="form-control">
-                  <option value="" selected>--Chọn tuần--</option>
-                  @for($i = 1;$i <= 4;$i++ )
-                  <option value="{{$i}}">Tuần {{ $i }}</option>
-                  @endFor
-                </select>
-              </div>
             </div>
             <div class="mb-3">
                 <label for="cham_soc" class="form-label">Dữ liệu chăm sóc</label>

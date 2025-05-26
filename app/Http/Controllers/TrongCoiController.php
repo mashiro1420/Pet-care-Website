@@ -347,11 +347,11 @@ class TrongCoiController extends Controller
     }
     protected function xlGuiMailXacNhan(array $thong_tin)
     {
-        dd($thong_tin);
-		// $result = Mail::to($thong_tin['email'])->send(new XacNhanDatLichMail($thong_tin));
-        // if($result){
-		// 	session()->flash('bao_loi','Gửi thành công');
-		// 	}
-		// else session()->flash('bao_loi','Gửi không thành công');
+        // dd($thong_tin);
+		$result = Mail::to($thong_tin['email'])->send(new XacNhanDatLichMail($thong_tin));
+        if($result){
+			session()->flash('bao_loi','Gửi thành công');
+			}
+		else session()->flash('bao_loi','Gửi không thành công');
     }
 }
