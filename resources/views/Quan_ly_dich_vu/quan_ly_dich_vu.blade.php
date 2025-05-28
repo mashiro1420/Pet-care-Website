@@ -45,7 +45,7 @@
                   <td>{{$dich_vu_cham_soc->id}}</td>
                   <td>{{$dich_vu_cham_soc->ten_dich_vu}}</td>
                   <td>
-                    <a class="btn btn-sm btn-danger btn-action me-1" href="">
+                    <a class="btn btn-sm btn-danger btn-action me-1" href="{{ route('xoa_chamsoc',['id'=>$dich_vu_cham_soc->id]) }}">
                       <i class="bi bi-trash"></i>
                     </a>
                   </td>
@@ -114,7 +114,7 @@
                   <td>{{$dich_vu_trong_coi->id}}</td>
                   <td>{{$dich_vu_trong_coi->ten_dich_vu}}</td>
                   <td>
-                    <a class="btn btn-sm btn-danger btn-action me-1" href="">
+                    <a class="btn btn-sm btn-danger btn-action me-1" href="{{ route('xoa_trongcoi',['id'=>$dich_vu_trong_coi->id]) }}">
                       <i class="bi bi-trash"></i>
                     </a>
                   </td>
